@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="jbrickshooter">
+
+    <property environment="env"/>
+    <property name="debug" value="false"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.5"/>
+    <property name="source" value="1.5"/>
+    <property name="name" value="jbrickshooter"/>
+
+    <path id="jbrickshooter.classpath">
+        <pathelement location="build/classes"/>
+    </path>
+
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src" excludes="**/*.html, **/*.java"/>
+        </copy>
+    </target>
+
+    <target name="clean">
+        <delete dir="build/classes"/>
+        <delete file="build/${name}.jar"/>
+    </target>
+
+    <target depends="clean,build-project,pack" name="build"/>
+
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="${debug}" debuglevel="${debuglevel}" destdir="build/classes" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="jbrickshooter.classpath"/>
+        </javac>
+    </target>
+
+    <target name="pack">
+        <jar destfile="build/${name}.jar" manifest="${basedir}/resources/META-INF/MANIFEST.MF">
+            <fileset dir="build/classes" excludes="**/*-orig"/>
+        </jar>        
+    </target>
+
+    <target name="Main">
+        <java classname="Main" failonerror="true" fork="yes">
+            <classpath refid="jbrickshooter.classpath"/>
+        </java>
+    </target>
+
+</project>
