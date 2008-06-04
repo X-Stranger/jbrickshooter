@@ -10,7 +10,8 @@ import values.Orientation;
  * @author X-Stranger
  */
 public class Oriented extends JLabel {
-
+    private static final long serialVersionUID = 7942933490474531365L;
+    
     /** Brick orientation. */
     private Orientation orientation;
     
