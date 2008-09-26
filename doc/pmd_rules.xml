@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="pmd-ruleset">
+    <description>Rule set for WIH BCS project</description>
+    <rule name="WhileLoopsMustUseBraces" message="Avoid using 'while' statements without curly braces" class="net.sourceforge.pmd.rules.XPathRule">
+        <description>
+Avoid using 'while' statements without using curly braces
+      </description>
+        <example><![CDATA[
+
+public void doSomething() {
+  while (true)
+      x++;
+}
+
+      ]]></example>
+        <priority>3</priority>
+        <properties>
+            <property name="xpath">
+                <value><![CDATA[
+
+//WhileStatement[not(Statement/Block)]
+
+                ]]></value>
+            </property>
+        </properties>
+    </rule>
+    <rule name="UnnecessaryConversionTemporary" message="Avoid unnecessary temporaries when converting primitives to Strings" class="net.sourceforge.pmd.rules.UnnecessaryConversionTemporary">
+        <description>
+Avoid unnecessary temporaries when converting primitives to Strings
+      </description>
+        <example><![CDATA[
+  
+public String convert(int x) {
+  // this wastes an object
+  String foo = new Integer(x).toString();
+  // this is better
+  return Integer.toString(x);
+}
+ 
+      ]]></example>
+        <priority>3</priority>
+        <properties/>
+    </rule>
+    <rule name="UnusedLocalVariable" message="Avoid unused local variables such as ''{0}''" class="net.sourceforge.pmd.rules.UnusedLocalVariableRule">
+        <description>
+Detects when a local variable is declared and/or assigned, but not used.
+    </description>
+        <example><![CDATA[
+
+public class Foo {
+ public void doSomething() {
+  int i = 5; // Unused
+ }
+}
+
+    ]]></example>
+        <priority>3</priority>
+        <properties/>
+    </rule>
+    <rule name="UnusedPrivateMethod" message="Avoid unused private methods such as ''{0}''" class="net.sourceforge.pmd.rules.UnusedPrivateMethodRule">
+        <description>
+Unused Private Method detects when a private method is declared but is unused.
+    </description>
+        <example><![CDATA[
+
+public class Something {
+ private void foo() {} // unused
+}
+
+    ]]></example>
+        <priority>3</priority>
+        <properties/>
+    </rule>
+    <rule name="DuplicateImports" message="Avoid duplicate imports such as ''{0}''" class="net.sourceforge.pmd.rules.imports.DuplicateImportsRule">
+        <description>
+    Avoid duplicate import statements.
+    </description>
+        <example><![CDATA[
+
+import java.lang.String;
+import java.lang.*;
+public class Foo {}
+
+    ]]></example>
+        <priority>4</priority>
+        <properties/>
+    </rule>
+    <rule name="EmptyCatchBlock" message="Avoid empty catch blocks" class="net.sourceforge.pmd.rules.XPathRule">
+        <description>
+Empty Catch Block finds instances where an exception is caught,
+but nothing is done.  In most circumstances, this swallows an exception
+which should either be acted on or reported.
+      </description>
+        <example><![CDATA[
+  
+public void doSomething() {
+  try {
+    FileInputStream fis = new FileInputStream("/tmp/bugger");
+  } catch (IOException ioe) {
+      // not good
+  }
+}
+ 
+      ]]></example>
+        <priority>3</priority>
+        <properties>
+            <property name="xpath">
+                <value><![CDATA[
+    
+//CatchStatement
+ [count(Block/BlockStatement) = 0]
+ [FormalParameter/Type/ReferenceType
+   /ClassOrInterfaceType[@Image != 'InterruptedException' and @Image != 'CloneNotSupportedException']
+ ]
+ 
+             ]]></value>
+            </property>
+        </properties>
+    </rule>
+</ruleset>
