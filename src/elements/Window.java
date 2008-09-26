@@ -393,6 +393,8 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
             if (item.getText().equals(settings.getString("MENU_GAME_SAVE"))) {
                 try {
                     this.saveToFile();
+                    JOptionPane.showMessageDialog(this, settings.getString("MESSAGE_GAME_SAVE"),
+                            settings.getString("TITLE_GAME_SAVE"), JOptionPane.INFORMATION_MESSAGE);
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(this, settings.getString("ERROR_SAVE"), 
                             settings.getString("TITLE_GAME_SAVE"), JOptionPane.ERROR_MESSAGE);
