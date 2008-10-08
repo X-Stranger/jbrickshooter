@@ -380,8 +380,9 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().getClass().isAssignableFrom(JMenuItem.class)) {
             JMenuItem item = (JMenuItem) e.getSource();
+            String text = item.getText();
 
-            if (item.getText().equals(settings.getString("MENU_GAME_UNDO"))) {
+            if (text.equals(settings.getString("MENU_GAME_UNDO"))) {
                 this.restore();
                 this.updateLayoutFromField();
                 this.updateLayoutFromCollections();
@@ -390,57 +391,83 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
                 return;
             } 
 
-            if (item.getText().equals(settings.getString("MENU_GAME_SAVE"))) {
-                try {
-                    this.saveToFile();
-                    JOptionPane.showMessageDialog(this, settings.getString("MESSAGE_GAME_SAVE"),
-                            settings.getString("TITLE_GAME_SAVE"), JOptionPane.INFORMATION_MESSAGE);
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(this, settings.getString("ERROR_SAVE"), 
-                            settings.getString("TITLE_GAME_SAVE"), JOptionPane.ERROR_MESSAGE);
-                }
-                return;    
+            if (text.equals(settings.getString("MENU_GAME_SAVE"))) {
+                this.performSave("");
+                return;
             }
 
-            if (item.getText().equals(settings.getString("MENU_GAME_LOAD"))) {
-                if (JOptionPane.showConfirmDialog(this, settings.getString("MESSAGE_GAME_LOAD"), 
-                        settings.getString("TITLE_GAME_LOAD"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    try {
-                        if (!this.loadFromFile()) {
-                            JOptionPane.showMessageDialog(this, settings.getString("MESSAGE_GAME_LOAD_NO_FILE"), 
-                                    settings.getString("TITLE_GAME_LOAD"), JOptionPane.ERROR_MESSAGE);
-                        }
-                    } catch (IOException ex) {
-                        JOptionPane.showMessageDialog(this, settings.getString("ERROR_LOAD"), 
-                                settings.getString("TITLE_GAME_LOAD"), JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-                return;    
+            if (text.equals(settings.getString("MENU_GAME_LOAD"))) {
+                this.performLoad("");
+                return;
             }
 
-            if (item.getText().equals(settings.getString("MENU_ABOUT_HIGHSCORES"))) {
+            if (text.equals(settings.getString("MENU_ABOUT_HIGHSCORES"))) {
                 this.showHighScores();
                 return;    
             }
 
-            if (item.getText().equals(settings.getString("MENU_ABOUT_GAME"))) {
+            if (text.equals(settings.getString("MENU_ABOUT_GAME"))) {
                 this.showAboutBox();
                 return;    
             }
 
-            if (item.getText().equals(settings.getString("MENU_GAME_NEW"))) {
+            if (text.equals(settings.getString("MENU_GAME_NEW"))) {
                 this.newGame();
                 return;    
             }
 
-            if (item.getText().equals(settings.getString("MENU_GAME_OPTIONS"))) {
+            if (text.equals(settings.getString("MENU_GAME_OPTIONS"))) {
                 new Dialog(this.settings);
                 return;    
             }
 
-            if (item.getText().equals(settings.getString("MENU_GAME_EXIT"))) {
+            if (text.equals(settings.getString("MENU_GAME_EXIT"))) {
                 this.windowClosing(null);
                 System.exit(0);    
+            }
+
+            if (text.startsWith(settings.getString("MENU_GAME_SLOT"))) {
+                if (item.getName().equals(settings.getString("MENU_GAME_SAVE_SLOT"))) {
+                    this.performSave(text.substring(text.length() - 1));
+                } else if (item.getName().equals(settings.getString("MENU_GAME_LOAD_SLOT"))) {
+                    this.performLoad(text.substring(text.length() - 1));
+                }
+            }
+        }
+    }
+
+    /**
+     * Method to call internal saveToFile procedure, catch errors and show notification.
+     *
+     * @param sfx - file name suffix to use
+     */
+    private void performSave(String sfx) {
+        try {
+            this.saveToFile(sfx);
+            JOptionPane.showMessageDialog(this, settings.getString("MESSAGE_GAME_SAVE"),
+                    settings.getString("TITLE_GAME_SAVE"), JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, settings.getString("ERROR_SAVE"),
+                    settings.getString("TITLE_GAME_SAVE"), JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Method to call internal loadFromFile procedure, catch errors and show notification.
+     *
+     * @param sfx - file name suffix to use
+     */
+    private void performLoad(String sfx) {
+        if (JOptionPane.showConfirmDialog(this, settings.getString("MESSAGE_GAME_LOAD"),
+                settings.getString("TITLE_GAME_LOAD"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            try {
+                if (!this.loadFromFile(sfx)) {
+                    JOptionPane.showMessageDialog(this, settings.getString("MESSAGE_GAME_LOAD_NO_FILE"),
+                            settings.getString("TITLE_GAME_LOAD"), JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, settings.getString("ERROR_LOAD"),
+                        settings.getString("TITLE_GAME_LOAD"), JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -507,16 +534,26 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
     
     /**
      * Saves game state to file.
-     * 
+     *
      * @throws IOException - if any occurs
      */
     public void saveToFile() throws IOException {
+        this.saveToFile("");
+    }
+
+    /**
+     * Saves game state to file.
+     *
+     * @param sfx - file name suffix to use 
+     * @throws IOException - if any occurs
+     */
+    public void saveToFile(String sfx) throws IOException {
         File home = new File(Settings.HOME);
         home.mkdir();
-        File savegame = new File(Settings.HOME + "savegame.dat");
+        File savegame = new File(Settings.HOME + "savegame" + sfx + ".dat");
         savegame.createNewFile();
         if (savegame.isFile() && savegame.canWrite()) {
-            FileOutputStream out = new FileOutputStream(Settings.HOME + "savegame.dat");
+            FileOutputStream out = new FileOutputStream(Settings.HOME + "savegame" + sfx + ".dat");
             this.settings.saveToStream(out);
             this.field.saveToStream(out);
             this.leftBricks.saveToStream(out);
@@ -532,12 +569,23 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
     
     /**
      * Loads game state from file.
-     * 
+     *
      * @throws IOException - if any occurs
      * @return true if savegame file exists and was loaded
      */
     public boolean loadFromFile() throws IOException {
-        File savegame = new File(Settings.HOME + "savegame.dat");
+        return this.loadFromFile("");
+    }
+
+    /**
+     * Loads game state from file.
+     *
+     * @param sfx - file name suffix to use
+     * @throws IOException - if any occurs
+     * @return true if savegame file exists and was loaded
+     */
+    public boolean loadFromFile(String sfx) throws IOException {
+        File savegame = new File(Settings.HOME + "savegame" + sfx + ".dat");
         if (savegame.exists()) {
             if (savegame.isFile() && savegame.canRead()) {
                 FileInputStream in = new FileInputStream(savegame);
