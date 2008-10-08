@@ -1,9 +1,6 @@
 import elements.Window;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.io.IOException;
+import values.Settings;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -11,7 +8,13 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
-import values.Settings;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.io.File;
 
 /**
  * Class holds game window and implements game management actions.
@@ -100,23 +103,66 @@ public class Game extends JFrame {
         menuItem.addActionListener(window);
         gameMenu.add(menuItem);
 
-        menuItem = new JMenuItem(settings.getString("MENU_GAME_SAVE"), KeyEvent.VK_S);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
-        menuItem.addActionListener(window);
-        gameMenu.add(menuItem);
-
-        menuItem = new JMenuItem(settings.getString("MENU_GAME_LOAD"), KeyEvent.VK_L);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
-        menuItem.addActionListener(window);
-        gameMenu.add(menuItem);
-
         menuItem = new JMenuItem(settings.getString("MENU_GAME_UNDO"), KeyEvent.VK_Z);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
         menuItem.addActionListener(window);
         menuItem.setEnabled(false);
         gameMenu.add(menuItem);
         settings.setUndo(menuItem);
-        
+
+        gameMenu.addSeparator();
+
+        menuItem = new JMenuItem(settings.getString("MENU_GAME_SAVE"), KeyEvent.VK_S);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+        menuItem.addActionListener(window);
+        gameMenu.add(menuItem);
+
+        menuItem = new JMenu(settings.getString("MENU_GAME_SAVE_SLOT"));
+        menuItem.addActionListener(window);
+        gameMenu.add(menuItem);
+        for (Integer i = 1; i <= 5; i++) {
+            JMenuItem slot = new JMenuItem(settings.getString("MENU_GAME_SLOT") + " " + i);
+            slot.setName(settings.getString("MENU_GAME_SAVE_SLOT"));
+            slot.addActionListener(window);
+            menuItem.add(slot);
+        }
+
+        gameMenu.addSeparator();
+
+        menuItem = new JMenuItem(settings.getString("MENU_GAME_LOAD"), KeyEvent.VK_L);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
+        menuItem.addActionListener(window);
+        gameMenu.add(menuItem);
+
+        menuItem = new JMenu(settings.getString("MENU_GAME_LOAD_SLOT"));
+        menuItem.addActionListener(window);
+        gameMenu.add(menuItem);
+        for (Integer i = 1; i <= 5; i++) {
+            JMenuItem slot = new JMenuItem(settings.getString("MENU_GAME_SLOT") + " " + i);
+//            JMenuItem slot = new JMenuItem(settings.getString("MENU_GAME_SLOT") + " " + i) {
+//                /**
+//                 * Method to draw menu item.
+//                 *
+//                 * @param g - Graphics object to use
+//                 */
+//                public void paint(Graphics g) {
+//                    String tmp = this.getText();
+//                    File savegame = new File(Settings.HOME + "savegame" + tmp.substring(tmp.length() - 1) + ".dat");
+//                    if (savegame.exists() && savegame.isFile() && savegame.canRead()) {
+////                        DateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm");
+////                        this.setText(caption + " (" + formatter.format(savegame.lastModified()) + ")");
+//                        this.setEnabled(true);
+//                    } else {
+//                        this.setEnabled(false);
+//                    }
+//                    super.paint(g);
+//                }
+//            };
+            slot.setName(settings.getString("MENU_GAME_LOAD_SLOT"));
+            slot.addActionListener(window);
+            menuItem.add(slot);
+        }
+
         gameMenu.addSeparator();
 
         menuItem = new JMenuItem(settings.getString("MENU_GAME_OPTIONS"), KeyEvent.VK_P);
