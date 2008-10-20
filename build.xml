@@ -8,6 +8,10 @@
     <property name="source" value="1.5"/>
     <property name="name" value="jbrickshooter"/>
 
+    <path id="lib.classpath">
+	<fileset dir="lib" includes="*.jar"/>
+    </path>
+    
     <path id="jbrickshooter.classpath">
         <pathelement location="build/classes"/>
     </path>
@@ -21,10 +25,12 @@
 
     <target name="clean">
         <delete dir="build/classes"/>
-        <delete file="build/${name}.jar"/>
+        <delete>
+	    <fileset dir="build" includes="*.jar,*.xml"/>
+	</delete>
     </target>
 
-    <target depends="clean,build-project,pack" name="build"/>
+    <target depends="clean,build-project,check,pack" name="build"/>
 
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
@@ -44,6 +50,27 @@
         <java classname="Main" failonerror="true" fork="yes">
             <classpath refid="jbrickshooter.classpath"/>
         </java>
+    </target>
+    
+    <target depends="checkstyle,pmd" name="check"/>
+
+    <target name="pmd">
+	<taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="lib.classpath"/>
+	<pmd failonerror="true" failonruleviolation="true" targetjdk="1.5">
+	    <ruleset>doc/pmd_rules.xml</ruleset>
+	    <fileset dir="src" includes="**/*.java"/>
+	    <formatter type="text" toConsole="true"/>
+	    <formatter type="xml" toFile="build/pmd_errors.xml"/>
+	</pmd>	
+    </target>
+
+    <target name="checkstyle">
+	<taskdef resource="checkstyletask.properties" classpathref="lib.classpath"/>
+	<checkstyle config="doc/checkstyle_rules.xml" failonviolation="true">
+	    <fileset dir="src" includes="**/*.java"/>
+	    <formatter type="plain"/>
+	    <formatter type="xml" toFile="build/checkstyle_errors.xml"/>
+	</checkstyle>	
     </target>
 
 </project>
