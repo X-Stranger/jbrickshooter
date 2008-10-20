@@ -19,6 +19,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
@@ -52,6 +56,8 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
     private BrickCollection rightBricks;
     private BrickCollection topBricks;
     private BrickCollection bottomBricks;
+    private List<JMenuItem> saveSlots;
+    private List<JMenuItem> loadSlots;
     
     /**
      * Default constructor.
@@ -60,7 +66,10 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
      */
     public Window(Settings settings) {
         super();
-        
+
+        this.saveSlots = new ArrayList<JMenuItem>();
+        this.loadSlots = new ArrayList<JMenuItem>();
+
         this.settings = settings;
         this.createBrickElements();        
         
@@ -427,10 +436,11 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
             }
 
             if (text.startsWith(settings.getString("MENU_GAME_SLOT"))) {
-                if (item.getName().equals(settings.getString("MENU_GAME_SAVE_SLOT"))) {
-                    this.performSave(text.substring(text.length() - 1));
-                } else if (item.getName().equals(settings.getString("MENU_GAME_LOAD_SLOT"))) {
-                    this.performLoad(text.substring(text.length() - 1));
+                if (item.getName().startsWith(settings.getString("MENU_GAME_SAVE_SLOT"))) {
+                    this.performSave(item.getName().substring(item.getName().length() - 1));
+                    this.activateSlots();
+                } else if (item.getName().startsWith(settings.getString("MENU_GAME_LOAD_SLOT"))) {
+                    this.performLoad(item.getName().substring(item.getName().length() - 1));
                 }
             }
         }
@@ -442,6 +452,14 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
      * @param sfx - file name suffix to use
      */
     private void performSave(String sfx) {
+        File savegame = new File(Settings.HOME + "savegame" + sfx + ".dat");
+        if (!"".equals(sfx) && savegame.exists() && savegame.isFile() && savegame.canRead()) {
+            if (JOptionPane.showConfirmDialog(this, settings.getString("MESSAGE_GAME_SAVE_OVER"),
+                    settings.getString("TITLE_GAME_SAVE"), JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) {
+                return;
+            }
+        }
+
         try {
             this.saveToFile(sfx);
             JOptionPane.showMessageDialog(this, settings.getString("MESSAGE_GAME_SAVE"),
@@ -678,7 +696,71 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
                     (int) (getHeight() + area.getHeight()) / 2);
         }
     }
-    
+
+    /**
+     * Setter for game saving slots.
+     *
+     * @param saveSlot - JMenuItem element that represents game saving slot
+     */
+    public void addSaveSlot(JMenuItem saveSlot) {
+        this.saveSlots.add(saveSlot);
+    }
+
+    /**
+     * Setter for game loading slots.
+     *
+     * @param loadSlot - JMenuItem element that represents game loading slot
+     */
+    public void addLoadSlot(JMenuItem loadSlot) {
+        this.loadSlots.add(loadSlot);
+    }
+
+    /**
+     * Common method to call savegame slots activation.
+     */
+    public void activateSlots() {
+        this.activateSaveSlots();
+        this.activateLoadSlots();
+    }
+
+    /**
+     * Method check for savegames existing and activates save game elements accordingly.
+     */
+    private void activateSaveSlots() {
+        for (JMenuItem slot : saveSlots) {
+            String tmp = slot.getName();
+            tmp = tmp.substring(tmp.length() - 1);
+            File savegame = new File(Settings.HOME + "savegame" + tmp + ".dat");
+            if (savegame.exists() && savegame.isFile() && savegame.canRead()) {
+                DateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm");
+                slot.setText(settings.getString("MENU_GAME_SLOT") + " " + tmp
+                        + " (" + formatter.format(savegame.lastModified()) + ")");
+            } else {
+                slot.setText(settings.getString("MENU_GAME_SLOT") + " " + tmp + " (none)");
+            }
+        }
+    }
+
+    /**
+     * Method check for savegames existing and activates load game elements accordingly. 
+     */
+    private void activateLoadSlots() {
+        for (JMenuItem slot : loadSlots) {
+            String tmp = slot.getName();
+            tmp = tmp.substring(tmp.length() - 1);
+            File savegame = new File(Settings.HOME + "savegame" + tmp + ".dat");
+            if (savegame.exists() && savegame.isFile() && savegame.canRead()) {
+                DateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm");
+                slot.setText(settings.getString("MENU_GAME_SLOT") + " " + tmp
+                        + " (" + formatter.format(savegame.lastModified()) + ")");
+                slot.setEnabled(true);
+            } else {
+                slot.setText(settings.getString("MENU_GAME_SLOT") + " " + tmp + " (none)");
+                slot.setEnabled(false);
+            }
+        }
+    }
+
     /**
      * Called when mouse exited window.
      * 

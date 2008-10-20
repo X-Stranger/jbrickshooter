@@ -10,11 +10,9 @@ import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.io.File;
 
 /**
  * Class holds game window and implements game management actions.
@@ -40,6 +38,9 @@ public class Game extends JFrame {
      * Methos configures game window and shows it at the screen.
      */
     private void start() {
+        // activate savegame slots 
+        window.activateSlots();
+
         // displaying window at the screen
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle(settings.getString("TITLE"));
@@ -122,9 +123,10 @@ public class Game extends JFrame {
         gameMenu.add(menuItem);
         for (Integer i = 1; i <= 5; i++) {
             JMenuItem slot = new JMenuItem(settings.getString("MENU_GAME_SLOT") + " " + i);
-            slot.setName(settings.getString("MENU_GAME_SAVE_SLOT"));
+            slot.setName(settings.getString("MENU_GAME_SAVE_SLOT") + " " + i);
             slot.addActionListener(window);
             menuItem.add(slot);
+            window.addSaveSlot(slot);
         }
 
         gameMenu.addSeparator();
@@ -139,28 +141,10 @@ public class Game extends JFrame {
         gameMenu.add(menuItem);
         for (Integer i = 1; i <= 5; i++) {
             JMenuItem slot = new JMenuItem(settings.getString("MENU_GAME_SLOT") + " " + i);
-//            JMenuItem slot = new JMenuItem(settings.getString("MENU_GAME_SLOT") + " " + i) {
-//                /**
-//                 * Method to draw menu item.
-//                 *
-//                 * @param g - Graphics object to use
-//                 */
-//                public void paint(Graphics g) {
-//                    String tmp = this.getText();
-//                    File savegame = new File(Settings.HOME + "savegame" + tmp.substring(tmp.length() - 1) + ".dat");
-//                    if (savegame.exists() && savegame.isFile() && savegame.canRead()) {
-////                        DateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm");
-////                        this.setText(caption + " (" + formatter.format(savegame.lastModified()) + ")");
-//                        this.setEnabled(true);
-//                    } else {
-//                        this.setEnabled(false);
-//                    }
-//                    super.paint(g);
-//                }
-//            };
-            slot.setName(settings.getString("MENU_GAME_LOAD_SLOT"));
+            slot.setName(settings.getString("MENU_GAME_LOAD_SLOT") + " " + i);
             slot.addActionListener(window);
             menuItem.add(slot);
+            window.addLoadSlot(slot);
         }
 
         gameMenu.addSeparator();
