@@ -16,7 +16,7 @@
         <pathelement location="build/classes"/>
     </path>
 
-    <target name="init">
+    <target depends="clean" name="init">
         <mkdir dir="build/classes"/>
         <copy includeemptydirs="false" todir="build/classes">
             <fileset dir="src" excludes="**/*.html, **/*.java"/>
@@ -27,10 +27,11 @@
         <delete dir="build/classes"/>
         <delete>
 	    <fileset dir="build" includes="*.jar,*.xml"/>
+	    <fileset dir="" includes="*.zip"/>
 	</delete>
     </target>
 
-    <target depends="clean,build-project,check,pack" name="build"/>
+    <target depends="check,pack" name="build"/>
 
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
@@ -40,13 +41,13 @@
         </javac>
     </target>
 
-    <target name="pack">
+    <target depends="build-project" name="pack">
         <jar destfile="build/${name}.jar" manifest="${basedir}/resources/META-INF/MANIFEST.MF">
             <fileset dir="build/classes" excludes="**/*-orig"/>
         </jar>        
     </target>
 
-    <target name="Main">
+    <target depends="build-project" name="Main">
         <java classname="Main" failonerror="true" fork="yes">
             <classpath refid="jbrickshooter.classpath"/>
         </java>
@@ -71,6 +72,14 @@
 	    <formatter type="plain"/>
 	    <formatter type="xml" toFile="build/checkstyle_errors.xml"/>
 	</checkstyle>	
+    </target>
+    
+    <target depends="zip" name="dist"/>
+
+    <target depends="pack" name="zip">
+	<zip destfile="JBrickShooter.zip" basedir="package">
+	    <fileset dir="build" includes="*.jar"/>
+	</zip>
     </target>
 
 </project>

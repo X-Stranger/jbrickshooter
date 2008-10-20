@@ -1,0 +1,29 @@
+		-= JBrickShooter v1.1 =-
+Absolutely free Brick Shooter game Java implementation
+------------------------------------------------------
+
+1. Installation
+
+First you need to have JRE >= 1.5 installed and JAVA_HOME environment variable
+configured. Then just copy these files from archive to the location you want
+and start jbrickshooter.sh if you are Linux user or jbrickshooter.bat if you
+are Windows user.
+
+You can also create shortcut at your desktop and assign an icon for it. Linux
+users should use jbrickshooter.png icon, Windows users should use file named 
+jbrickshooter.ico.
+
+
+2. Removal
+
+Just remove all of the files from this folder and delete shortcut if you have
+created it before. You can also remove .jbrickshooter folder in your home
+location if you want to remove all of the game settings and high scores.
+
+
+3. Contact info
+
+Author: X-Stranger
+Mail: xstranger at gmail.com
+
+2008/10/20
