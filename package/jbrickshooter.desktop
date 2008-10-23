@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.1
+Encoding=UTF-8
+Name=JBrickShooter
+GenericName=JBrickShooter
+Comment=Absolutely free Brick Shooter game Java implementation
+Exec=java -jar /opt/JBrickShooter/jbrickshooter.jar
+Icon=/opt/JBrickShooter/jbrickshooter.png
+Terminal=false
+Type=Application
+Categories=Application;Game;PuzzleGame;
+X-Ubuntu-Gettext-Domain=jbrickshooter

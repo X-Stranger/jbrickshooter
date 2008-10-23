@@ -27,7 +27,7 @@
         <delete dir="build/classes"/>
         <delete>
 	    <fileset dir="build" includes="*.jar,*.xml"/>
-	    <fileset dir="" includes="*.zip"/>
+	    <fileset dir="" includes="*.zip,*.deb"/>
 	</delete>
     </target>
 
@@ -74,12 +74,19 @@
 	</checkstyle>	
     </target>
     
-    <target depends="zip" name="dist"/>
+    <target depends="zip,deb" name="dist"/>
 
     <target depends="pack" name="zip">
-	<zip destfile="JBrickShooter.zip" basedir="package">
+	<zip destfile="JBrickShooter.zip">
+	    <fileset dir="package" includes="jbrickshooter.*,README,LICENSE" excludes="*.desktop"/>
 	    <fileset dir="build" includes="*.jar"/>
 	</zip>
+    </target>
+
+    <target depends="pack" name="deb">
+	<exec dir="package" executable="fakeroot">
+	    <arg line="debian/rules binary clean"/>
+	</exec>
     </target>
 
 </project>
