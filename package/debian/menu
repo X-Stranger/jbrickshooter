@@ -1,4 +1,4 @@
 ?package(jbrickshooter):needs="X11" section="Games/Puzzles"\
   title="JBrickShooter" longtitle="Absolutely free Brick Shooter game Java implementation"\
-  icon="/opt/JBrickShooter/jbrickshooter.png"\
-  command="/opt/JBrickShooter/jbrickshooter.sh"
+  icon="/usr/share/games/jbrickshooter/jbrickshooter.png"\
+  command="java -jar /usr/share/games/jbrickshooter/jbrickshooter.jar"
