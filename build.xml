@@ -84,9 +84,11 @@
     </target>
 
     <target depends="pack" name="deb">
+	<copy file="build/${name}.jar" todir="package" overwrite="true"/>
 	<exec dir="package" executable="fakeroot">
 	    <arg line="debian/rules binary clean"/>
 	</exec>
+	<delete file="package/${name}.jar"/>
     </target>
 
 </project>

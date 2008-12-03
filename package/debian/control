@@ -2,7 +2,7 @@ Source: jbrickshooter
 Section: applications
 Priority: optional
 Maintainer: X-Stranger <xstranger@gmail.com>
-Build-Depends: debhelper (>= 5)
+Build-Depends: cdbs, debhelper (>= 5)
 Standards-Version: 3.7.2
 
 Package: jbrickshooter
