@@ -1,5 +1,5 @@
 Source: jbrickshooter
-Section: applications
+Section: games
 Priority: optional
 Maintainer: X-Stranger <xstranger@gmail.com>
 Build-Depends: cdbs, debhelper (>= 5)
@@ -7,6 +7,7 @@ Standards-Version: 3.7.2
 
 Package: jbrickshooter
 Architecture: all
-Depends: sun-java6-jre
+Depends: openjdk-6-jre | java-runtime
 Description: Absolutely free Brick Shooter game Java implementation
- This project written in Java aims to create free implementation of perfect puzzle game named Brick Shooter
+ This project written in Java aims to create free implementation of perfect 
+ puzzle game named Brick Shooter

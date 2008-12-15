@@ -9,9 +9,9 @@
     <property name="name" value="jbrickshooter"/>
 
     <path id="lib.classpath">
-	<fileset dir="lib" includes="*.jar"/>
+        <fileset dir="lib" includes="*.jar"/>
     </path>
-    
+
     <path id="jbrickshooter.classpath">
         <pathelement location="build/classes"/>
     </path>
@@ -26,9 +26,9 @@
     <target name="clean">
         <delete dir="build/classes"/>
         <delete>
-	    <fileset dir="build" includes="*.jar,*.xml"/>
-	    <fileset dir="" includes="*.zip,*.deb"/>
-	</delete>
+            <fileset dir="build" includes="*.jar,*.xml"/>
+            <fileset dir="" includes="*.zip,*.deb"/>
+        </delete>
     </target>
 
     <target depends="check,pack" name="build"/>
@@ -44,7 +44,7 @@
     <target depends="build-project" name="pack">
         <jar destfile="build/${name}.jar" manifest="${basedir}/resources/META-INF/MANIFEST.MF">
             <fileset dir="build/classes" excludes="**/*-orig"/>
-        </jar>        
+        </jar>
     </target>
 
     <target depends="build-project" name="Main">
@@ -52,43 +52,43 @@
             <classpath refid="jbrickshooter.classpath"/>
         </java>
     </target>
-    
+
     <target depends="checkstyle,pmd" name="check"/>
 
     <target name="pmd">
-	<taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="lib.classpath"/>
-	<pmd failonerror="true" failonruleviolation="true" targetjdk="1.5">
-	    <ruleset>doc/pmd_rules.xml</ruleset>
-	    <fileset dir="src" includes="**/*.java"/>
-	    <formatter type="text" toConsole="true"/>
-	    <formatter type="xml" toFile="build/pmd_errors.xml"/>
-	</pmd>	
+        <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="lib.classpath"/>
+        <pmd failonerror="true" failonruleviolation="true" targetjdk="1.5">
+            <ruleset>doc/pmd_rules.xml</ruleset>
+            <fileset dir="src" includes="**/*.java"/>
+            <formatter type="text" toConsole="true"/>
+            <formatter type="xml" toFile="build/pmd_errors.xml"/>
+        </pmd>
     </target>
 
     <target name="checkstyle">
-	<taskdef resource="checkstyletask.properties" classpathref="lib.classpath"/>
-	<checkstyle config="doc/checkstyle_rules.xml" failonviolation="true">
-	    <fileset dir="src" includes="**/*.java"/>
-	    <formatter type="plain"/>
-	    <formatter type="xml" toFile="build/checkstyle_errors.xml"/>
-	</checkstyle>	
+        <taskdef resource="checkstyletask.properties" classpathref="lib.classpath"/>
+        <checkstyle config="doc/checkstyle_rules.xml" failonviolation="true">
+            <fileset dir="src" includes="**/*.java"/>
+            <formatter type="plain"/>
+            <formatter type="xml" toFile="build/checkstyle_errors.xml"/>
+        </checkstyle>
     </target>
-    
+
     <target depends="zip,deb" name="dist"/>
 
     <target depends="pack" name="zip">
-	<zip destfile="JBrickShooter.zip">
-	    <fileset dir="package" includes="jbrickshooter.*,README,LICENSE" excludes="*.desktop"/>
-	    <fileset dir="build" includes="*.jar"/>
-	</zip>
+        <zip destfile="JBrickShooter.zip">
+            <fileset dir="package" includes="jbrickshooter.*,README,LICENSE" excludes="*.desktop"/>
+            <fileset dir="build" includes="*.jar"/>
+        </zip>
     </target>
 
     <target depends="pack" name="deb">
-	<copy file="build/${name}.jar" todir="package" overwrite="true"/>
-	<exec dir="package" executable="fakeroot">
-	    <arg line="debian/rules binary clean"/>
-	</exec>
-	<delete file="package/${name}.jar"/>
+        <copy file="build/${name}.jar" todir="package" overwrite="true"/>
+        <exec dir="package" executable="fakeroot">
+            <arg line="debian/rules binary clean"/>
+        </exec>
+        <delete file="package/${name}.jar"/>
     </target>
 
 </project>
