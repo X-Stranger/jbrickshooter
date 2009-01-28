@@ -178,7 +178,16 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
      */
     public void mouseClicked(MouseEvent e) {
         if (this.settings.isGameOver()) { return; }
-        if ((this.activeBrick.getOrientation() != Orientation.NONE) && !field.contains(this.activeBrick)) {
+
+        if (field.contains(this.activeBrick) && e.isAltDown() && e.isControlDown() && (e.getClickCount() == 3)) {
+            int ind = this.activeBrick.getColor().getIndex() + 1;
+            if (ind >= this.settings.getDifficulty()) {
+                ind = 0;
+            }
+            this.activeBrick.setColor(new BrickColor(ind));
+            this.activeBrick.repaint();
+            
+        } else if ((this.activeBrick.getOrientation() != Orientation.NONE) && !field.contains(this.activeBrick)) {
             this.save();
             Point pos = layout.getPosition(this.activeBrick);
             BrickCollection collection = (BrickCollection) this.activeBrick.getParentCollection();
