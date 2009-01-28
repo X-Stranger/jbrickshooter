@@ -77,6 +77,16 @@ public class Brick extends Oriented {
     }
 
     /**
+     * Getter for brick color property.
+     *
+     * @param color - new BrickColor object
+     */
+    public void setColor(BrickColor color) {
+        this.color = color;
+        this.setIcon(color.getColor(this.getOrientation()));
+    }
+
+    /**
      * Getter for parent collection property.
      * 
      * @param parentCollection - Oriented object
