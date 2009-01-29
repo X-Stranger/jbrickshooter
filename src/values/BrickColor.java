@@ -25,8 +25,14 @@ import javax.swing.ImageIcon;
  */
 public class BrickColor {
     
+    public static final int SPECIAL_TOTAL = 5;
+    public static final int SPECIAL_UNIVERSAL = Layout.FIELD;
+    public static final int SPECIAL_BOMB      = Layout.FIELD + 1;
+    public static final int SPECIAL_LIGHTNING = Layout.FIELD + 2;
+    public static final int SPECIAL_ARROWS    = Layout.FIELD + 3;
+    public static final int SPECIAL_COLORS    = Layout.FIELD + 4;
     private static final ImageIcon BLACK_IMAGE = new ImageIcon(ClassLoader.getSystemResource("images/black.png"));
-    private static final ImageIcon GRAY_IMAGE = new ImageIcon(ClassLoader.getSystemResource("images/gray.png"));
+    private static final ImageIcon GRAY_IMAGE  = new ImageIcon(ClassLoader.getSystemResource("images/gray.png" ));
 
     /** Static value. */
     public static final BrickColor BLACK = new BrickColor() {
@@ -61,11 +67,14 @@ public class BrickColor {
         ImageIcon leftImage = new ImageIcon(ClassLoader.getSystemResource("images/d_left.png"));
         ImageIcon rightImage = new ImageIcon(ClassLoader.getSystemResource("images/d_right.png"));
 
+        ImageIcon icon;
         BufferedImage image;
-        for (int i = 0; i < Layout.FIELD; i++) {
-            Map<Orientation, ImageIcon> map = new HashMap<Orientation, ImageIcon>();
+        Map<Orientation, ImageIcon> map;
 
-            ImageIcon icon = new ImageIcon(ClassLoader.getSystemResource("images/" + i + ".png"));
+        for (int i = 0; i < Layout.FIELD + SPECIAL_TOTAL; i++) {
+            map = new HashMap<Orientation, ImageIcon>();
+
+            icon = new ImageIcon(ClassLoader.getSystemResource("images/" + i + ".png"));
             map.put(Orientation.NONE, icon);
 
             image = toBufferedImage(icon.getImage());
@@ -90,7 +99,7 @@ public class BrickColor {
 
     /** Random number generator to select color value. */
     private static Random generator = new Random(System.currentTimeMillis());
-    
+
     /**
      * Private constructor.
      */

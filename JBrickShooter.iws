@@ -17,62 +17,8 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JBrickShooter.iws" afterPath="$PROJECT_DIR$/JBrickShooter.iws" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/images/50.png" afterPath="$PROJECT_DIR$/src/images/5.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/images/10.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/values/BrickColor.java" afterPath="$PROJECT_DIR$/src/values/BrickColor.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/04.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/02.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/94.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JBrickShooter.ipr" afterPath="$PROJECT_DIR$/JBrickShooter.ipr" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/images/20.png" afterPath="$PROJECT_DIR$/src/images/2.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/21.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/images/70.png" afterPath="$PROJECT_DIR$/src/images/7.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/34.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/13.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/12.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/93.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/14.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/84.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/images/00.png" afterPath="$PROJECT_DIR$/src/images/0.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/53.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/31.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/91.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/43.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/61.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/03.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/images/90.png" afterPath="$PROJECT_DIR$/src/images/9.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/82.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/24.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/72.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/41.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/81.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/images/30.png" afterPath="$PROJECT_DIR$/src/images/3.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/51.png" afterPath="" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/images/d_left.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/64.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/83.png" afterPath="" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/images/d_up.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/62.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/71.png" afterPath="" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/images/d_right.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/92.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/73.png" afterPath="" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/images/d_down.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/33.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/22.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/44.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/23.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/images/40.png" afterPath="$PROJECT_DIR$/src/images/4.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/01.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/11.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/images/10.png" afterPath="$PROJECT_DIR$/src/images/1.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/74.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/images/80.png" afterPath="$PROJECT_DIR$/src/images/8.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/32.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/52.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/54.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/42.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/images/60.png" afterPath="$PROJECT_DIR$/src/images/6.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/images/63.png" afterPath="" />
     </list>
     <ignored path="JBrickShooter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -138,10 +84,19 @@
       <file leaf-file-name="BrickColor.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/values/BrickColor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="28" selection-start="1903" selection-end="1903" vertical-scroll-proportion="-2.7857144">
+            <state line="36" column="4" selection-start="1242" selection-end="1242" vertical-scroll-proportion="0.64285713">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Brick.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/elements/Brick.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="13" selection-start="212" selection-end="212" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -237,6 +192,28 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="values" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="JBrickShooter" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="JBrickShooter" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="JBrickShooter" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="elements" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -643,14 +620,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/elements/Brick.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="41" selection-start="1854" selection-end="1854" vertical-scroll-proportion="0.0">
+        <state line="12" column="13" selection-start="212" selection-end="212" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/values/BrickColor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="28" selection-start="1903" selection-end="1903" vertical-scroll-proportion="-2.7857144">
+        <state line="36" column="4" selection-start="1242" selection-end="1242" vertical-scroll-proportion="0.64285713">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
