@@ -25,14 +25,21 @@ import javax.swing.ImageIcon;
  */
 public class BrickColor {
     
+    /** Special bricks total count. */
     public static final int SPECIAL_TOTAL = 5;
+    /** "Universal color" brick id. */
     public static final int SPECIAL_UNIVERSAL = Layout.FIELD;
+    /** "Bomb" brick id. */
     public static final int SPECIAL_BOMB      = Layout.FIELD + 1;
+    /** "Lightning" brick id. */
     public static final int SPECIAL_LIGHTNING = Layout.FIELD + 2;
+    /** "Arrow changer" brick id. */
     public static final int SPECIAL_ARROWS    = Layout.FIELD + 3;
+    /** "Color changer" brick id. */
     public static final int SPECIAL_COLORS    = Layout.FIELD + 4;
+
     private static final ImageIcon BLACK_IMAGE = new ImageIcon(ClassLoader.getSystemResource("images/black.png"));
-    private static final ImageIcon GRAY_IMAGE  = new ImageIcon(ClassLoader.getSystemResource("images/gray.png" ));
+    private static final ImageIcon GRAY_IMAGE  = new ImageIcon(ClassLoader.getSystemResource("images/gray.png"));
 
     /** Static value. */
     public static final BrickColor BLACK = new BrickColor() {
