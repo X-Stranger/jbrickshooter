@@ -10,23 +10,6 @@
       <maximumStackSize value="32" />
       <properties />
       <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
-      <executeOn event="beforeRun" target="build" />
       <executeOn event="beforeRun" target="build" runConfigurationType="Application" runConfigurationName="JBrickShooter" />
     </buildFile>
   </component>
