@@ -45,9 +45,19 @@ public class Brick extends Oriented {
      * @param level - max color value
      */
     public Brick(int level) {
-        this(BrickColor.generate(level));
+        this(BrickColor.generate(level, false));
     }
     
+    /**
+     * Parameterized constructor.
+     *
+     * @param level - max color value
+     * @param arcade - boolean game type flag
+     */
+    public Brick(int level, boolean arcade) {
+        this(BrickColor.generate(level, arcade));
+    }
+
     /**
      * Sets new brick orientation.
      * 

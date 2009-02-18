@@ -172,9 +172,11 @@ public class BrickColor {
      * Static method which creates a new BrickColor instance.
      * 
      * @param level - max color index
+     * @param arcade - boolean game type flag
      * @return new color instance
      */
-    public static BrickColor generate(int level) {
+    public static BrickColor generate(int level, boolean arcade) {
+        //TODO: add arcade generator and fix game save/load
         return new BrickColor(COLORS.get(generator.nextInt(level)));
     }
 
