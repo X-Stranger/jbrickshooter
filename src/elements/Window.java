@@ -30,6 +30,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JLabel;
+import javax.swing.JSeparator;
 import javax.swing.event.MouseInputListener;
 import values.BrickColor;
 import values.Orientation;
@@ -520,7 +522,14 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
      * Method implements functionality to select severity and start new game.
      */
     private void newGame() {
-        ButtonGroup group = new javax.swing.ButtonGroup();
+        JLabel typeLabel = new JLabel(settings.getString("MESSAGE_GAME_NEW_TYPE"));
+        ButtonGroup type = new ButtonGroup();
+        JRadioButton strategy = new JRadioButton(settings.getString("MESSAGE_GAME_NEW_TYPE_STRATEGY"));
+        JRadioButton arcade = new JRadioButton(settings.getString("MESSAGE_GAME_NEW_TYPE_ARCADE"));
+        type.add(strategy);
+        type.add(arcade);
+
+        ButtonGroup group = new ButtonGroup();
         JRadioButton colors5 = new JRadioButton("5 " + settings.getString("MESSAGE_GAME_NEW_COLORS"));
         JRadioButton colors6 = new JRadioButton("6 " + settings.getString("MESSAGE_GAME_NEW_COLORS"));
         JRadioButton colors7 = new JRadioButton("7 " + settings.getString("MESSAGE_GAME_NEW_COLORS"));
@@ -533,14 +542,17 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
         group.add(colors8);
         group.add(colors9);
         group.add(colors10);
+
         Object[] severities = {settings.getString("MESSAGE_GAME_NEW_INVITATION"), 
-                colors5, colors6, colors7, colors8, colors9, colors10};
+                colors5, colors6, colors7, colors8, colors9, colors10, new JSeparator(), typeLabel, strategy, arcade};
         ((JRadioButton) severities[this.settings.getDifficulty() - 4]).setSelected(true);
+
         int result = JOptionPane.showConfirmDialog(this, 
                 severities, 
                 settings.getString("TITLE_GAME_NEW"), 
                 JOptionPane.OK_CANCEL_OPTION, 
                 JOptionPane.QUESTION_MESSAGE);
+        
         if (result == JOptionPane.OK_OPTION) {
             if (colors5.isSelected()) { this.settings.setDifficulty(5); } 
             if (colors6.isSelected()) { this.settings.setDifficulty(6); } 
