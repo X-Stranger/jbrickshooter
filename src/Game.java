@@ -57,6 +57,7 @@ public class Game extends JFrame {
 
         try {
             window.loadFromFile();
+            window.updateTitle();
         } catch (Exception e) {
             System.out.println(settings.getString("ERROR_LOAD") + " (" + e.getMessage() + ")");
         }

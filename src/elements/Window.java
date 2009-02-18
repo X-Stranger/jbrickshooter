@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
+import javax.swing.JFrame;
 import javax.swing.event.MouseInputListener;
 import java.awt.Color;
 import java.awt.FontMetrics;
@@ -564,6 +565,7 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
             if (colors9.isSelected()) { this.settings.setDifficulty(9); } 
             if (colors10.isSelected()) { this.settings.setDifficulty(9 + 1); }
             this.settings.setArcade(arcade.isSelected());
+            this.updateTitle();
             this.settings.setLevel(1);
             this.settings.setScores(0);
             this.createBrickElements();
@@ -574,7 +576,17 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
             this.repaint();
         }
     }
-    
+
+    /**
+     * Updates game window title depending on game type.
+     */
+    public void updateTitle() {
+        String type = this.settings.isArcade()
+                ? this.settings.getString("MESSAGE_GAME_NEW_TYPE_ARCADE")
+                : this.settings.getString("MESSAGE_GAME_NEW_TYPE_STRATEGY");
+        ((JFrame) this.getParent().getParent().getParent()).setTitle(settings.getString("TITLE") + " - " + type);
+    }
+
     /**
      * Saves game state to file.
      *

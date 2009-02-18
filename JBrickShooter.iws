@@ -18,6 +18,7 @@
     <list default="true" readonly="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JBrickShooter.iws" afterPath="$PROJECT_DIR$/JBrickShooter.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Window.java" afterPath="$PROJECT_DIR$/src/elements/Window.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Game.java" afterPath="$PROJECT_DIR$/src/Game.java" />
     </list>
     <ignored path="JBrickShooter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,7 +93,7 @@
       <file leaf-file-name="Settings.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/values/Settings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="48" selection-start="1738" selection-end="1738" vertical-scroll-proportion="0.0">
+            <state line="475" column="32" selection-start="13428" selection-end="13428" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -100,19 +101,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dialog.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/conf/Dialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="0" selection-start="995" selection-end="995" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Window.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Window.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/elements/Window.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="565" column="0" selection-start="22101" selection-end="22101" vertical-scroll-proportion="0.67479676">
+            <state line="580" column="55" selection-start="22627" selection-end="22627" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -120,10 +112,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Game.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="73" selection-start="1691" selection-end="1691" vertical-scroll-proportion="0.0">
+            <state line="59" column="33" selection-start="1619" selection-end="1619" vertical-scroll-proportion="0.7380952">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -515,7 +507,7 @@
     <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added code to save/load game type.&#10;Old savegames will be ignored." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update game window title depending on game type." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -529,6 +521,9 @@
     <MESSAGE value="Adding game type selection." />
     <MESSAGE value="Added value to store game type flag." />
     <MESSAGE value="Added code to save/load game type.&#10;Old savegames will be ignored." />
+    <MESSAGE value="Set seelected game type on new game." />
+    <MESSAGE value="Process highscores for 2 game types.&#10;Old highscores will be overwritten..." />
+    <MESSAGE value="Update game window title depending on game type." />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -674,18 +669,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="73" selection-start="1691" selection-end="1691" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/values/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="48" selection-start="1738" selection-end="1738" vertical-scroll-proportion="0.0">
+        <state line="475" column="32" selection-start="13428" selection-end="13428" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -694,7 +680,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/elements/Window.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="565" column="0" selection-start="22101" selection-end="22101" vertical-scroll-proportion="0.67479676">
+        <state line="580" column="55" selection-start="22627" selection-end="22627" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="33" selection-start="1619" selection-end="1619" vertical-scroll-proportion="0.7380952">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
