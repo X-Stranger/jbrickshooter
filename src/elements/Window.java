@@ -562,7 +562,8 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
             if (colors7.isSelected()) { this.settings.setDifficulty(7); } 
             if (colors8.isSelected()) { this.settings.setDifficulty(8); } 
             if (colors9.isSelected()) { this.settings.setDifficulty(9); } 
-            if (colors10.isSelected()) { this.settings.setDifficulty(9 + 1); } 
+            if (colors10.isSelected()) { this.settings.setDifficulty(9 + 1); }
+            this.settings.setArcade(arcade.isSelected());
             this.settings.setLevel(1);
             this.settings.setScores(0);
             this.createBrickElements();
