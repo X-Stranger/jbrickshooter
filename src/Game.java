@@ -12,7 +12,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 
 /**
  * Class holds game window and implements game management actions.
@@ -58,8 +57,8 @@ public class Game extends JFrame {
 
         try {
             window.loadFromFile();
-        } catch (IOException ie) {
-            System.out.println(settings.getString("ERROR_LOAD") + " (" + ie.getMessage() + ")");
+        } catch (Exception e) {
+            System.out.println(settings.getString("ERROR_LOAD") + " (" + e.getMessage() + ")");
         }
 
         setVisible(true);
