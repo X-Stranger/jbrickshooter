@@ -39,6 +39,7 @@ public final class Settings {
     private Integer scoresBackup;
     private Integer level;
     private Integer difficulty;
+    private Boolean arcade;
     private Font font;
     private Font bigFont;
     private Boolean gameOver;
@@ -49,7 +50,7 @@ public final class Settings {
     private JMenuItem undo = null;
     private Properties highscores = new Properties();
     private Properties configuration = new Properties();
-    
+
     /**
      * Method stores settings state to stream.
      * 
@@ -78,7 +79,7 @@ public final class Settings {
         }
         level = in.read();
         difficulty = in.read();
-        gameOver = in.read() == 1 ? true : false;
+        gameOver = in.read() == 1;
     }
 
     /**
@@ -181,6 +182,7 @@ public final class Settings {
         this.setDifficulty(7);
         this.setMenu(new JMenuBar());
         this.setGameOver(false);
+        this.setArcade(false);
 
         this.loadHighScores();
         this.loadConfiguration();
@@ -374,7 +376,25 @@ public final class Settings {
     public void setUndo(JMenuItem undo) {
         this.undo = undo;
     }
-    
+
+    /**
+     * Getter for arcade property.
+     *
+     * @return the arcade boolean flag
+     */
+    public Boolean isArcade() {
+        return arcade;
+    }
+
+    /**
+     * Setter fot arcade propety.
+     *
+     * @param arcade - the boolean flag to be set
+     */
+    public void setArcade(Boolean arcade) {
+        this.arcade = arcade;
+    }
+
     /**
      * Getter for gameOver property.
      * 
