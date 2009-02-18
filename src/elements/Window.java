@@ -527,7 +527,9 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
         JRadioButton strategy = new JRadioButton(settings.getString("MESSAGE_GAME_NEW_TYPE_STRATEGY"));
         JRadioButton arcade = new JRadioButton(settings.getString("MESSAGE_GAME_NEW_TYPE_ARCADE"));
         type.add(strategy);
+        strategy.setSelected(!settings.isArcade());
         type.add(arcade);
+        arcade.setSelected(settings.isArcade());
 
         ButtonGroup group = new ButtonGroup();
         JRadioButton colors5 = new JRadioButton("5 " + settings.getString("MESSAGE_GAME_NEW_COLORS"));
