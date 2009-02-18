@@ -86,7 +86,7 @@ public class BrickCollection extends Oriented {
             for (int j = 0; j < maxY; j++) {
 
                 color = in.read(); 
-                if (color < 0 || color > 9) {
+                if (color < 0 || color > Layout.FIELD + BrickColor.SPECIAL_TOTAL - 1) {
                     bricks[i][j] = new Brick();
                 } else {
                     bricks[i][j] = new Brick(new BrickColor(color));
