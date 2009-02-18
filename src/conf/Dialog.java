@@ -81,7 +81,7 @@ public class Dialog extends JDialog implements ActionListener {
         
         // locale text field
         localeList = new HashMap<String, String>();
-        localeList.put("", "auto");
+        localeList.put(settings.getString("CONF_AUTO"), "auto");
         
         String locales = settings.getString("LANGUAGE");
         for (String tmp : locales.split(";")) {
@@ -106,7 +106,7 @@ public class Dialog extends JDialog implements ActionListener {
 
         // LookAndFeel text field
         lafList = new HashMap<String, String>();
-        lafList.put("", "auto"); 
+        lafList.put(settings.getString("CONF_AUTO"), "auto"); 
 
         UIManager.LookAndFeelInfo[] lookAndFeelInfos = UIManager.getInstalledLookAndFeels();
         for (UIManager.LookAndFeelInfo lookAndFeelInfo : lookAndFeelInfos) {
