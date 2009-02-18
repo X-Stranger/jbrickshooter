@@ -25,15 +25,18 @@ public class BrickCollection extends Oriented {
     private int maxX;
     private int maxY;
     private int level;
-    
+    private boolean arcade;
+
     /**
      * Default constructor.
      * 
      * @param level - max color index
      * @param orientation - collection orientation
+     * @param arcade - boolean game type flag
      */
-    public BrickCollection(int level, Orientation orientation) {
+    public BrickCollection(int level, boolean arcade, Orientation orientation) {
         this.level = level;
+        this.arcade = arcade;
 
         if (orientation.isHorizontal()) {
             maxX = Layout.CORNER;
@@ -48,7 +51,7 @@ public class BrickCollection extends Oriented {
         this.bricks = new Brick[maxX][maxY];
         this.bricksBackup = new Brick[maxX][maxY];
 
-        this.fill(level, Orientation.switchOrientation(orientation));
+        this.fill(level, arcade);
         this.setOrientation(orientation);
     }
     
@@ -125,13 +128,13 @@ public class BrickCollection extends Oriented {
      * Method fills collection with bricks.
      * 
      * @param level - max color index
-     * @param orientation - brick orientation
+     * @param arcade - boolean game type flag
      */
-    private void fill(int level, Orientation orientation) {
-        Brick brick = null;
+    private void fill(int level, boolean arcade) {
+        Brick brick;
         for (int i = 0; i < maxX; i++) {
             for (int j = 0; j < maxY; j++) {
-                brick = new Brick(level);
+                brick = new Brick(level, arcade);
                 brick.setParentCollection(this);
                 bricks[i][j] = brick; 
                 list.add(brick);
@@ -200,7 +203,7 @@ public class BrickCollection extends Oriented {
             return null;
         }
         
-        Brick brick = new Brick(this.level);
+        Brick brick = new Brick(this.level, this.arcade);
         brick.setParentCollection(this);
         
         if (this.getOrientation() == Orientation.LEFT) {
