@@ -104,9 +104,11 @@ public final class Settings {
         }
         
         // initialize empty or broken high scores
-        if (highscores.size() < 6 * Layout.FIELD) {
+        if (highscores.size() < 2 * 6 * Layout.FIELD) {
+            highscores.clear();
             for (Integer i = 5 * Layout.FIELD; i < (Layout.FIELD + 1) * Layout.FIELD; i++) {
-                highscores.setProperty(i.toString(), "0,Unknown");
+                highscores.setProperty(i.toString() + Boolean.FALSE.toString(), "0,Unknown");
+                highscores.setProperty(i.toString() + Boolean.TRUE.toString(), "0,Unknown");
             }
         }
     }
@@ -424,7 +426,7 @@ public final class Settings {
         String result = "";
         for (Integer i = 0; i < Layout.FIELD; i++) {
             Integer pos = i + difficulty * Layout.FIELD; 
-            String[] values = highscores.getProperty(pos.toString()).split(",");
+            String[] values = highscores.getProperty(pos.toString() + isArcade().toString()).split(",");
             result += (i + 1) + ". " + values[1] + "   -   " + values[0] + "\n";
         }
         return result;
@@ -438,7 +440,7 @@ public final class Settings {
     public Integer checkHighScores() {
         for (Integer i = 0; i < Layout.FIELD; i++) {
             Integer pos = i + difficulty * Layout.FIELD; 
-            String[] values = highscores.getProperty(pos.toString()).split(",");
+            String[] values = highscores.getProperty(pos.toString() + isArcade().toString()).split(",");
             int scores = Integer.parseInt(values[0]);
             if (this.scores >= scores) {
                 return i;
@@ -457,10 +459,11 @@ public final class Settings {
         for (Integer i = Layout.FIELD - 1, tmp = Layout.FIELD - 2; i > to; i--, tmp--) {
             Integer pos1 = i + difficulty * Layout.FIELD;
             Integer pos2 = tmp + difficulty * Layout.FIELD;
-            highscores.setProperty(pos1.toString(), highscores.getProperty(pos2.toString()));
+            highscores.setProperty(pos1.toString() + isArcade().toString(),
+                    highscores.getProperty(pos2.toString() + isArcade().toString()));
         }
         Integer pos = to + difficulty * Layout.FIELD;
-        highscores.setProperty(pos.toString(), scores.toString() + "," + name);
+        highscores.setProperty(pos.toString() + isArcade().toString(), scores.toString() + "," + name);
     }
     
     /**
