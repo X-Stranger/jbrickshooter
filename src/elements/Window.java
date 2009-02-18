@@ -53,9 +53,6 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
     private Layout layout;
     private Field field;
     private Corner scores;
-    private Corner level;
-    private Corner buttons;
-    private Corner severity;
     private BrickCollection leftBricks;
     private BrickCollection rightBricks;
     private BrickCollection topBricks;
@@ -81,14 +78,14 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
         this.setLayout(this.layout);
         
         scores = new Scores(this.settings);
-        level = new Level(this.settings);
-        buttons = new Buttons(this.settings);
-        severity = new Severity(this.settings);
+        Corner level = new Level(this.settings);
+        Corner buttons = new Buttons(this.settings);
+        Corner severity = new Severity(this.settings);
         
-        this.add("corner,0,0", this.buttons);
-        this.add("corner,0,1", this.severity);
+        this.add("corner,0,0", buttons);
+        this.add("corner,0,1", severity);
         this.add("corner,1,0", this.scores);
-        this.add("corner,1,1", this.level);
+        this.add("corner,1,1", level);
 
         this.updateLayoutFromField();
         this.updateLayoutFromCollections();
@@ -295,7 +292,7 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
      * @param value - time to sleep in milliseconds
      */
     private void sleep(int value) {
-        try { Thread.sleep(value); } catch (InterruptedException ie) { }
+        try { Thread.sleep(value); } catch (InterruptedException ie) { System.out.println(ie.getMessage()); }
     }
     
     /**
@@ -604,9 +601,9 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
      */
     public void saveToFile(String sfx) throws IOException {
         File home = new File(Settings.HOME);
-        home.mkdir();
+        if (!home.mkdir()) { throw new IOException(); }
         File savegame = new File(Settings.HOME + "savegame" + sfx + ".dat");
-        savegame.createNewFile();
+        if (!savegame.createNewFile()) { throw new IOException(); }
         if (savegame.isFile() && savegame.canWrite()) {
             FileOutputStream out = new FileOutputStream(Settings.HOME + "savegame" + sfx + ".dat");
             this.settings.saveToStream(out);
