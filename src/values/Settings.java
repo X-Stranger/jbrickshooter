@@ -64,6 +64,7 @@ public final class Settings {
         out.write(level);
         out.write(difficulty);
         out.write(gameOver ? 1 : 0);
+        out.write(arcade ? 1 : 0);
     }
     
     /**
@@ -80,6 +81,7 @@ public final class Settings {
         level = in.read();
         difficulty = in.read();
         gameOver = in.read() == 1;
+        arcade = in.read() == 1;
     }
 
     /**

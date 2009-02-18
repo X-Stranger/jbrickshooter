@@ -3,6 +3,20 @@ package elements;
 import basic.Layout;
 import basic.Oriented;
 import conf.Dialog;
+import values.BrickColor;
+import values.Orientation;
+import values.Settings;
+
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSeparator;
+import javax.swing.event.MouseInputListener;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -19,23 +33,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
-import java.util.ArrayList;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JLabel;
-import javax.swing.JSeparator;
-import javax.swing.event.MouseInputListener;
-import values.BrickColor;
-import values.Orientation;
-import values.Settings;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Game window which holds game field, brick collections, etc.
@@ -494,7 +495,7 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
                     JOptionPane.showMessageDialog(this, settings.getString("MESSAGE_GAME_LOAD_NO_FILE"),
                             settings.getString("TITLE_GAME_LOAD"), JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (IOException ex) {
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, settings.getString("ERROR_LOAD"),
                         settings.getString("TITLE_GAME_LOAD"), JOptionPane.ERROR_MESSAGE);
             }
