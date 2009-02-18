@@ -16,11 +16,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/values/Settings.java" afterPath="$PROJECT_DIR$/src/values/Settings.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JBrickShooter.iws" afterPath="$PROJECT_DIR$/JBrickShooter.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JBrickShooter.ipr" afterPath="$PROJECT_DIR$/JBrickShooter.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/conf/Dialog.java" afterPath="$PROJECT_DIR$/src/conf/Dialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Game.java" afterPath="$PROJECT_DIR$/src/Game.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/i18n/Messages.properties" afterPath="$PROJECT_DIR$/src/i18n/Messages.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/i18n/Messages_ru_RU.properties" afterPath="$PROJECT_DIR$/src/i18n/Messages_ru_RU.properties" />
     </list>
@@ -105,19 +102,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dialog.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Dialog.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/conf/Dialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="217" column="0" selection-start="7190" selection-end="7190" vertical-scroll-proportion="0.0">
+            <state line="108" column="51" selection-start="3620" selection-end="3620" vertical-scroll-proportion="0.9285714">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Game.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="0" selection-start="1963" selection-end="1963" vertical-scroll-proportion="0.54761904">
+            <state line="79" column="96" selection-start="2131" selection-end="2131" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -641,9 +638,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/conf/Dialog.java">
+    <entry file="file://$PROJECT_DIR$/src/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="217" column="0" selection-start="7190" selection-end="7190" vertical-scroll-proportion="0.0">
+        <state line="79" column="96" selection-start="2131" selection-end="2131" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -657,9 +654,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Game.java">
+    <entry file="file://$PROJECT_DIR$/src/conf/Dialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="0" selection-start="1963" selection-end="1963" vertical-scroll-proportion="0.54761904">
+        <state line="108" column="51" selection-start="3620" selection-end="3620" vertical-scroll-proportion="0.9285714">
           <folding />
         </state>
       </provider>
