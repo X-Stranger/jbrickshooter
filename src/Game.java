@@ -71,17 +71,7 @@ public class Game extends JFrame {
     private void setLAF() {
         // configuring LAF
         try {
-            String laf = UIManager.getSystemLookAndFeelClassName();
-            String os = System.getProperty("os.name");
-
-            if (os.contains("Linux")) {
-                laf = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
-            }
-
-            if (os.contains("Windows")) {
-                laf = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
-            }
-            
+            String laf = settings.getLaF();
             UIManager.setLookAndFeel(laf);
             
         } catch (Exception e) {

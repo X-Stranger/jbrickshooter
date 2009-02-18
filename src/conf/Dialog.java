@@ -23,6 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.WindowConstants;
+import javax.swing.UIManager;
+
 import values.Settings;
 
 /**
@@ -36,8 +38,10 @@ public class Dialog extends JDialog implements ActionListener {
     private JSpinner move;
     private JSpinner fire;
     private JComboBox locale;
-    private Map<String, String> list;
-    
+    private JComboBox laf;
+    private Map<String, String> localeList;
+    private Map<String, String> lafList;
+
     /**
      * Default constructor.
      * 
@@ -76,27 +80,49 @@ public class Dialog extends JDialog implements ActionListener {
         JLabel localeLabel = new JLabel(settings.getString("CONF_LOCALE"));
         
         // locale text field
-        list = new HashMap<String, String>();
-        list.put("", "auto"); 
+        localeList = new HashMap<String, String>();
+        localeList.put("", "auto");
         
         String locales = settings.getString("LANGUAGE");
         for (String tmp : locales.split(";")) {
             String[] values = tmp.split(",");
             if (values.length > 1) {
-                list.put(values[0], values[1]);
+                localeList.put(values[0], values[1]);
             } else {
-                list.put(values[0], "");
+                localeList.put(values[0], "");
             }
         }
         
-        locale = new JComboBox(list.keySet().toArray());
+        locale = new JComboBox(localeList.keySet().toArray());
         for (int i = 0; i < locale.getItemCount(); i++) {
-            if (list.get(locale.getItemAt(i)).equals(settings.getLocale())) {
+            if (localeList.get(locale.getItemAt(i)).equals(settings.getLocale())) {
                 locale.setSelectedIndex(i);
                 break;
             }
         }
-        
+
+        // LookAndFeel text label
+        JLabel lafLabel = new JLabel(settings.getString("CONF_LAF"));
+
+        // LookAndFeel text field
+        lafList = new HashMap<String, String>();
+        lafList.put("", "auto"); 
+
+        UIManager.LookAndFeelInfo[] lookAndFeelInfos = UIManager.getInstalledLookAndFeels();
+        for (UIManager.LookAndFeelInfo lookAndFeelInfo : lookAndFeelInfos) {
+            String name = lookAndFeelInfo.getName();
+            String className = lookAndFeelInfo.getClassName();
+            lafList.put(name, className);
+        }
+
+        laf = new JComboBox(lafList.keySet().toArray());
+        for (int i = 0; i < laf.getItemCount(); i++) {
+            if (lafList.get(laf.getItemAt(i)).equals(UIManager.getLookAndFeel().getClass().getName())) {
+                laf.setSelectedIndex(i);
+                break;
+            }
+        }
+
         // ok button
         JButton okButton = new JButton();
         okButton.setText("Ok");
@@ -120,18 +146,20 @@ public class Dialog extends JDialog implements ActionListener {
         
         // labels panel
         JPanel labels = new JPanel();
-        labels.setLayout(new GridLayout(3, 1));
+        labels.setLayout(new GridLayout(4, 1));
         labels.add(moveLabel);
         labels.add(fireLabel);
         labels.add(localeLabel);
-        
+        labels.add(lafLabel);
+
         // input elements panel
         JPanel input = new JPanel();
-        input.setLayout(new GridLayout(3, 1));
+        input.setLayout(new GridLayout(4, 1));
         input.add(move);
         input.add(fire);
         input.add(locale);
-        
+        input.add(laf);
+
         // conf elements panel
         JPanel elements = new JPanel();
         elements.setLayout(new BoxLayout(elements, BoxLayout.LINE_AXIS));
@@ -173,7 +201,7 @@ public class Dialog extends JDialog implements ActionListener {
             this.settings.setFireDelay(value);
         }
         
-        String text = list.get(locale.getSelectedItem());
+        String text = localeList.get(locale.getSelectedItem());
         if (!text.equals(this.settings.getLocale())) {
             if ("auto".equals(text)) {
                 this.settings.cleanLocale();
@@ -182,6 +210,22 @@ public class Dialog extends JDialog implements ActionListener {
             }
         }
         
+        text = lafList.get(laf.getSelectedItem());
+        if (!text.equals(UIManager.getLookAndFeel().getClass().getName())) {
+            if ("auto".equals(text)) {
+                this.settings.cleanLaF();
+                text = this.settings.getDefaultLaF();
+            } else {
+                this.settings.setLaF(text);
+            }
+
+            try {
+                UIManager.setLookAndFeel(text);
+            } catch (Exception ex) {
+                System.out.println(settings.getString("ERROR_LAF"));
+            }
+        }
+
         setVisible(false);
     }
 }

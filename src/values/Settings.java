@@ -1,6 +1,10 @@
 package values;
 
 import basic.Layout;
+
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.UIManager;
 import java.awt.Font;
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,9 +16,6 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.UIManager;
 
 
 /**
@@ -499,5 +500,49 @@ public final class Settings {
      */
     public void cleanLocale() {
         configuration.remove("LOCALE");
+    }
+
+    /**
+     * Getter for LaF name.
+     *
+     * @return String value
+     */
+    public String getLaF() {
+        return configuration.getProperty("LAF", getDefaultLaF());
+    }
+
+    /**
+     * Getter for default LaF name.
+     *
+     * @return String value
+     */
+    public String getDefaultLaF() {
+        String laf = UIManager.getSystemLookAndFeelClassName();
+        String os = System.getProperty("os.name");
+
+        if (os.contains("Linux")) {
+            laf = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
+        }
+
+        if (os.contains("Windows")) {
+            laf = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
+        }
+        return laf;
+    }
+
+    /**
+     * Setter for LaF name.
+     *
+     * @param value - new String value
+     */
+    public void setLaF(String value) {
+        configuration.setProperty("LAF", value);
+    }
+
+    /**
+     * Method removes LaF property.
+     */
+    public void cleanLaF() {
+        configuration.remove("LAF");
     }
 }
