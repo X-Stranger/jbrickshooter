@@ -27,6 +27,8 @@ public class Field {
     private BrickCollection rightBricks;
     private BrickCollection topBricks;
     private BrickCollection bottomBricks;
+    private int[][] matrix1 = new int[Layout.FIELD][Layout.FIELD];
+    private int[][] matrix2 = new int[Layout.FIELD][Layout.FIELD];
 
     /**
      * Default constructor.
@@ -244,29 +246,41 @@ public class Field {
         return -1;
     }
     
-    /**
-     * Method analizes field to remove >=3 same color bricks and calculate scores.
-     * 
-     * @return scores int value
-     */
-    public int analize() {
-        int[][] matrix1 = new int[Layout.FIELD][Layout.FIELD];
-        int[][] matrix2 = new int[Layout.FIELD][Layout.FIELD];
-        int cnt;
-        boolean sp = false;
-
-        // constructing original matrix
+    private boolean analizeSpecial() {
         for (int i = 0; i < Layout.FIELD; i++) {
             for (int j = 0; j < Layout.FIELD; j++) {
-                matrix1[i][j] = bricks[i][j].getColor().getIndex();
-                matrix2[i][j] = 0;
-            }
-        }
+                if (matrix1[i][j] == BrickColor.SPECIAL_ARROWS) {
+                    if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
+                        bricks[i - 1][j - 1].rotate();
+                    }
+                    if ((i != 0) && (matrix1[i - 1][j] >= 0)) {
+                        bricks[i - 1][j].rotate();
+                    }
+                    if ((i != 0) && (j != Layout.FIELD - 1) && (matrix1[i - 1][j + 1] >= 0)) {
+                        bricks[i - 1][j + 1].rotate();
+                    }
 
-        // processing special bricks
-        for (int i = 0; i < Layout.FIELD; i++) {
-            for (int j = 0; j < Layout.FIELD; j++) {
-                if (matrix1[i][j] == BrickColor.SPECIAL_LIGHTNING) {
+                    if ((j != 0) && (matrix1[i][j - 1] >= 0)) {
+                        bricks[i][j - 1].rotate();
+                    }
+                    addBlack(i, j);
+                    if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) {
+                        bricks[i][j + 1].rotate();
+                    }
+
+                    if ((i != Layout.FIELD - 1) && (j != 0) && (matrix1[i + 1][j - 1] >= 0)) {
+                        bricks[i + 1][j - 1].rotate();
+                    }
+                    if ((i != Layout.FIELD - 1) && (matrix1[i + 1][j] >= 0)) {
+                        bricks[i + 1][j].rotate();
+                    }
+                    if ((i != Layout.FIELD - 1) && (j != Layout.FIELD - 1) && (matrix1[i + 1][j + 1] >= 0)) {
+                        bricks[i + 1][j + 1].rotate();
+                    }
+
+                    return true;
+
+                } else if (matrix1[i][j] == BrickColor.SPECIAL_LIGHTNING) {
                     switch (bricks[i][j].getOrientation()) {
                         case TOP:
                             for (int k = j; k >= 0; k--) {
@@ -290,7 +304,7 @@ public class Field {
                             break;
                         default:
                     }
-                    sp = true;
+                    return true;
 
                 } else if (matrix1[i][j] == BrickColor.SPECIAL_UNIVERSAL) {
                     Brick brick = new Brick();
@@ -311,7 +325,7 @@ public class Field {
                         default:
                     }
                     this.setBrick(i, j, brick);
-                    sp = true;
+                    return true;
 
                 } else if (matrix1[i][j] == BrickColor.SPECIAL_BOMB) {
                     if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
@@ -333,7 +347,6 @@ public class Field {
                     }
                     matrix1[i][j] = -1;
                     addBlack(i, j);
-                    sp = true;
                     if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) {
                         matrix1[i][j + 1] = -1;
                         addBlack(i, j + 1);
@@ -351,9 +364,32 @@ public class Field {
                         matrix1[i + 1][j + 1] = -1;
                         addBlack(i + 1, j + 1);
                     }
+
+                    return true;
                 }
             }
         }
+        return false;
+    }
+
+    /**
+     * Method analizes field to remove >=3 same color bricks and calculate scores.
+     * 
+     * @return scores int value
+     */
+    public int analize() {
+        int cnt;
+
+        // constructing original matrix
+        for (int i = 0; i < Layout.FIELD; i++) {
+            for (int j = 0; j < Layout.FIELD; j++) {
+                matrix1[i][j] = bricks[i][j].getColor().getIndex();
+                matrix2[i][j] = 0;
+            }
+        }
+
+        // processing special bricks
+        boolean sp = analizeSpecial();
 
         // calculating neighsbourhood
         for (int i = 0; i < Layout.FIELD; i++) {
