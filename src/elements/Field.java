@@ -266,7 +266,33 @@ public class Field {
         // processing special bricks
         for (int i = 0; i < Layout.FIELD; i++) {
             for (int j = 0; j < Layout.FIELD; j++) {
-                if (matrix1[i][j] == BrickColor.SPECIAL_UNIVERSAL) {
+                if (matrix1[i][j] == BrickColor.SPECIAL_LIGHTNING) {
+                    switch (bricks[i][j].getOrientation()) {
+                        case TOP:
+                            for (int k = j; k >= 0; k--) {
+                                this.addBlack(i, k);
+                            }
+                            break;
+                        case BOTTOM:
+                            for (int k = j; k < Layout.FIELD; k++) {
+                                this.addBlack(i, k);
+                            }
+                            break;
+                        case LEFT:
+                            for (int k = i; k >= 0; k--) {
+                                this.addBlack(k, j);
+                            }
+                            break;
+                        case RIGHT:
+                            for (int k = i; k < Layout.FIELD; k++) {
+                                this.addBlack(k, j);
+                            }
+                            break;
+                        default:
+                    }
+                    sp = true;
+
+                } else if (matrix1[i][j] == BrickColor.SPECIAL_UNIVERSAL) {
                     Brick brick = new Brick();
                     brick.setOrientation(bricks[i][j].getOrientation());
                     switch (brick.getOrientation()) {
