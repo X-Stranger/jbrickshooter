@@ -599,7 +599,7 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
      * @param sfx - file name suffix to use 
      * @throws IOException - if any occurs
      */
-    @SuppressWarnings({"ResultOfMethodCallIgnored"})
+    @SuppressWarnings({ "ResultOfMethodCallIgnored" })
     public void saveToFile(String sfx) throws IOException {
         File home = new File(Settings.HOME);
         home.mkdir();
