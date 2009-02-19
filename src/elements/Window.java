@@ -599,11 +599,12 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
      * @param sfx - file name suffix to use 
      * @throws IOException - if any occurs
      */
+    @SuppressWarnings({"ResultOfMethodCallIgnored"})
     public void saveToFile(String sfx) throws IOException {
         File home = new File(Settings.HOME);
-        if (!home.mkdir()) { throw new IOException(); }
+        home.mkdir();
         File savegame = new File(Settings.HOME + "savegame" + sfx + ".dat");
-        if (!savegame.createNewFile()) { throw new IOException(); }
+        savegame.createNewFile();
         if (savegame.isFile() && savegame.canWrite()) {
             FileOutputStream out = new FileOutputStream(Settings.HOME + "savegame" + sfx + ".dat");
             this.settings.saveToStream(out);
