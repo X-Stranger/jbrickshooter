@@ -252,7 +252,7 @@ public class Field {
     public int analize() {
         int[][] matrix1 = new int[Layout.FIELD][Layout.FIELD];
         int[][] matrix2 = new int[Layout.FIELD][Layout.FIELD];
-        int cnt; //, tmp;
+        int cnt, sp = 0;
 
         // constructing original matrix
         for (int i = 0; i < Layout.FIELD; i++) {
@@ -261,38 +261,60 @@ public class Field {
                 matrix2[i][j] = 0;
             }
         }
-//
-//        // processing special bricks
-//        for (int i = 0; i < Layout.FIELD; i++) {
-//            for (int j = 0; j < Layout.FIELD; j++) {
-//                tmp = matrix1[i][j];
-//                if (tmp == BrickColor.SPECIAL_BOMB) {
-//                    if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
-//                        matrix1[i - 1][j - 1] = tmp;
-//                    }
-//                    if ((i != 0) && (matrix1[i - 1][j] >= 0)) {
-//                        matrix1[i - 1][j] = tmp;
-//                    }
-//                    if ((i != 0) && (j != Layout.FIELD - 1) && (matrix1[i - 1][j + 1] >= 0)) {
-//                        matrix1[i - 1][j + 1] = tmp;
-//                    }
-//
-//                    if ((j != 0) && (matrix1[i][j - 1] >= 0)) { matrix1[i][j - 1] = tmp; }
-//                    if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) { matrix1[i][j + 1] = tmp; }
-//
-//                    if ((i != Layout.FIELD - 1) && (j != 0) && (matrix1[i + 1][j - 1] >= 0)) {
-//                        matrix1[i + 1][j - 1] = tmp;
-//                    }
-//                    if ((i != Layout.FIELD - 1) && (matrix1[i + 1][j] >= 0)) {
-//                        matrix1[i + 1][j] = tmp;
-//                    }
-//                    if ((i != Layout.FIELD - 1) && (j != Layout.FIELD - 1) && (matrix1[i + 1][j + 1] >= 0)) {
-//                        matrix1[i + 1][j + 1] = tmp;
-//                    }
-//                }
-//            }
-//        }
-//
+
+        // processing special bricks
+        for (int i = 0; i < Layout.FIELD; i++) {
+            for (int j = 0; j < Layout.FIELD; j++) {
+                if (matrix1[i][j] == BrickColor.SPECIAL_BOMB) {
+                    if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
+                        matrix1[i - 1][j - 1] = -1;
+                        addBlack(i - 1, j - 1);
+                        sp++;
+                    }
+                    if ((i != 0) && (matrix1[i - 1][j] >= 0)) {
+                        matrix1[i - 1][j] = -1;
+                        addBlack(i - 1, j);
+                        sp++;
+                    }
+                    if ((i != 0) && (j != Layout.FIELD - 1) && (matrix1[i - 1][j + 1] >= 0)) {
+                        matrix1[i - 1][j + 1] = -1;
+                        addBlack(i - 1, j + 1);
+                        sp++;
+                    }
+
+                    if ((j != 0) && (matrix1[i][j - 1] >= 0)) {
+                        matrix1[i][j - 1] = -1;
+                        addBlack(i, j - 1);
+                        sp++;
+                    }
+                    matrix1[i][j] = -1;
+                    addBlack(i, j);
+                    sp++;
+                    if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) {
+                        matrix1[i][j + 1] = -1;
+                        addBlack(i, j + 1);
+                        sp++;
+                    }
+
+                    if ((i != Layout.FIELD - 1) && (j != 0) && (matrix1[i + 1][j - 1] >= 0)) {
+                        matrix1[i + 1][j - 1] = -1;
+                        addBlack(i + 1, j - 1);
+                        sp++;
+                    }
+                    if ((i != Layout.FIELD - 1) && (matrix1[i + 1][j] >= 0)) {
+                        matrix1[i + 1][j] = -1;
+                        addBlack(i + 1, j);
+                        sp++;
+                    }
+                    if ((i != Layout.FIELD - 1) && (j != Layout.FIELD - 1) && (matrix1[i + 1][j + 1] >= 0)) {
+                        matrix1[i + 1][j + 1] = -1;
+                        addBlack(i + 1, j + 1);
+                        sp++;
+                    }
+                }
+            }
+        }
+
         // calculating neighsbourhood
         for (int i = 0; i < Layout.FIELD; i++) {
             for (int j = 0; j < Layout.FIELD; j++) {
@@ -351,6 +373,7 @@ public class Field {
         // calculating and returning scores value
         cnt = (cnt - 2) * 3;
         cnt = cnt < 0 ? 0 : cnt;
+        cnt += sp;
         return cnt;
     }
     
