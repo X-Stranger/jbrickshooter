@@ -240,8 +240,10 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
                 
                 scores = field.analize();
                 if (scores != 0) {
-                    this.settings.addScores(scores);
-                    this.scores.repaint();
+                    if (scores > 0) {
+                        this.settings.addScores(scores);
+                        this.scores.repaint();
+                    }
                     this.highlightLayoutFromField();
                     if (this.settings.getFireDelay() != 0) {
                         this.paintImmediately(getVisibleRect());
