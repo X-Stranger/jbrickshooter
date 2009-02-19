@@ -17,10 +17,11 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JBrickShooter.iws" afterPath="$PROJECT_DIR$/JBrickShooter.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/values/BrickColor.java" afterPath="$PROJECT_DIR$/src/values/BrickColor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Field.java" afterPath="$PROJECT_DIR$/src/elements/Field.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
     </list>
-    <ignored path="JBrickShooter.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path="JBrickShooter.iws" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="Commander">
@@ -80,10 +81,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BrickColor.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="BrickColor.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/values/BrickColor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="178" column="57" selection-start="5552" selection-end="5552" vertical-scroll-proportion="0.5714286">
+            <state line="161" column="15" selection-start="5038" selection-end="5038" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -93,9 +94,16 @@
         <entry file="file://$PROJECT_DIR$/src/values/Settings.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="475" column="32" selection-start="13428" selection-end="13428" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BrickCollection.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/elements/BrickCollection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="89" column="45" selection-start="2460" selection-end="2460" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,7 +111,16 @@
       <file leaf-file-name="Window.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/elements/Window.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="107" column="98" selection-start="3362" selection-end="3362" vertical-scroll-proportion="0.0">
+            <state line="246" column="0" selection-start="8872" selection-end="8872" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Field.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/elements/Field.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="326" column="0" selection-start="10976" selection-end="10976" vertical-scroll-proportion="0.97619045">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -149,6 +166,62 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="JBrickShooter" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="&lt; current &gt;" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="rt.jar" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="JBrickShooter" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="JBrickShooter" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="&lt; current &gt;" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="rt.jar" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="lang" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="JBrickShooter" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="JBrickShooter" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="&lt; current &gt;" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -282,9 +355,9 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RunManager" selected="Application.JBrickShooter">
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -495,7 +568,7 @@
     <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial code to make difference between game types." />
+    <option name="LAST_COMMIT_MESSAGE" value="Universal color brick become working." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -513,6 +586,13 @@
     <MESSAGE value="Process highscores for 2 game types.&#10;Old highscores will be overwritten..." />
     <MESSAGE value="Update game window title depending on game type." />
     <MESSAGE value="Initial code to make difference between game types." />
+    <MESSAGE value="Added special brick generation." />
+    <MESSAGE value="Fix special bricks loading from savegame." />
+    <MESSAGE value="Cosmetic fixes (hope it will work after :))" />
+    <MESSAGE value="Fix after cosmetic fixes :)" />
+    <MESSAGE value="Fix checkstyle warns." />
+    <MESSAGE value="Bomb brick become working." />
+    <MESSAGE value="Universal color brick become working." />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -599,13 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/elements/Field.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/basic/Oriented.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="13" selection-start="189" selection-end="189" vertical-scroll-proportion="0.22651006">
@@ -627,6 +700,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/values/Orientation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Game.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="59" column="39" selection-start="1619" selection-end="1619" vertical-scroll-proportion="0.0">
@@ -636,39 +716,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/values/Orientation.java">
+    <entry file="file://$PROJECT_DIR$/src/elements/BrickCollection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="89" column="45" selection-start="2460" selection-end="2460" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/elements/Brick.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="46" selection-start="1243" selection-end="1243" vertical-scroll-proportion="0.0">
+        <state line="18" column="15" selection-start="359" selection-end="359" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/elements/BrickCollection.java">
+    <entry file="file://$PROJECT_DIR$/src/values/BrickColor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="875" selection-end="875" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/elements/Window.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="98" selection-start="3362" selection-end="3362" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.#build.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="161" column="15" selection-start="5038" selection-end="5038" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -676,16 +740,30 @@
     <entry file="file://$PROJECT_DIR$/src/values/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="475" column="32" selection-start="13428" selection-end="13428" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/values/BrickColor.java">
+    <entry file="jar:///opt/Java/current/src.zip!/java/lang/Enum.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="178" column="57" selection-start="5552" selection-end="5552" vertical-scroll-proportion="0.5714286">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/elements/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="246" column="0" selection-start="8872" selection-end="8872" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/elements/Field.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="326" column="0" selection-start="10976" selection-end="10976" vertical-scroll-proportion="0.97619045">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

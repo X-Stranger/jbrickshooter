@@ -291,23 +291,19 @@ public class Field {
                     if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
                         matrix1[i - 1][j - 1] = -1;
                         addBlack(i - 1, j - 1);
-                        sp = true;
                     }
                     if ((i != 0) && (matrix1[i - 1][j] >= 0)) {
                         matrix1[i - 1][j] = -1;
                         addBlack(i - 1, j);
-                        sp = true;
                     }
                     if ((i != 0) && (j != Layout.FIELD - 1) && (matrix1[i - 1][j + 1] >= 0)) {
                         matrix1[i - 1][j + 1] = -1;
                         addBlack(i - 1, j + 1);
-                        sp = true;
                     }
 
                     if ((j != 0) && (matrix1[i][j - 1] >= 0)) {
                         matrix1[i][j - 1] = -1;
                         addBlack(i, j - 1);
-                        sp = true;
                     }
                     matrix1[i][j] = -1;
                     addBlack(i, j);
@@ -315,23 +311,19 @@ public class Field {
                     if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) {
                         matrix1[i][j + 1] = -1;
                         addBlack(i, j + 1);
-                        sp = true;
                     }
 
                     if ((i != Layout.FIELD - 1) && (j != 0) && (matrix1[i + 1][j - 1] >= 0)) {
                         matrix1[i + 1][j - 1] = -1;
                         addBlack(i + 1, j - 1);
-                        sp = true;
                     }
                     if ((i != Layout.FIELD - 1) && (matrix1[i + 1][j] >= 0)) {
                         matrix1[i + 1][j] = -1;
                         addBlack(i + 1, j);
-                        sp = true;
                     }
                     if ((i != Layout.FIELD - 1) && (j != Layout.FIELD - 1) && (matrix1[i + 1][j + 1] >= 0)) {
                         matrix1[i + 1][j + 1] = -1;
                         addBlack(i + 1, j + 1);
-                        sp = true;
                     }
                 }
             }
