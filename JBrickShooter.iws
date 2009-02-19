@@ -18,7 +18,6 @@
     <list default="true" readonly="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JBrickShooter.iws" afterPath="$PROJECT_DIR$/JBrickShooter.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Field.java" afterPath="$PROJECT_DIR$/src/elements/Field.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
     </list>
     <ignored path=".idea/workspace.xml" />
     <ignored path="JBrickShooter.iws" />
@@ -120,7 +119,7 @@
       <file leaf-file-name="Field.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/elements/Field.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="326" column="0" selection-start="10976" selection-end="10976" vertical-scroll-proportion="0.97619045">
+            <state line="287" column="0" selection-start="9138" selection-end="9138" vertical-scroll-proportion="0.64285713">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -568,7 +567,7 @@
     <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Universal color brick become working." />
+    <option name="LAST_COMMIT_MESSAGE" value="remove unnecessary assignments" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -593,6 +592,7 @@
     <MESSAGE value="Fix checkstyle warns." />
     <MESSAGE value="Bomb brick become working." />
     <MESSAGE value="Universal color brick become working." />
+    <MESSAGE value="remove unnecessary assignments" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -760,7 +760,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/elements/Field.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="326" column="0" selection-start="10976" selection-end="10976" vertical-scroll-proportion="0.97619045">
+        <state line="287" column="0" selection-start="9138" selection-end="9138" vertical-scroll-proportion="0.64285713">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
