@@ -252,7 +252,8 @@ public class Field {
     public int analize() {
         int[][] matrix1 = new int[Layout.FIELD][Layout.FIELD];
         int[][] matrix2 = new int[Layout.FIELD][Layout.FIELD];
-        int cnt, sp = 0;
+        int cnt;
+        boolean sp = false;
 
         // constructing original matrix
         for (int i = 0; i < Layout.FIELD; i++) {
@@ -265,51 +266,72 @@ public class Field {
         // processing special bricks
         for (int i = 0; i < Layout.FIELD; i++) {
             for (int j = 0; j < Layout.FIELD; j++) {
-                if (matrix1[i][j] == BrickColor.SPECIAL_BOMB) {
+                if (matrix1[i][j] == BrickColor.SPECIAL_UNIVERSAL) {
+                    Brick brick = new Brick();
+                    brick.setOrientation(bricks[i][j].getOrientation());
+                    switch (brick.getOrientation()) {
+                        case TOP:
+                            brick.setColor(bricks[i][j - 1].getColor());
+                            break;
+                        case BOTTOM:
+                            brick.setColor(bricks[i][j + 1].getColor());
+                            break;
+                        case LEFT:
+                            brick.setColor(bricks[i - 1][j].getColor());
+                            break;
+                        case RIGHT:
+                            brick.setColor(bricks[i + 1][j].getColor());
+                            break;
+                        default:
+                    }
+                    this.setBrick(i, j, brick);
+                    sp = true;
+
+                } else if (matrix1[i][j] == BrickColor.SPECIAL_BOMB) {
                     if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
                         matrix1[i - 1][j - 1] = -1;
                         addBlack(i - 1, j - 1);
-                        sp++;
+                        sp = true;
                     }
                     if ((i != 0) && (matrix1[i - 1][j] >= 0)) {
                         matrix1[i - 1][j] = -1;
                         addBlack(i - 1, j);
-                        sp++;
+                        sp = true;
                     }
                     if ((i != 0) && (j != Layout.FIELD - 1) && (matrix1[i - 1][j + 1] >= 0)) {
                         matrix1[i - 1][j + 1] = -1;
                         addBlack(i - 1, j + 1);
-                        sp++;
+                        sp = true;
                     }
 
                     if ((j != 0) && (matrix1[i][j - 1] >= 0)) {
                         matrix1[i][j - 1] = -1;
                         addBlack(i, j - 1);
-                        sp++;
+                        sp = true;
                     }
                     matrix1[i][j] = -1;
                     addBlack(i, j);
-                    sp++;
+                    sp = true;
                     if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) {
                         matrix1[i][j + 1] = -1;
                         addBlack(i, j + 1);
-                        sp++;
+                        sp = true;
                     }
 
                     if ((i != Layout.FIELD - 1) && (j != 0) && (matrix1[i + 1][j - 1] >= 0)) {
                         matrix1[i + 1][j - 1] = -1;
                         addBlack(i + 1, j - 1);
-                        sp++;
+                        sp = true;
                     }
                     if ((i != Layout.FIELD - 1) && (matrix1[i + 1][j] >= 0)) {
                         matrix1[i + 1][j] = -1;
                         addBlack(i + 1, j);
-                        sp++;
+                        sp = true;
                     }
                     if ((i != Layout.FIELD - 1) && (j != Layout.FIELD - 1) && (matrix1[i + 1][j + 1] >= 0)) {
                         matrix1[i + 1][j + 1] = -1;
                         addBlack(i + 1, j + 1);
-                        sp++;
+                        sp = true;
                     }
                 }
             }
@@ -373,7 +395,7 @@ public class Field {
         // calculating and returning scores value
         cnt = (cnt - 2) * 3;
         cnt = cnt < 0 ? 0 : cnt;
-        cnt += sp;
+        if ((cnt == 0) && sp) { return -1; }
         return cnt;
     }
     
