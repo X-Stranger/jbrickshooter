@@ -48,4 +48,21 @@ public class Oriented extends JLabel {
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
     }
+
+    /**
+     * Changes brick orientation clockwise.
+     */
+    public void rotate() {
+        switch (this.orientation) {
+            case BOTTOM:
+                this.setOrientation(Orientation.LEFT); break;
+            case LEFT:
+                this.setOrientation(Orientation.TOP); break;
+            case TOP:
+                this.setOrientation(Orientation.RIGHT); break;
+            case RIGHT:
+                this.setOrientation(Orientation.BOTTOM); break;
+            default:
+        }
+    }
 }
