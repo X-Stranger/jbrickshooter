@@ -252,8 +252,8 @@ public class Field {
     public int analize() {
         int[][] matrix1 = new int[Layout.FIELD][Layout.FIELD];
         int[][] matrix2 = new int[Layout.FIELD][Layout.FIELD];
-        int cnt;
-        
+        int cnt; //, tmp;
+
         // constructing original matrix
         for (int i = 0; i < Layout.FIELD; i++) {
             for (int j = 0; j < Layout.FIELD; j++) {
@@ -261,7 +261,38 @@ public class Field {
                 matrix2[i][j] = 0;
             }
         }
-        
+//
+//        // processing special bricks
+//        for (int i = 0; i < Layout.FIELD; i++) {
+//            for (int j = 0; j < Layout.FIELD; j++) {
+//                tmp = matrix1[i][j];
+//                if (tmp == BrickColor.SPECIAL_BOMB) {
+//                    if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
+//                        matrix1[i - 1][j - 1] = tmp;
+//                    }
+//                    if ((i != 0) && (matrix1[i - 1][j] >= 0)) {
+//                        matrix1[i - 1][j] = tmp;
+//                    }
+//                    if ((i != 0) && (j != Layout.FIELD - 1) && (matrix1[i - 1][j + 1] >= 0)) {
+//                        matrix1[i - 1][j + 1] = tmp;
+//                    }
+//
+//                    if ((j != 0) && (matrix1[i][j - 1] >= 0)) { matrix1[i][j - 1] = tmp; }
+//                    if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) { matrix1[i][j + 1] = tmp; }
+//
+//                    if ((i != Layout.FIELD - 1) && (j != 0) && (matrix1[i + 1][j - 1] >= 0)) {
+//                        matrix1[i + 1][j - 1] = tmp;
+//                    }
+//                    if ((i != Layout.FIELD - 1) && (matrix1[i + 1][j] >= 0)) {
+//                        matrix1[i + 1][j] = tmp;
+//                    }
+//                    if ((i != Layout.FIELD - 1) && (j != Layout.FIELD - 1) && (matrix1[i + 1][j + 1] >= 0)) {
+//                        matrix1[i + 1][j + 1] = tmp;
+//                    }
+//                }
+//            }
+//        }
+//
         // calculating neighsbourhood
         for (int i = 0; i < Layout.FIELD; i++) {
             for (int j = 0; j < Layout.FIELD; j++) {
