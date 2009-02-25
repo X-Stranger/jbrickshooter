@@ -188,7 +188,7 @@ public class BrickColor {
      * @return new color instance
      */
     public static BrickColor generate(int level, boolean arcade) {
-        if (arcade && (generator.nextInt(Layout.FIELD * 2) == 7)) {
+        if (arcade && (generator.nextInt(Layout.FIELD + BrickColor.SPECIAL_TOTAL) == 7)) {
             return new BrickColor(COLORS.get(Layout.FIELD + generator.nextInt(BrickColor.SPECIAL_TOTAL)));
         }
         return new BrickColor(COLORS.get(generator.nextInt(level)));
