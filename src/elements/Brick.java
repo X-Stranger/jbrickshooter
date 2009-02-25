@@ -33,6 +33,18 @@ public class Brick extends Oriented {
     }
     
     /**
+     * Parameterized constructor.
+     *
+     * @param color - brick color value
+     * @param orientation - brick orientation
+     */
+    public Brick(BrickColor color, Orientation orientation) {
+        super(color.getColor());
+        this.color = color;
+        this.setOrientation(orientation);
+    }
+
+    /**
      * Default constructor.
      */
     public Brick() {
