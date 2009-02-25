@@ -17,6 +17,7 @@ import values.Orientation;
  */
 public class Field {
 
+    private int level;
     private List<Brick> list = new ArrayList<Brick>();
     private List<Brick> listBackup = new ArrayList<Brick>();
     private Brick[][] bricks = new Brick[Layout.FIELD][Layout.FIELD];
@@ -42,7 +43,8 @@ public class Field {
      */
     public Field(int level, int add, 
             BrickCollection left, BrickCollection right, BrickCollection top, BrickCollection bottom) {
-        this.fill(level, add);
+        this.level = level;
+        this.fill(add);
         this.leftBricks = left;
         this.rightBricks = right;
         this.topBricks = top;
@@ -120,10 +122,9 @@ public class Field {
     /**
      * Method fills field with bricks.
      * 
-     * @param level - max color index
      * @param add - additional number of bricks
      */
-    private void fill(int level, int add) {
+    private void fill(int add) {
         int x, y;
         
         bricks[6][4] = new Brick(level); list.add(bricks[6][4]);
@@ -249,7 +250,62 @@ public class Field {
     private boolean analizeSpecial() {
         for (int i = 0; i < Layout.FIELD; i++) {
             for (int j = 0; j < Layout.FIELD; j++) {
-                if (matrix1[i][j] == BrickColor.SPECIAL_ARROWS) {
+                if (matrix1[i][j] == BrickColor.SPECIAL_COLORS) {
+                    if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
+                        setBrick(i - 1, j - 1, new Brick(
+                                new BrickColor(bricks[i - 1][j - 1].getColor(), level),
+                                bricks[i - 1][j - 1].getOrientation()
+                        ));
+                    }
+                    if ((i != 0) && (matrix1[i - 1][j] >= 0)) {
+                        setBrick(i - 1, j, new Brick(
+                                new BrickColor(bricks[i - 1][j].getColor(), level),
+                                bricks[i - 1][j].getOrientation()
+                        ));
+                    }
+                    if ((i != 0) && (j != Layout.FIELD - 1) && (matrix1[i - 1][j + 1] >= 0)) {
+                        setBrick(i - 1, j + 1, new Brick(
+                                new BrickColor(bricks[i - 1][j + 1].getColor(), level),
+                                bricks[i - 1][j + 1].getOrientation()
+                        ));
+                    }
+
+                    if ((j != 0) && (matrix1[i][j - 1] >= 0)) {
+                        setBrick(i, j - 1, new Brick(
+                                new BrickColor(bricks[i][j - 1].getColor(), level),
+                                bricks[i][j - 1].getOrientation()
+                        ));
+                    }
+                    addBlack(i, j);
+                    if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) {
+                        setBrick(i, j + 1, new Brick(
+                                new BrickColor(bricks[i][j + 1].getColor(), level),
+                                bricks[i][j + 1].getOrientation()
+                        ));
+                    }
+
+                    if ((i != Layout.FIELD - 1) && (j != 0) && (matrix1[i + 1][j - 1] >= 0)) {
+                        setBrick(i + 1, j - 1, new Brick(
+                                new BrickColor(bricks[i + 1][j - 1].getColor(), level),
+                                bricks[i + 1][j - 1].getOrientation()
+                        ));
+                    }
+                    if ((i != Layout.FIELD - 1) && (matrix1[i + 1][j] >= 0)) {
+                        setBrick(i + 1, j, new Brick(
+                                new BrickColor(bricks[i + 1][j].getColor(), level),
+                                bricks[i + 1][j].getOrientation()
+                        ));
+                    }
+                    if ((i != Layout.FIELD - 1) && (j != Layout.FIELD - 1) && (matrix1[i + 1][j + 1] >= 0)) {
+                        setBrick(i + 1, j + 1, new Brick(
+                                new BrickColor(bricks[i + 1][j + 1].getColor(), level),
+                                bricks[i + 1][j + 1].getOrientation()
+                        ));
+                    }
+
+                    return true;
+
+                } else if (matrix1[i][j] == BrickColor.SPECIAL_ARROWS) {
                     if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
                         bricks[i - 1][j - 1].rotate();
                     }
@@ -311,17 +367,13 @@ public class Field {
                     brick.setOrientation(bricks[i][j].getOrientation());
                     switch (brick.getOrientation()) {
                         case TOP:
-                            brick.setColor(bricks[i][j - 1].getColor());
-                            break;
+                            brick.setColor(bricks[i][j - 1].getColor()); break;
                         case BOTTOM:
-                            brick.setColor(bricks[i][j + 1].getColor());
-                            break;
+                            brick.setColor(bricks[i][j + 1].getColor()); break;
                         case LEFT:
-                            brick.setColor(bricks[i - 1][j].getColor());
-                            break;
+                            brick.setColor(bricks[i - 1][j].getColor()); break;
                         case RIGHT:
-                            brick.setColor(bricks[i + 1][j].getColor());
-                            break;
+                            brick.setColor(bricks[i + 1][j].getColor()); break;
                         default:
                     }
                     this.setBrick(i, j, brick);
@@ -329,40 +381,31 @@ public class Field {
 
                 } else if (matrix1[i][j] == BrickColor.SPECIAL_BOMB) {
                     if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
-                        matrix1[i - 1][j - 1] = -1;
-                        addBlack(i - 1, j - 1);
+                        matrix1[i - 1][j - 1] = -1; addBlack(i - 1, j - 1);
                     }
                     if ((i != 0) && (matrix1[i - 1][j] >= 0)) {
-                        matrix1[i - 1][j] = -1;
-                        addBlack(i - 1, j);
+                        matrix1[i - 1][j] = -1; addBlack(i - 1, j);
                     }
                     if ((i != 0) && (j != Layout.FIELD - 1) && (matrix1[i - 1][j + 1] >= 0)) {
-                        matrix1[i - 1][j + 1] = -1;
-                        addBlack(i - 1, j + 1);
+                        matrix1[i - 1][j + 1] = -1; addBlack(i - 1, j + 1);
                     }
 
                     if ((j != 0) && (matrix1[i][j - 1] >= 0)) {
-                        matrix1[i][j - 1] = -1;
-                        addBlack(i, j - 1);
+                        matrix1[i][j - 1] = -1; addBlack(i, j - 1);
                     }
-                    matrix1[i][j] = -1;
-                    addBlack(i, j);
+                    matrix1[i][j] = -1; addBlack(i, j);
                     if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) {
-                        matrix1[i][j + 1] = -1;
-                        addBlack(i, j + 1);
+                        matrix1[i][j + 1] = -1; addBlack(i, j + 1);
                     }
 
                     if ((i != Layout.FIELD - 1) && (j != 0) && (matrix1[i + 1][j - 1] >= 0)) {
-                        matrix1[i + 1][j - 1] = -1;
-                        addBlack(i + 1, j - 1);
+                        matrix1[i + 1][j - 1] = -1; addBlack(i + 1, j - 1);
                     }
                     if ((i != Layout.FIELD - 1) && (matrix1[i + 1][j] >= 0)) {
-                        matrix1[i + 1][j] = -1;
-                        addBlack(i + 1, j);
+                        matrix1[i + 1][j] = -1; addBlack(i + 1, j);
                     }
                     if ((i != Layout.FIELD - 1) && (j != Layout.FIELD - 1) && (matrix1[i + 1][j + 1] >= 0)) {
-                        matrix1[i + 1][j + 1] = -1;
-                        addBlack(i + 1, j + 1);
+                        matrix1[i + 1][j + 1] = -1; addBlack(i + 1, j + 1);
                     }
 
                     return true;

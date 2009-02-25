@@ -124,6 +124,18 @@ public class BrickColor {
     }
 
     /**
+     * Constructor that creates block with next color than passed, but less that level value.
+     *
+     * @param color - BrickColor object
+     * @param level - game level
+     */
+    public BrickColor(BrickColor color, int level) {
+        int index = color.getIndex() + 1;
+        if (index == level) { index = 0; }
+        this.colors = COLORS.get(index);
+    }
+
+    /**
      * Parameterized constructor.
      * 
      * @param colors - colors map to initialize
