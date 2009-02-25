@@ -132,9 +132,14 @@ public class BrickCollection extends Oriented {
      */
     private void fill(int level, boolean arcade) {
         Brick brick;
+        int cnt = 0, add;
         for (int i = 0; i < maxX; i++) {
             for (int j = 0; j < maxY; j++) {
-                brick = new Brick(level, arcade);
+                do {
+                    brick = new Brick(level, arcade);
+                    add = brick.getColor().getIndex() >= Layout.FIELD ? 1 : 0;
+                } while (cnt + add > level / 3);
+                cnt += add;
                 brick.setParentCollection(this);
                 bricks[i][j] = brick; 
                 list.add(brick);

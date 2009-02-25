@@ -16,9 +16,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/BrickCollection.java" afterPath="$PROJECT_DIR$/src/elements/BrickCollection.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JBrickShooter.iws" afterPath="$PROJECT_DIR$/JBrickShooter.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Brick.java" afterPath="$PROJECT_DIR$/src/elements/Brick.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Field.java" afterPath="$PROJECT_DIR$/src/elements/Field.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/values/BrickColor.java" afterPath="$PROJECT_DIR$/src/values/BrickColor.java" />
     </list>
     <ignored path="JBrickShooter.iws" />
@@ -82,10 +81,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BrickColor.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="BrickColor.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/values/BrickColor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="40" selection-start="4443" selection-end="4443" vertical-scroll-proportion="0.0">
+            <state line="28" column="28" selection-start="701" selection-end="701" vertical-scroll-proportion="-1.7142857">
               <folding />
             </state>
           </provider>
@@ -103,7 +102,7 @@
       <file leaf-file-name="BrickCollection.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/elements/BrickCollection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="89" column="45" selection-start="2460" selection-end="2460" vertical-scroll-proportion="0.0">
+            <state line="138" column="33" selection-start="3765" selection-end="3765" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -112,16 +111,16 @@
       <file leaf-file-name="Window.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/elements/Window.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="246" column="0" selection-start="8872" selection-end="8872" vertical-scroll-proportion="0.0">
+            <state line="569" column="17" selection-start="22446" selection-end="22446" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Field.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Field.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/elements/Field.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="375" column="72" selection-start="13876" selection-end="13876" vertical-scroll-proportion="1.4761904">
+            <state line="375" column="72" selection-start="13876" selection-end="13876" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -130,7 +129,7 @@
       <file leaf-file-name="Brick.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/elements/Brick.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="39" selection-start="1021" selection-end="1021" vertical-scroll-proportion="0.0">
+            <state line="69" column="30" selection-start="1542" selection-end="1542" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -569,7 +568,7 @@
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24264121" sideWeight="0.45966515" order="0" side_tool="false" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" />
-      <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
+      <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5905632" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="PMD" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="8" side_tool="false" />
@@ -598,7 +597,7 @@
     <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Make arrow changer brick working." />
+    <option name="LAST_COMMIT_MESSAGE" value="Balancing game. TODO: prettify corners." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -626,6 +625,8 @@
     <MESSAGE value="remove unnecessary assignments" />
     <MESSAGE value="Lightning brick become working. Cool working :)" />
     <MESSAGE value="Make arrow changer brick working." />
+    <MESSAGE value="Latest special brick become working (hopefully)." />
+    <MESSAGE value="Balancing game. TODO: prettify corners." />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -756,20 +757,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/elements/BrickCollection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="45" selection-start="2460" selection-end="2460" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/elements/Window.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="246" column="0" selection-start="8872" selection-end="8872" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/basic/Oriented.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="52" column="21" selection-start="1072" selection-end="1072" vertical-scroll-proportion="0.0">
@@ -777,23 +764,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/values/BrickColor.java">
+    <entry file="file://$PROJECT_DIR$/src/elements/Field.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="40" selection-start="4443" selection-end="4443" vertical-scroll-proportion="0.0">
+        <state line="375" column="72" selection-start="13876" selection-end="13876" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/elements/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="569" column="17" selection-start="22446" selection-end="22446" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/elements/Brick.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="39" selection-start="1021" selection-end="1021" vertical-scroll-proportion="0.0">
+        <state line="69" column="30" selection-start="1542" selection-end="1542" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/elements/Field.java">
+    <entry file="file://$PROJECT_DIR$/src/elements/BrickCollection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="375" column="72" selection-start="13876" selection-end="13876" vertical-scroll-proportion="1.4761904">
+        <state line="138" column="33" selection-start="3765" selection-end="3765" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/values/BrickColor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="28" selection-start="701" selection-end="701" vertical-scroll-proportion="-1.7142857">
           <folding />
         </state>
       </provider>
