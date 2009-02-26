@@ -31,15 +31,11 @@ public class Severity extends Corner {
      * @param g - Graphics instance to use for draw.
      */
     public void paintComponent(Graphics g) {
-        if (this.getBuf() == null) { this.setBuf(createImage(getWidth(), getHeight())); }
-        
+        // prepare double buffer
+        Graphics bufg = prepareForPaint();
+
         // preparing variables
         String severity = this.getSettings().getDifficulty().toString() + " " + getSettings().getString("COLORS");
-        
-        // preparing black rectangle
-        Graphics bufg = this.getBuf().getGraphics();
-        bufg.setColor(Color.black);
-        bufg.fillRect(0, 0, getWidth(), getHeight());
         
         // fill rectangle with scores
         Graphics2D g2 = (Graphics2D) bufg;
