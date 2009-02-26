@@ -1,12 +1,13 @@
 package elements;
 
+import values.Settings;
+
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Rectangle2D;
-import values.Settings;
 
 /**
  * This pane will display level info.
@@ -31,15 +32,11 @@ public class Level extends Corner {
      * @param g - Graphics instance to use for draw.
      */
     public void paintComponent(Graphics g) {
-        if (this.getBuf() == null) { this.setBuf(createImage(getWidth(), getHeight())); }
+        // prepare double buffer
+        Graphics bufg = prepareForPaint();
         
         // preparing variables
         String level = this.getSettings().getLevel().toString();
-        
-        // preparing black rectangle
-        Graphics bufg = this.getBuf().getGraphics();
-        bufg.setColor(Color.black);
-        bufg.fillRect(0, 0, getWidth(), getHeight());
         
         // fill rectangle with scores
         Graphics2D g2 = (Graphics2D) bufg;
