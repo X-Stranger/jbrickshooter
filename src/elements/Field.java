@@ -246,7 +246,12 @@ public class Field {
         
         return -1;
     }
-    
+
+    /**
+     * Method analizes field and processes "special" bricks.
+     *
+     * @return true if "special" brick was processed 
+     */
     private boolean analizeSpecial() {
         for (int i = 0; i < Layout.FIELD; i++) {
             for (int j = 0; j < Layout.FIELD; j++) {
@@ -605,19 +610,16 @@ public class Field {
      * @return true if game has been finished
      */
     public boolean canPlay() {
+        int d;
         for (int i = 0; i < Layout.FIELD; i++) {
-            if (bricks[i][0].hasSameColor(BrickColor.BLACK)) {
-                return true;
-            }
-            if (bricks[0][i].hasSameColor(BrickColor.BLACK)) {
-                return true;
-            }
-            if (bricks[i][Layout.FIELD - 1].hasSameColor(BrickColor.BLACK)) {
-                return true;
-            }
-            if (bricks[Layout.FIELD - 1][i].hasSameColor(BrickColor.BLACK)) {
-                return true;
-            }
+            d = check(i, Orientation.LEFT);
+            if (d > 0 && d < 9) { return true; }
+            d = check(i, Orientation.RIGHT);
+            if (d > 0 && d < 9) { return true; }
+            d = check(i, Orientation.TOP);
+            if (d > 0 && d < 9) { return true; }
+            d = check(i, Orientation.BOTTOM);
+            if (d > 0 && d < 9) { return true; }
         }
         return false;
     }
