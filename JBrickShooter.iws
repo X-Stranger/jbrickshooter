@@ -17,7 +17,7 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JBrickShooter.iws" afterPath="$PROJECT_DIR$/JBrickShooter.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Field.java" afterPath="$PROJECT_DIR$/src/elements/Field.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
     </list>
     <ignored path="JBrickShooter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,10 +89,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Field.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/elements/Field.java">
+      <file leaf-file-name="Settings.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/values/Settings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="623" column="0" selection-start="23263" selection-end="23263" vertical-scroll-proportion="0.78571427">
+            <state line="25" column="19" selection-start="522" selection-end="522" vertical-scroll-proportion="-3.9047618">
               <folding />
             </state>
           </provider>
@@ -586,7 +586,7 @@
     <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ant prettify corners." />
+    <option name="LAST_COMMIT_MESSAGE" value="Change way of Game End detection to fix Issue #1" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -617,6 +617,7 @@
     <MESSAGE value="Latest special brick become working (hopefully)." />
     <MESSAGE value="Balancing game. TODO: prettify corners." />
     <MESSAGE value="Ant prettify corners." />
+    <MESSAGE value="Change way of Game End detection to fix Issue #1" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -702,13 +703,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/values/Settings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="475" column="32" selection-start="13428" selection-end="13428" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/values/BrickColor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="13" selection-start="616" selection-end="616" vertical-scroll-proportion="0.0">
@@ -776,6 +770,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/elements/Field.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="623" column="0" selection-start="23263" selection-end="23263" vertical-scroll-proportion="0.78571427">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/elements/Window.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="147" column="32" selection-start="5068" selection-end="5068" vertical-scroll-proportion="0.0">
@@ -783,9 +784,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/elements/Field.java">
+    <entry file="file://$PROJECT_DIR$/src/values/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="623" column="0" selection-start="23263" selection-end="23263" vertical-scroll-proportion="0.78571427">
+        <state line="25" column="19" selection-start="522" selection-end="522" vertical-scroll-proportion="-3.9047618">
           <folding />
         </state>
       </provider>
