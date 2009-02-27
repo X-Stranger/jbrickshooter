@@ -17,7 +17,12 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JBrickShooter.iws" afterPath="$PROJECT_DIR$/JBrickShooter.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package/debian/changelog" afterPath="$PROJECT_DIR$/package/debian/changelog" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Window.java" afterPath="$PROJECT_DIR$/src/elements/Window.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/i18n/Messages.properties" afterPath="$PROJECT_DIR$/src/i18n/Messages.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package/debian/jbrickshooter.xpm" afterPath="$PROJECT_DIR$/package/debian/jbrickshooter.xpm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package/jbrickshooter.png" afterPath="$PROJECT_DIR$/package/jbrickshooter.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/i18n/Messages_ru_RU.properties" afterPath="$PROJECT_DIR$/src/i18n/Messages_ru_RU.properties" />
     </list>
     <ignored path="JBrickShooter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,19 +85,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Window.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Window.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/elements/Window.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="147" column="32" selection-start="5068" selection-end="5068" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="296" column="23" selection-start="10991" selection-end="10991" vertical-scroll-proportion="0.35714287">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Settings.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Game.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="53" selection-start="613" selection-end="613" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Settings.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/values/Settings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="19" selection-start="522" selection-end="522" vertical-scroll-proportion="-3.9047618">
+            <state line="212" column="52" selection-start="7058" selection-end="7058" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -136,88 +154,6 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="JBrickShooter" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Libraries" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="&lt; current &gt;" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="rt.jar" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="JBrickShooter" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="JBrickShooter" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Libraries" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="&lt; current &gt;" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="rt.jar" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="lang" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="JBrickShooter" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="JBrickShooter" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Libraries" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="&lt; current &gt;" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="rt.jar" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="awt" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="JBrickShooter" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="JBrickShooter" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Libraries" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="&lt; current &gt;" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -461,13 +397,13 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
-    <configuration default="false" name="JBrickShooter" type="Application" factoryName="Application" enabled="false" merge="false" runner="emma">
+    <configuration default="false" name="JBrickShooter" type="Application" factoryName="Application" enabled="false" merge="false" sample_coverage="true" runner="emma">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <option name="VM_PARAMETERS" value="-classpath $PROJECT_DIR$/build/classes:$APPLICATION_HOME_DIR$/lib/idea_rt.jar" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ALTERNATIVE_JRE_PATH" value="/usr/lib/jvm/java-6-openjdk/jre" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
@@ -586,7 +522,7 @@
     <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change way of Game End detection to fix Issue #1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version modifed. Some other final changes." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -618,6 +554,9 @@
     <MESSAGE value="Balancing game. TODO: prettify corners." />
     <MESSAGE value="Ant prettify corners." />
     <MESSAGE value="Change way of Game End detection to fix Issue #1" />
+    <MESSAGE value="Compress jar-file better.&#10;TODO: check and fix OpenJDK compatibility." />
+    <MESSAGE value="Print JVM version.&#10;Fix game window size: workaround for openjdk." />
+    <MESSAGE value="Version modifed. Some other final changes." />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -673,22 +612,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="39" selection-start="1619" selection-end="1619" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///opt/Java/current/src.zip!/java/lang/Enum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/basic/Oriented.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="52" column="21" selection-start="1072" selection-end="1072" vertical-scroll-proportion="0.0">
@@ -747,22 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/elements/Corner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="91" selection-start="1658" selection-end="1663" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/elements/BrickCollection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="33" selection-start="3765" selection-end="3765" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/values/Orientation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -777,17 +684,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/elements/Window.java">
+    <entry file="file://$PROJECT_DIR$/src/values/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="147" column="32" selection-start="5068" selection-end="5068" vertical-scroll-proportion="0.0">
+        <state line="212" column="52" selection-start="7058" selection-end="7058" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/values/Settings.java">
+    <entry file="file://$PROJECT_DIR$/src/elements/BrickCollection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="19" selection-start="522" selection-end="522" vertical-scroll-proportion="-3.9047618">
+        <state line="138" column="33" selection-start="3765" selection-end="3765" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/elements/Corner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="91" selection-start="1658" selection-end="1663" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///opt/Java/current/src.zip!/java/awt/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="679" column="16" selection-start="25057" selection-end="25057" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="53" selection-start="613" selection-end="613" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/elements/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="296" column="23" selection-start="10991" selection-end="10991" vertical-scroll-proportion="0.35714287">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
