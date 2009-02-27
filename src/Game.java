@@ -1,5 +1,6 @@
 import elements.Window;
 import values.Settings;
+import values.BrickColor;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -10,8 +11,11 @@ import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+
+import basic.Layout;
 
 /**
  * Class holds game window and implements game management actions.
@@ -28,11 +32,18 @@ public class Game extends JFrame {
      */
     public Game() {
         super();
+        this.printJvmDetails();
         this.setLAF();
         this.setMenu();
         this.start();        
     }
     
+    private void printJvmDetails() {
+        String ver = System.getProperty("java.version");
+        String ven = System.getProperty("java.vendor");
+        System.out.println("JVM v" + ver + " by " + ven);
+    }
+
     /**
      * Methos configures game window and shows it at the screen.
      */
@@ -51,6 +62,14 @@ public class Game extends JFrame {
 
         pack();
         setResizable(false);
+        
+        // fix game window size (workaround for OpenJDK)
+        Insets insets = this.getInsets();
+        int w = BrickColor.BLACK.getColor().getIconWidth() * (Layout.FIELD + 3 * 2);
+        int h = BrickColor.BLACK.getColor().getIconHeight() * (Layout.FIELD + 3 * 2);
+        this.setSize(w + insets.left + insets.right, 
+                h + getJMenuBar().getHeight() + insets.top + insets.bottom);
+
         
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((dim.width - getWidth()) / 2, (dim.height - getHeight()) / 2);
