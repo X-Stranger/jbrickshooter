@@ -294,6 +294,7 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
      * @param value - time to sleep in milliseconds
      */
     private void sleep(int value) {
+        Thread.yield();
         try { Thread.sleep(value); } catch (InterruptedException ie) { System.out.println(ie.getMessage()); }
     }
     
