@@ -16,9 +16,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/jbrickshooter.pro" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JBrickShooter.iws" afterPath="$PROJECT_DIR$/JBrickShooter.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JBrickShooter.ipr" afterPath="$PROJECT_DIR$/JBrickShooter.ipr" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Field.java" afterPath="$PROJECT_DIR$/src/elements/Field.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/proguard.jar" />
     </list>
     <ignored path=".idea/workspace.xml" />
     <ignored path="JBrickShooter.iws" />
@@ -430,7 +431,7 @@
     <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version modifed. Some other final changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Trying to fix minor bug with game over detection." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -465,6 +466,7 @@
     <MESSAGE value="Compress jar-file better.&#10;TODO: check and fix OpenJDK compatibility." />
     <MESSAGE value="Print JVM version.&#10;Fix game window size: workaround for openjdk." />
     <MESSAGE value="Version modifed. Some other final changes." />
+    <MESSAGE value="Trying to fix minor bug with game over detection." />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />

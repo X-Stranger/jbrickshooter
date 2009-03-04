@@ -26,14 +26,14 @@
     <target name="clean">
         <delete dir="build/classes"/>
         <delete>
-            <fileset dir="build" includes="*.jar,*.xml"/>
+            <fileset dir="build" includes="*.jar,*.xml,*.pro"/>
             <fileset dir="" includes="*.zip,*.deb"/>
         </delete>
     </target>
 
     <target depends="check,pack" name="build"/>
 
-    <target depends="init" name="build-project">
+    <target depends="init" name="compile">
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="${debug}" debuglevel="${debuglevel}" destdir="build/classes" source="${source}" target="${target}">
             <src path="src"/>
@@ -41,13 +41,13 @@
         </javac>
     </target>
 
-    <target depends="build-project" name="pack">
+    <target depends="compile" name="pack">
         <jar destfile="build/${name}.jar" manifest="${basedir}/resources/META-INF/MANIFEST.MF" level="9">
             <fileset dir="build/classes" excludes="**/*-orig"/>
         </jar>
     </target>
 
-    <target depends="build-project" name="Main">
+    <target depends="compile" name="Main">
         <java classname="Main" failonerror="true" fork="yes">
             <classpath refid="jbrickshooter.classpath"/>
         </java>
@@ -73,17 +73,25 @@
             <formatter type="xml" toFile="build/checkstyle_errors.xml"/>
         </checkstyle>
     </target>
+    
+    <target depends="build" name="obfuscate">
+	<taskdef resource="proguard/ant/task.properties" classpathref="lib.classpath"/>
+	<filter token="JAVA_HOME" value="${env.JAVA_HOME}"/>
+	<copy file="doc/jbrickshooter.pro" todir="build" filtering="true"/>
+	<proguard configuration="build/jbrickshooter.pro"/>
+	<move file="build/${name}_new.jar" tofile="build/${name}.jar" overwrite="true"/>
+    </target>
 
     <target depends="zip,deb" name="dist"/>
 
-    <target depends="pack" name="zip">
+    <target depends="build,obfuscate" name="zip">
         <zip destfile="JBrickShooter.zip">
             <fileset dir="package" includes="jbrickshooter.*,README,LICENSE" excludes="*.desktop"/>
             <fileset dir="build" includes="*.jar"/>
         </zip>
     </target>
 
-    <target depends="pack" name="deb">
+    <target depends="build,obfuscate" name="deb">
         <copy file="build/${name}.jar" todir="package" overwrite="true"/>
         <exec dir="package" executable="fakeroot">
             <arg line="debian/rules binary clean"/>
