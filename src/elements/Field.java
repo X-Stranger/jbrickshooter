@@ -613,13 +613,13 @@ public class Field {
         int d;
         for (int i = 0; i < Layout.FIELD; i++) {
             d = check(i, Orientation.LEFT);
-            if (d > 0 && d < 9) { return true; }
+            if (d > 0 && d < Layout.FIELD) { return true; }
             d = check(i, Orientation.RIGHT);
-            if (d > 0 && d < 9) { return true; }
+            if (d >= 0 && d < Layout.FIELD - 1) { return true; }
             d = check(i, Orientation.TOP);
-            if (d > 0 && d < 9) { return true; }
+            if (d > 0 && d < Layout.FIELD) { return true; }
             d = check(i, Orientation.BOTTOM);
-            if (d > 0 && d < 9) { return true; }
+            if (d >= 0 && d < Layout.FIELD - 1) { return true; }
         }
         return false;
     }
