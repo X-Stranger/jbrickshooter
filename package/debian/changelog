@@ -1,3 +1,10 @@
+jbrickshooter (1.2.1-1~getdeb1) intrepid; urgency=low
+
+  * Fixed yet another error with game end detection
+  * Obfuscation added
+
+ -- X-Stranger <xstranger@gmail.com>  Fri, 27 Feb 2008 15:14:00 +0200
+
 jbrickshooter (1.2-1~getdeb1) intrepid; urgency=low
 
   * Added second game type: arcade. Some restyling, bugfixes, etc.

@@ -1,22 +1,24 @@
 package values;
 
 import basic.Layout;
+
+import javax.swing.ImageIcon;
+import java.awt.Graphics;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.awt.Transparency;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.PixelGrabber;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.awt.image.BufferedImage;
-import java.awt.image.ColorModel;
-import java.awt.image.PixelGrabber;
-import java.awt.Image;
-import java.awt.GraphicsEnvironment;
-import java.awt.Transparency;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsConfiguration;
-import java.awt.HeadlessException;
-import java.awt.Graphics;
-import javax.swing.ImageIcon;
 
 /**
  * Class generates and stores color for brick.
@@ -25,6 +27,10 @@ import javax.swing.ImageIcon;
  */
 public class BrickColor {
     
+    /** Brick colors. */
+    private static final int[] RGB_COLORS = {
+            0x0000ff, 0xee0000, 0xffba00, 0xfff326, 0x00bb00, 0x00eeee, 0xe400ff, 0xffb3d0, 0xffffff, 0xffb302 }; 
+
     /** Special bricks total count. */
     public static final int SPECIAL_TOTAL = 5;
     /** "Universal color" brick id. */
@@ -78,7 +84,32 @@ public class BrickColor {
         BufferedImage image;
         Map<Orientation, ImageIcon> map;
 
-        for (int i = 0; i < Layout.FIELD + SPECIAL_TOTAL; i++) {
+        for (int i = 0; i < Layout.FIELD; i++) {
+            map = new HashMap<Orientation, ImageIcon>();
+
+            icon = new ImageIcon(createBasicImage(i));
+            map.put(Orientation.NONE, icon);
+
+            image = createBasicImage(i);
+            image.getGraphics().drawImage(upImage.getImage(), 0, 0, null);
+            map.put(Orientation.TOP, new ImageIcon(image));
+
+            image = createBasicImage(i);
+            image.getGraphics().drawImage(rightImage.getImage(), 0, 0, null);
+            map.put(Orientation.RIGHT, new ImageIcon(image));
+
+            image = createBasicImage(i);
+            image.getGraphics().drawImage(downImage.getImage(), 0, 0, null);
+            map.put(Orientation.BOTTOM, new ImageIcon(image));
+
+            image = createBasicImage(i);
+            image.getGraphics().drawImage(leftImage.getImage(), 0, 0, null);
+            map.put(Orientation.LEFT, new ImageIcon(image));
+
+            COLORS.add(map);
+        }
+
+        for (int i = 0; i < SPECIAL_TOTAL; i++) {
             map = new HashMap<Orientation, ImageIcon>();
 
             icon = new ImageIcon(ClassLoader.getSystemResource("images/" + i + ".png"));
@@ -102,6 +133,23 @@ public class BrickColor {
 
             COLORS.add(map);
         }
+    }
+
+    /**
+     * Method creates new brick image with specified color.
+     *
+     * @param i - color index
+     * @return BufferedImage object
+     */
+    private static BufferedImage createBasicImage(int i) {
+        int w = BLACK_IMAGE.getIconWidth();
+        int h = BLACK_IMAGE.getIconHeight();
+        BufferedImage image = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+        Graphics gr = image.getGraphics();
+        gr.setColor(new Color(RGB_COLORS[i]));
+        gr.fillRect(0, 0, w, h);
+        gr.drawImage(new ImageIcon(ClassLoader.getSystemResource("images/mask.png")).getImage(), 0, 0, null);
+        return image;
     }
 
     /** Random number generator to select color value. */
