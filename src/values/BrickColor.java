@@ -75,10 +75,11 @@ public class BrickColor {
     private static final List<Map<Orientation, ImageIcon>> COLORS = new ArrayList<Map<Orientation, ImageIcon>>();
     
     static {
-        ImageIcon upImage = new ImageIcon(ClassLoader.getSystemResource("images/d_up.png"));
-        ImageIcon downImage = new ImageIcon(ClassLoader.getSystemResource("images/d_down.png"));
-        ImageIcon leftImage = new ImageIcon(ClassLoader.getSystemResource("images/d_left.png"));
-        ImageIcon rightImage = new ImageIcon(ClassLoader.getSystemResource("images/d_right.png"));
+        ImageIcon mask = new ImageIcon(ClassLoader.getSystemResource("images/mask1.png"));
+        ImageIcon upImage = new ImageIcon(ClassLoader.getSystemResource("images/d_up1.png"));
+        ImageIcon downImage = new ImageIcon(ClassLoader.getSystemResource("images/d_down1.png"));
+        ImageIcon leftImage = new ImageIcon(ClassLoader.getSystemResource("images/d_left1.png"));
+        ImageIcon rightImage = new ImageIcon(ClassLoader.getSystemResource("images/d_right1.png"));
 
         ImageIcon icon;
         BufferedImage image;
@@ -87,22 +88,22 @@ public class BrickColor {
         for (int i = 0; i < Layout.FIELD; i++) {
             map = new HashMap<Orientation, ImageIcon>();
 
-            icon = new ImageIcon(createBasicImage(i));
+            icon = new ImageIcon(createBasicImage(i, mask));
             map.put(Orientation.NONE, icon);
 
-            image = createBasicImage(i);
+            image = createBasicImage(i, mask);
             image.getGraphics().drawImage(upImage.getImage(), 0, 0, null);
             map.put(Orientation.TOP, new ImageIcon(image));
 
-            image = createBasicImage(i);
+            image = createBasicImage(i, mask);
             image.getGraphics().drawImage(rightImage.getImage(), 0, 0, null);
             map.put(Orientation.RIGHT, new ImageIcon(image));
 
-            image = createBasicImage(i);
+            image = createBasicImage(i, mask);
             image.getGraphics().drawImage(downImage.getImage(), 0, 0, null);
             map.put(Orientation.BOTTOM, new ImageIcon(image));
 
-            image = createBasicImage(i);
+            image = createBasicImage(i, mask);
             image.getGraphics().drawImage(leftImage.getImage(), 0, 0, null);
             map.put(Orientation.LEFT, new ImageIcon(image));
 
@@ -139,16 +140,17 @@ public class BrickColor {
      * Method creates new brick image with specified color.
      *
      * @param i - color index
+     * @param mask - IconImage containing transparent mask
      * @return BufferedImage object
      */
-    private static BufferedImage createBasicImage(int i) {
+    private static BufferedImage createBasicImage(int i, ImageIcon mask) {
         int w = BLACK_IMAGE.getIconWidth();
         int h = BLACK_IMAGE.getIconHeight();
         BufferedImage image = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         Graphics gr = image.getGraphics();
         gr.setColor(new Color(RGB_COLORS[i]));
         gr.fillRect(0, 0, w, h);
-        gr.drawImage(new ImageIcon(ClassLoader.getSystemResource("images/mask.png")).getImage(), 0, 0, null);
+        gr.drawImage(mask.getImage(), 0, 0, null);
         return image;
     }
 
