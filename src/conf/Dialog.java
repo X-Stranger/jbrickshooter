@@ -26,6 +26,7 @@ import javax.swing.WindowConstants;
 import javax.swing.UIManager;
 
 import values.Settings;
+import values.BrickColor;
 
 /**
  * @author stranger
@@ -39,8 +40,10 @@ public class Dialog extends JDialog implements ActionListener {
     private JSpinner fire;
     private JComboBox locale;
     private JComboBox laf;
+    private JComboBox theme;
     private Map<String, String> localeList;
     private Map<String, String> lafList;
+    private Map<String, Integer> themeList;
 
     /**
      * Default constructor.
@@ -123,6 +126,17 @@ public class Dialog extends JDialog implements ActionListener {
             }
         }
 
+        // Theme text label
+        JLabel themeLabel = new JLabel(settings.getString("CONF_THEME"));
+
+        // Theme text field
+        themeList = new HashMap<String, Integer>();
+        themeList.put(settings.getString("THEME_MODERN"), 1);
+        themeList.put(settings.getString("THEME_CLASSIC"), 2);
+
+        theme = new JComboBox(themeList.keySet().toArray());
+        theme.setSelectedIndex(this.settings.getThemeIndex() - 1);
+
         // ok button
         JButton okButton = new JButton();
         okButton.setText("Ok");
@@ -146,19 +160,21 @@ public class Dialog extends JDialog implements ActionListener {
         
         // labels panel
         JPanel labels = new JPanel();
-        labels.setLayout(new GridLayout(4, 1));
+        labels.setLayout(new GridLayout(5, 1));
         labels.add(moveLabel);
         labels.add(fireLabel);
         labels.add(localeLabel);
         labels.add(lafLabel);
+        labels.add(themeLabel);
 
         // input elements panel
         JPanel input = new JPanel();
-        input.setLayout(new GridLayout(4, 1));
+        input.setLayout(new GridLayout(5, 1));
         input.add(move);
         input.add(fire);
         input.add(locale);
         input.add(laf);
+        input.add(theme);
 
         // conf elements panel
         JPanel elements = new JPanel();
@@ -224,6 +240,12 @@ public class Dialog extends JDialog implements ActionListener {
             } catch (Exception ex) {
                 System.out.println(settings.getString("ERROR_LAF"));
             }
+        }
+
+        int index = themeList.get(theme.getSelectedItem());
+        if (index != this.settings.getThemeIndex()) {
+            this.settings.setThemeIndex(index);
+            BrickColor.init(index);
         }
 
         setVisible(false);
