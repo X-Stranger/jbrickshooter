@@ -24,8 +24,8 @@ import basic.Layout;
  */
 @SuppressWarnings("serial")
 public class Game extends JFrame {
-    private Settings settings = new Settings();
-    private Window window = new Window(settings);
+    private Settings settings;
+    private Window window;
     
     /**
      * Default constructor.
@@ -33,6 +33,9 @@ public class Game extends JFrame {
     public Game() {
         super();
         this.printJvmDetails();
+        this.settings = new Settings(); 
+        BrickColor.init(this.settings.getThemeIndex());
+        this.window = new Window(settings);
         this.setLAF();
         this.setMenu();
         this.start();        

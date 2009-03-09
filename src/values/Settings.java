@@ -34,7 +34,9 @@ public final class Settings {
     private static final String DELAY_MOVE = "5";
     /** Brick remove (fire) delay value. */
     private static final String DELAY_FIRE = "100";
-    
+    /** Brick theme index value. */
+    private static final String THEME_INDEX = "1";
+
     private Integer scores;
     private Integer scoresBackup;
     private Integer level;
@@ -485,6 +487,15 @@ public final class Settings {
     }
 
     /**
+     * Getter for theme index value.
+     *
+     * @return int theme index value
+     */
+    public int getThemeIndex() {
+        return Integer.parseInt(configuration.getProperty("THEME_INDEX", Settings.THEME_INDEX));
+    }
+
+    /**
      * Getter for locale name.
      * 
      * @return String value
@@ -509,6 +520,15 @@ public final class Settings {
      */
     public void setMoveDelay(int delay) {
         configuration.setProperty("DELAY_MOVE", "" + delay);
+    }
+
+    /**
+     * Setter for theme index value.
+     *
+     * @param index - new int value
+     */
+    public void setThemeIndex(int index) {
+        configuration.setProperty("THEME_INDEX", "" + index);
     }
 
     /**

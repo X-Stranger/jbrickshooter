@@ -73,13 +73,18 @@ public class BrickColor {
 
     /** Possible colors array. */
     private static final List<Map<Orientation, ImageIcon>> COLORS = new ArrayList<Map<Orientation, ImageIcon>>();
-    
-    static {
-        ImageIcon mask = new ImageIcon(ClassLoader.getSystemResource("images/mask1.png"));
-        ImageIcon upImage = new ImageIcon(ClassLoader.getSystemResource("images/d_up1.png"));
-        ImageIcon downImage = new ImageIcon(ClassLoader.getSystemResource("images/d_down1.png"));
-        ImageIcon leftImage = new ImageIcon(ClassLoader.getSystemResource("images/d_left1.png"));
-        ImageIcon rightImage = new ImageIcon(ClassLoader.getSystemResource("images/d_right1.png"));
+
+    /**
+     * Initializes Brick Colors.
+     *
+     * @param index - bricks theme index value
+     */
+    public static void init(Integer index) {
+        ImageIcon mask = new ImageIcon(ClassLoader.getSystemResource("images/mask" + index + ".png"));
+        ImageIcon upImage = new ImageIcon(ClassLoader.getSystemResource("images/d_up" + index + ".png"));
+        ImageIcon downImage = new ImageIcon(ClassLoader.getSystemResource("images/d_down" + index + ".png"));
+        ImageIcon leftImage = new ImageIcon(ClassLoader.getSystemResource("images/d_left" + index + ".png"));
+        ImageIcon rightImage = new ImageIcon(ClassLoader.getSystemResource("images/d_right" + index + ".png"));
 
         ImageIcon icon;
         BufferedImage image;
