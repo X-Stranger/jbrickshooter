@@ -102,9 +102,7 @@ public class BrickCollection extends Oriented {
      */
     public void save() {
         for (int i = 0; i < maxX; i++) {
-            for (int j = 0; j < maxY; j++) {
-                bricksBackup[i][j] = bricks[i][j]; 
-            }
+            System.arraycopy(bricks[i], 0, bricksBackup[i], 0, maxY);
         }
         listBackup.clear();
         listBackup.addAll(list);
@@ -166,9 +164,7 @@ public class BrickCollection extends Oriented {
      */
     public Brick[] getBrickCol(int x) {
         Brick[] bricks = new Brick[maxY];
-        for (int i = 0; i < maxY; i++) {
-            bricks[i] = this.bricks[x][i];
-        }
+        System.arraycopy(this.bricks[x], 0, bricks, 0, maxY);
         return bricks;
     }
     
@@ -241,9 +237,7 @@ public class BrickCollection extends Oriented {
         } else if (this.getOrientation() == Orientation.BOTTOM) {
             list.remove(bricks[pos][0]);
 
-            for (int i = 0; i < maxY - 1; i++) {
-                bricks[pos][i] = bricks[pos][i + 1];
-            }
+            System.arraycopy(bricks[pos], 1, bricks[pos], 0, maxY - 1);
             
             bricks[pos][maxY - 1] = brick;
         }
@@ -297,13 +291,20 @@ public class BrickCollection extends Oriented {
         } else if (this.getOrientation() == Orientation.TOP) {
             list.remove(bricks[pos][0]);
 
-            for (int i = 0; i < maxY - 1; i++) {
-                bricks[pos][i] = bricks[pos][i + 1];
-            }
+            System.arraycopy(bricks[pos], 1, bricks[pos], 0, maxY - 1);
             
             bricks[pos][maxY - 1] = brick;
         }
         
         list.add(brick);
+    }
+
+    /**
+     * Setter fot arcade propety.
+     *
+     * @param arcade - the boolean flag to be set
+     */
+    public void setArcade(Boolean arcade) {
+        this.arcade = arcade;
     }
 }
