@@ -80,6 +80,7 @@ public class BrickColor {
      * @param index - bricks theme index value
      */
     public static void init(Integer index) {
+        COLORS.clear();
         ImageIcon mask = new ImageIcon(ClassLoader.getSystemResource("images/mask" + index + ".png"));
         ImageIcon upImage = new ImageIcon(ClassLoader.getSystemResource("images/d_up" + index + ".png"));
         ImageIcon downImage = new ImageIcon(ClassLoader.getSystemResource("images/d_down" + index + ".png"));
