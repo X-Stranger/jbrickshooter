@@ -144,7 +144,19 @@ public class BrickCollection extends Oriented {
             }
         }
     }
-    
+
+    /**
+     * Reinitializes brick colors.
+     */
+    public void reInit() {
+        for (int i = 0; i < maxX; i++) {
+            for (int j = 0; j < maxY; j++) {
+                if (bricks[i][j] != null) { bricks[i][j].getColor().reInit(); bricks[i][j].update(); }
+                if (bricksBackup[i][j] != null) { bricksBackup[i][j].getColor().reInit(); }
+            }
+        }
+    }
+
     /**
      * Getter for bricks.
      * 

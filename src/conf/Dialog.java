@@ -44,6 +44,7 @@ public class Dialog extends JDialog implements ActionListener {
     private Map<String, String> localeList;
     private Map<String, String> lafList;
     private Map<String, Integer> themeList;
+    private boolean reInitRequired = false;
 
     /**
      * Default constructor.
@@ -246,8 +247,18 @@ public class Dialog extends JDialog implements ActionListener {
         if (index != this.settings.getThemeIndex()) {
             this.settings.setThemeIndex(index);
             BrickColor.init(index);
+            this.reInitRequired = true;
         }
 
         setVisible(false);
+    }
+
+    /**
+     * Getter for reInitRequired variable.
+     *
+     * @return true if re-initialization required, false otherwise
+     */
+    public boolean isReInitRequired() {
+        return reInitRequired;
     }
 }
