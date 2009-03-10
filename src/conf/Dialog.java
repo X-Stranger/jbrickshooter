@@ -134,6 +134,7 @@ public class Dialog extends JDialog implements ActionListener {
         themeList = new HashMap<String, Integer>();
         themeList.put(settings.getString("THEME_MODERN"), 1);
         themeList.put(settings.getString("THEME_CLASSIC"), 2);
+        themeList.put(settings.getString("THEME_CIRCLES"), 3);
 
         theme = new JComboBox(themeList.keySet().toArray());
         theme.setSelectedIndex(this.settings.getThemeIndex() - 1);
