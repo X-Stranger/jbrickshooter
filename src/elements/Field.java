@@ -168,6 +168,18 @@ public class Field {
             }
         }
     }
+
+    /**
+     * Reinitializes brick colors. 
+     */
+    public void reInit() {
+        for (int i = 0; i < Layout.FIELD; i++) {
+            for (int j = 0; j < Layout.FIELD; j++) {
+                if (bricks[i][j] != null) { bricks[i][j].getColor().reInit(); bricks[i][j].update(); }
+                if (bricksBackup[i][j] != null) { bricksBackup[i][j].getColor().reInit(); }
+            }
+        }
+    }
     
     /**
      * Getter for bricks.

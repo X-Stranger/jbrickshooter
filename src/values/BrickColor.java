@@ -27,6 +27,11 @@ import java.util.Random;
  */
 public class BrickColor {
     
+    /** Brick colors object. */
+    private Map<Orientation, ImageIcon> colors;
+    /** Brick colors index. */
+    private int index = -1;
+
     /** Brick colors. */
     private static final int[] RGB_COLORS = {
             0x0000ff, 0xee0000, 0xffba00, 0xfff326, 0x00bb00, 0x00eeee, 0xe400ff, 0xffb3d0, 0xffffff, 0xffb302 }; 
@@ -177,6 +182,7 @@ public class BrickColor {
      */
     public BrickColor(int index) {
         this.colors = COLORS.get(index);
+        this.index = index;
     }
 
     /**
@@ -189,20 +195,9 @@ public class BrickColor {
         int index = color.getIndex() + 1;
         if (index == level) { index = 0; }
         this.colors = COLORS.get(index);
+        this.index = index;
     }
 
-    /**
-     * Parameterized constructor.
-     * 
-     * @param colors - colors map to initialize
-     */
-    public BrickColor(Map<Orientation, ImageIcon> colors) {
-        this.colors = colors;
-    }
-
-    /** Brick colors object. */
-    private Map<Orientation, ImageIcon> colors;
-    
     /**
      * Returns color according to orientation.
      * 
@@ -228,14 +223,18 @@ public class BrickColor {
      * @return int index value or -1 if none
      */
     public int getIndex() {
-        for (int i = 0; i < COLORS.size(); i++) {
-            if (COLORS.get(i) == colors) {
-                return i;
-            }
-        }
-        return -1;
+        return index;
     }
     
+    /**
+     * Reinitializes brick colors.
+     */
+    public void reInit() {
+        if (index >= 0) {
+            colors = COLORS.get(index);
+        }
+    }
+
     /**
      * Static method which creates a new BrickColor instance.
      * 
@@ -245,9 +244,9 @@ public class BrickColor {
      */
     public static BrickColor generate(int level, boolean arcade) {
         if (arcade && (generator.nextInt(Layout.FIELD + BrickColor.SPECIAL_TOTAL) == 7)) {
-            return new BrickColor(COLORS.get(Layout.FIELD + generator.nextInt(BrickColor.SPECIAL_TOTAL)));
+            return new BrickColor(Layout.FIELD + generator.nextInt(BrickColor.SPECIAL_TOTAL));
         }
-        return new BrickColor(COLORS.get(generator.nextInt(level)));
+        return new BrickColor(generator.nextInt(level));
     }
 
     /**

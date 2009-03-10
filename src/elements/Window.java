@@ -439,7 +439,14 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
             }
 
             if (text.equals(settings.getString("MENU_GAME_OPTIONS"))) {
-                new Dialog(this.settings);
+                Dialog dialog = new Dialog(this.settings);
+                if (dialog.isReInitRequired()) {
+                    field.reInit();
+                    topBricks.reInit();
+                    leftBricks.reInit();
+                    rightBricks.reInit();
+                    bottomBricks.reInit();
+                }
                 return;    
             }
 

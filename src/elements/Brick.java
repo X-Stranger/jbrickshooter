@@ -99,6 +99,14 @@ public class Brick extends Oriented {
     }
 
     /**
+     * Method invokes brick image repaint.
+     */
+    public void update() {
+        this.setIcon(color.getColor(this.getOrientation()));
+        this.repaint();
+    }
+
+    /**
      * Getter for brick color property.
      *
      * @param color - new BrickColor object
