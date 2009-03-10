@@ -79,7 +79,10 @@
 	<filter token="JAVA_HOME" value="${env.JAVA_HOME}"/>
 	<copy file="doc/jbrickshooter.pro" todir="build" filtering="true"/>
 	<proguard configuration="build/jbrickshooter.pro"/>
+	<length file="build/${name}.jar" property="old"/>
+	<length file="build/${name}_new.jar" property="new"/>
 	<move file="build/${name}_new.jar" tofile="build/${name}.jar" overwrite="true"/>
+	<echo message="Jar file size changed from ${old} to ${new} bytes"/>
     </target>
 
     <target depends="zip,deb" name="dist"/>
