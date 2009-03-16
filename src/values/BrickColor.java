@@ -3,6 +3,7 @@ package values;
 import basic.Layout;
 
 import javax.swing.ImageIcon;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
@@ -10,7 +11,6 @@ import java.awt.GraphicsEnvironment;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Transparency;
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.PixelGrabber;
@@ -33,8 +33,9 @@ public class BrickColor {
     private int index = -1;
 
     /** Brick colors. */
-    private static final int[] RGB_COLORS = {
-            0x0000ff, 0xee0000, 0xffba00, 0xfff326, 0x00bb00, 0x00eeee, 0xe400ff, 0xffb3d0, 0xffffff, 0xffb302 }; 
+    private static final int GRAY_COLOR = 0x828282;
+    private static final int[] RGB_COLORS = {0x0000ff, 0xee0000, 0xffba00, 0xfff326, 0x00bb00,
+                                             0x00eeee, 0xe400ff, 0xffb3d0, 0xffffff, 0xffb302, GRAY_COLOR}; 
 
     /** Special bricks total count. */
     public static final int SPECIAL_TOTAL = 5;
@@ -91,6 +92,8 @@ public class BrickColor {
         ImageIcon downImage = new ImageIcon(ClassLoader.getSystemResource("images/d_down" + index + ".png"));
         ImageIcon leftImage = new ImageIcon(ClassLoader.getSystemResource("images/d_left" + index + ".png"));
         ImageIcon rightImage = new ImageIcon(ClassLoader.getSystemResource("images/d_right" + index + ".png"));
+
+        GRAY_IMAGE.setImage(new ImageIcon(createBasicImage(Layout.FIELD, mask)).getImage());
 
         ImageIcon icon;
         BufferedImage image;
