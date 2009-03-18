@@ -35,7 +35,7 @@ public class BrickColor {
     /** Brick colors. */
     private static final int GRAY_COLOR = 0x828282;
     private static final int[] RGB_COLORS = {0x0000ff, 0xee0000, 0xffba00, 0xfff326, 0x00bb00,
-                                             0x00eeee, 0xe400ff, 0xffb3d0, 0xffffff, 0xffb302, GRAY_COLOR}; 
+                                             0x00eeee, 0xe400ff, 0xff9ed0, 0xececec, 0xb07b00, GRAY_COLOR}; 
 
     /** Special bricks total count. */
     public static final int SPECIAL_TOTAL = 5;
