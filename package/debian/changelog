@@ -1,3 +1,9 @@
+jbrickshooter (1.3.1-1~getdeb1) intrepid; urgency=high
+
+  * Fix to color indexes: some of them were similar or not pretty
+
+ -- X-Stranger <xstranger@gmail.com>  Mon, 18 Mar 2008 10:35:45 +0200
+
 jbrickshooter (1.3.0-1~getdeb1) intrepid; urgency=low
 
   * Fixed error with arcade game loading on startup
