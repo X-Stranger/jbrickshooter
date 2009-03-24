@@ -1,3 +1,9 @@
+jbrickshooter (1.3.2-1~getdeb1) intrepid; urgency=low
+
+  * Fix to brick color shift caused by special brick in arcade mode
+
+ -- X-Stranger <xstranger@gmail.com>  Tue, 24 Mar 2008 10:50:00 +0200
+
 jbrickshooter (1.3.1-1~getdeb1) intrepid; urgency=high
 
   * Fix to color indexes: some of them were similar or not pretty
