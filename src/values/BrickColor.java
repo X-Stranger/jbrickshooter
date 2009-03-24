@@ -196,7 +196,7 @@ public class BrickColor {
      */
     public BrickColor(BrickColor color, int level) {
         int index = color.getIndex() + 1;
-        if (index == level) { index = 0; }
+        if (index >= level) { index = 0; }
         this.colors = COLORS.get(index);
         this.index = index;
     }
