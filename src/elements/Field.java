@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 import values.BrickColor;
 import values.Orientation;
+import values.Settings;
 
 /**
  * Game field.
@@ -17,7 +18,7 @@ import values.Orientation;
  */
 public class Field {
 
-    private int level;
+    private Settings settings;
     private List<Brick> list = new ArrayList<Brick>();
     private List<Brick> listBackup = new ArrayList<Brick>();
     private Brick[][] bricks = new Brick[Layout.FIELD][Layout.FIELD];
@@ -34,17 +35,16 @@ public class Field {
     /**
      * Default constructor.
      * 
-     * @param level - max color index
-     * @param add - additional number of bricks
+     * @param settings - game settings reference
      * @param left - left brick collection
      * @param right - right brick collection
      * @param top - top brick collection
      * @param bottom - bottom brick collection
      */
-    public Field(int level, int add, 
+    public Field(Settings settings,
             BrickCollection left, BrickCollection right, BrickCollection top, BrickCollection bottom) {
-        this.level = level;
-        this.fill(add);
+        this.settings = settings;
+        this.fill(settings.getLevel() - 1);
         this.leftBricks = left;
         this.rightBricks = right;
         this.topBricks = top;
@@ -127,26 +127,26 @@ public class Field {
     private void fill(int add) {
         int x, y;
         
-        bricks[6][4] = new Brick(level); list.add(bricks[6][4]);
-        bricks[6][5] = new Brick(level); list.add(bricks[6][5]);
-        bricks[5][6] = new Brick(level); list.add(bricks[5][6]);
-        bricks[4][6] = new Brick(level); list.add(bricks[4][6]);
-        bricks[3][5] = new Brick(level); list.add(bricks[3][5]);
+        bricks[6][4] = new Brick(settings.getDifficulty()); list.add(bricks[6][4]);
+        bricks[6][5] = new Brick(settings.getDifficulty()); list.add(bricks[6][5]);
+        bricks[5][6] = new Brick(settings.getDifficulty()); list.add(bricks[5][6]);
+        bricks[4][6] = new Brick(settings.getDifficulty()); list.add(bricks[4][6]);
+        bricks[3][5] = new Brick(settings.getDifficulty()); list.add(bricks[3][5]);
 
-        if (level > 5) {
-            bricks[3][4] = new Brick(level); list.add(bricks[3][4]);
+        if (settings.getDifficulty() > 5) {
+            bricks[3][4] = new Brick(settings.getDifficulty()); list.add(bricks[3][4]);
         }
-        if (level > 6) {
-            bricks[4][3] = new Brick(level); list.add(bricks[4][3]);
+        if (settings.getDifficulty() > 6) {
+            bricks[4][3] = new Brick(settings.getDifficulty()); list.add(bricks[4][3]);
         }
-        if (level > 7) {
-            bricks[5][3] = new Brick(level); list.add(bricks[5][3]);
+        if (settings.getDifficulty() > 7) {
+            bricks[5][3] = new Brick(settings.getDifficulty()); list.add(bricks[5][3]);
         }
-        if (level > 8) {
-            bricks[5][4] = new Brick(level); list.add(bricks[5][4]);
+        if (settings.getDifficulty() > 8) {
+            bricks[5][4] = new Brick(settings.getDifficulty()); list.add(bricks[5][4]);
         }
-        if (level > 9) {
-            bricks[4][5] = new Brick(level); list.add(bricks[4][5]);
+        if (settings.getDifficulty() > 9) {
+            bricks[4][5] = new Brick(settings.getDifficulty()); list.add(bricks[4][5]);
         }
         
         for (int cnt = 0; cnt < add; cnt++) {
@@ -155,7 +155,7 @@ public class Field {
                 y = generator.nextInt(Layout.FIELD);
             } while (bricks[x][y] != null);
 
-            bricks[x][y] = new Brick(level);
+            bricks[x][y] = new Brick(settings.getDifficulty());
             list.add(bricks[x][y]);
         }
 
@@ -270,52 +270,52 @@ public class Field {
                 if (matrix1[i][j] == BrickColor.SPECIAL_COLORS) {
                     if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
                         setBrick(i - 1, j - 1, new Brick(
-                                new BrickColor(bricks[i - 1][j - 1].getColor(), level),
+                                new BrickColor(bricks[i - 1][j - 1].getColor(), settings.getDifficulty()),
                                 bricks[i - 1][j - 1].getOrientation()
                         ));
                     }
                     if ((i != 0) && (matrix1[i - 1][j] >= 0)) {
                         setBrick(i - 1, j, new Brick(
-                                new BrickColor(bricks[i - 1][j].getColor(), level),
+                                new BrickColor(bricks[i - 1][j].getColor(), settings.getDifficulty()),
                                 bricks[i - 1][j].getOrientation()
                         ));
                     }
                     if ((i != 0) && (j != Layout.FIELD - 1) && (matrix1[i - 1][j + 1] >= 0)) {
                         setBrick(i - 1, j + 1, new Brick(
-                                new BrickColor(bricks[i - 1][j + 1].getColor(), level),
+                                new BrickColor(bricks[i - 1][j + 1].getColor(), settings.getDifficulty()),
                                 bricks[i - 1][j + 1].getOrientation()
                         ));
                     }
 
                     if ((j != 0) && (matrix1[i][j - 1] >= 0)) {
                         setBrick(i, j - 1, new Brick(
-                                new BrickColor(bricks[i][j - 1].getColor(), level),
+                                new BrickColor(bricks[i][j - 1].getColor(), settings.getDifficulty()),
                                 bricks[i][j - 1].getOrientation()
                         ));
                     }
                     addBlack(i, j);
                     if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) {
                         setBrick(i, j + 1, new Brick(
-                                new BrickColor(bricks[i][j + 1].getColor(), level),
+                                new BrickColor(bricks[i][j + 1].getColor(), settings.getDifficulty()),
                                 bricks[i][j + 1].getOrientation()
                         ));
                     }
 
                     if ((i != Layout.FIELD - 1) && (j != 0) && (matrix1[i + 1][j - 1] >= 0)) {
                         setBrick(i + 1, j - 1, new Brick(
-                                new BrickColor(bricks[i + 1][j - 1].getColor(), level),
+                                new BrickColor(bricks[i + 1][j - 1].getColor(), settings.getDifficulty()),
                                 bricks[i + 1][j - 1].getOrientation()
                         ));
                     }
                     if ((i != Layout.FIELD - 1) && (matrix1[i + 1][j] >= 0)) {
                         setBrick(i + 1, j, new Brick(
-                                new BrickColor(bricks[i + 1][j].getColor(), level),
+                                new BrickColor(bricks[i + 1][j].getColor(), settings.getDifficulty()),
                                 bricks[i + 1][j].getOrientation()
                         ));
                     }
                     if ((i != Layout.FIELD - 1) && (j != Layout.FIELD - 1) && (matrix1[i + 1][j + 1] >= 0)) {
                         setBrick(i + 1, j + 1, new Brick(
-                                new BrickColor(bricks[i + 1][j + 1].getColor(), level),
+                                new BrickColor(bricks[i + 1][j + 1].getColor(), settings.getDifficulty()),
                                 bricks[i + 1][j + 1].getOrientation()
                         ));
                     }

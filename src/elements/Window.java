@@ -103,8 +103,7 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
         leftBricks = new BrickCollection(this.settings.getDifficulty(), this.settings.isArcade(), Orientation.LEFT);
         rightBricks = new BrickCollection(this.settings.getDifficulty(), this.settings.isArcade(), Orientation.RIGHT);
         bottomBricks = new BrickCollection(this.settings.getDifficulty(), this.settings.isArcade(), Orientation.BOTTOM);
-        field = new Field(this.settings.getDifficulty(), this.settings.getLevel() - 1, 
-                leftBricks, rightBricks, topBricks, bottomBricks);
+        field = new Field(this.settings, leftBricks, rightBricks, topBricks, bottomBricks);
     }
     
     /**
