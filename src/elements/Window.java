@@ -48,6 +48,7 @@ import java.util.List;
 public class Window extends JPanel implements MouseInputListener, ActionListener, WindowListener {
 
     private Brick activeBrick = null;
+    private boolean isEmpty;
     
     private Settings settings;
     private Layout layout;
@@ -59,7 +60,7 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
     private BrickCollection bottomBricks;
     private List<JMenuItem> saveSlots;
     private List<JMenuItem> loadSlots;
-    
+
     /**
      * Default constructor.
      *
@@ -222,14 +223,14 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
 
             int scores;
             int moves;
-            boolean empty = false;
+            isEmpty = false;
             do {
                 
                 do { 
                     moves = field.move();
                     if (moves != 0) {
                         this.sleep(this.settings.getMoveDelay());
-                        empty = this.updateLayoutFromField();
+                        isEmpty = this.updateLayoutFromField();
                         this.updateLayoutFromCollections();
                         if (this.settings.getMoveDelay() != 0) {
                             this.paintImmediately(getVisibleRect());
@@ -237,25 +238,13 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
                     }
                 } while (moves != 0);
                 
-                scores = field.analize();
-                if (scores != 0) {
-                    if (scores > 0) {
-                        this.settings.addScores(scores);
-                        this.scores.repaint();
-                    }
-                    this.highlightLayoutFromField();
-                    if (this.settings.getFireDelay() != 0) {
-                        this.paintImmediately(getVisibleRect());
-                    }
-                    this.sleep(this.settings.getFireDelay());
-                    empty = this.updateLayoutFromField();
-                }
-                
+                scores = removeBricks();
+
             } while (scores != 0);
             
             mouseMoved(e);
             
-            if (empty) {
+            if (isEmpty) {
                 this.settings.addScores(this.settings.getLevel() * Settings.LEVEL_UP_SCORES);
                 this.settings.upLevel();
                 this.createBrickElements();
@@ -264,6 +253,7 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
                 this.activeBrick = null;
                 this.settings.getUndo().setEnabled(false);
                 this.repaint();
+                this.removeBricks();
             }
             
             if (!field.canPlay()) {
@@ -286,7 +276,29 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
             }
         }
     }
-     
+
+    /**
+     * Removes bricks from field and calculates scores.
+     *
+     * @return calculated scores int value
+     */
+    int removeBricks() {
+        int scores = field.analize();
+        if (scores != 0) {
+            if (scores > 0) {
+                this.settings.addScores(scores);
+                this.scores.repaint();
+            }
+            this.highlightLayoutFromField();
+            if (this.settings.getFireDelay() != 0) {
+                this.paintImmediately(getVisibleRect());
+            }
+            this.sleep(this.settings.getFireDelay());
+            isEmpty = this.updateLayoutFromField();
+        }
+        return scores;
+    }
+
     /**
      * Method does thread sleep for animation.
      * 
