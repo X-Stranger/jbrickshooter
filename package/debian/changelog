@@ -1,34 +1,41 @@
+jbrickshooter (1.4.0-1~getdeb1) jaunty; urgency=high
+
+  * Remove bricks on new level begin if possible
+  * Special brick that changes colors was working incorrectly, fixed
+
+ -- X-Stranger <xstranger@gmail.com>  Sat, 05 Sep 2009 22:24:38 +0300
+
 jbrickshooter (1.3.2-1~getdeb1) intrepid; urgency=low
 
   * Fix to brick color shift caused by special brick in arcade mode
 
- -- X-Stranger <xstranger@gmail.com>  Tue, 24 Mar 2008 10:50:00 +0200
+ -- X-Stranger <xstranger@gmail.com>  Tue, 24 Mar 2009 10:50:00 +0200
 
 jbrickshooter (1.3.1-1~getdeb1) intrepid; urgency=high
 
   * Fix to color indexes: some of them were similar or not pretty
 
- -- X-Stranger <xstranger@gmail.com>  Mon, 18 Mar 2008 10:35:45 +0200
+ -- X-Stranger <xstranger@gmail.com>  Mon, 18 Mar 2009 10:35:45 +0200
 
 jbrickshooter (1.3.0-1~getdeb1) intrepid; urgency=low
 
   * Fixed error with arcade game loading on startup
   * Added theming support including 3 ready-to-use themes
 
- -- X-Stranger <xstranger@gmail.com>  Mon, 16 Mar 2008 14:40:50 +0200
+ -- X-Stranger <xstranger@gmail.com>  Mon, 16 Mar 2009 14:40:50 +0200
 
 jbrickshooter (1.2.1-1~getdeb1) intrepid; urgency=low
 
   * Fixed yet another error with game end detection
   * Obfuscation added
 
- -- X-Stranger <xstranger@gmail.com>  Fri, 27 Feb 2008 15:14:00 +0200
+ -- X-Stranger <xstranger@gmail.com>  Fri, 27 Feb 2009 15:14:00 +0200
 
 jbrickshooter (1.2-1~getdeb1) intrepid; urgency=low
 
   * Added second game type: arcade. Some restyling, bugfixes, etc.
 
- -- X-Stranger <xstranger@gmail.com>  Fri, 27 Feb 2008 15:14:00 +0200
+ -- X-Stranger <xstranger@gmail.com>  Fri, 27 Feb 2009 15:14:00 +0200
 
 jbrickshooter (1.1-1~getdeb1) intrepid; urgency=low
 
