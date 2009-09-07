@@ -150,10 +150,14 @@ public class Field {
         }
         
         for (int cnt = 0; cnt < add; cnt++) {
-            do {
-                x = generator.nextInt(Layout.FIELD);
-                y = generator.nextInt(Layout.FIELD);
-            } while (bricks[x][y] != null);
+            if (!isFull()) {
+                do {
+                    x = generator.nextInt(Layout.FIELD);
+                    y = generator.nextInt(Layout.FIELD);
+                } while (bricks[x][y] != null);
+            } else {
+                break;
+            }
 
             bricks[x][y] = new Brick(settings.getDifficulty());
             list.add(bricks[x][y]);
@@ -634,5 +638,21 @@ public class Field {
             if (d >= 0 && d < Layout.FIELD - 1) { return true; }
         }
         return false;
+    }
+
+    /**
+     * Method checks if field is full with bricks.
+     *
+     * @return true if field is filled by 100%, false otherwise
+     */
+    public boolean isFull() {
+        for (int i = 0; i < Layout.FIELD; i++) {
+            for (int j = 0; j < Layout.FIELD; j++) {
+                if (bricks[i][j] == null) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
