@@ -68,7 +68,7 @@ public class Corner extends JComponent {
             this.setBuf(createImage(getWidth(), getHeight()));
         }
         if (this.backgr == null) {
-            ImageIcon blackIcon = new ImageIcon(ClassLoader.getSystemResource("images/black.png"));
+            ImageIcon blackIcon = new ImageIcon(this.getClass().getClassLoader().getResource("images/black.png"));
             Image black = blackIcon.getImage();
             int width = blackIcon.getIconWidth();
             int height = blackIcon.getIconHeight();

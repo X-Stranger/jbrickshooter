@@ -527,7 +527,7 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
     private void showAboutBox() {
         JOptionPane.showMessageDialog(this, settings.getString("MESSAGE_GAME_ABOUT"), 
                 settings.getString("TITLE_GAME_ABOUT"), JOptionPane.INFORMATION_MESSAGE, 
-                new ImageIcon(ClassLoader.getSystemResource("images/icon.png")));
+                new ImageIcon(this.getClass().getClassLoader().getResource("images/icon.png")));
     }
 
     /**
