@@ -209,10 +209,10 @@ public final class Settings {
         try {
             InputStream font;
             String name = "images/" + locale.getLanguage() + "_" + locale.getCountry() + ".ttf";
-            URL url = ClassLoader.getSystemResource(name);
+            URL url = this.getClass().getClassLoader().getResource(name);
             
             if (url == null) {
-                url = ClassLoader.getSystemResource("images/font.ttf");
+                url = this.getClass().getClassLoader().getResource("images/font.ttf");
             }
             
             font = url.openStream(); 

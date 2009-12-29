@@ -57,7 +57,7 @@ public class Game extends JFrame {
         // displaying window at the screen
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle(settings.getString("TITLE"));
-        setIconImage(new ImageIcon(ClassLoader.getSystemResource("images/icon.png")).getImage());
+        setIconImage(new ImageIcon(this.getClass().getClassLoader().getResource("images/icon.png")).getImage());
         
         setContentPane(window);
         

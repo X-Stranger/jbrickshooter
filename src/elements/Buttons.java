@@ -22,8 +22,8 @@ import values.Settings;
 public class Buttons extends Corner implements MouseListener {
 
     private Color color = Color.lightGray;
-    private ImageIcon buttonNormal = new ImageIcon(ClassLoader.getSystemResource("images/button.png"));
-    private ImageIcon buttonOver = new ImageIcon(ClassLoader.getSystemResource("images/buttonover.png"));
+    private ImageIcon buttonNormal = new ImageIcon(this.getClass().getClassLoader().getResource("images/button.png"));
+    private ImageIcon buttonOver = new ImageIcon(this.getClass().getClassLoader().getResource("images/buttonover.png"));
     private ImageIcon button = buttonNormal;
     private Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
     private Cursor buttonCursor = new Cursor(Cursor.HAND_CURSOR);

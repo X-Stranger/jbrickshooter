@@ -58,7 +58,7 @@ public class Dialog extends JDialog implements ActionListener {
         // displaying window at the screen
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(settings.getString("TITLE_CONF"));
-        setIconImage(new ImageIcon(ClassLoader.getSystemResource("images/icon.png")).getImage());
+        setIconImage(new ImageIcon(this.getClass().getClassLoader().getResource("images/icon.png")).getImage());
         
         // move delay spinner label
         JLabel moveLabel = new JLabel(settings.getString("CONF_MOVE_DELAY"));

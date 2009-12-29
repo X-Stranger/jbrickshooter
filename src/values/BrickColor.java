@@ -50,8 +50,25 @@ public class BrickColor {
     /** "Color changer" brick id. */
     public static final int SPECIAL_COLORS    = Layout.FIELD + 4;
 
-    private static final ImageIcon BLACK_IMAGE = new ImageIcon(ClassLoader.getSystemResource("images/black.png"));
-    private static final ImageIcon GRAY_IMAGE  = new ImageIcon(ClassLoader.getSystemResource("images/gray.png"));
+    private static final ImageIcon BLACK_IMAGE;
+    private static final ImageIcon GRAY_IMAGE;
+    static {
+        ImageIcon blImage = null;
+        ImageIcon grImage = null;
+        try {
+            blImage = new ImageIcon(
+                    Class.forName("values.BrickColor").getClassLoader().getResource("images/black.png"));
+            grImage = new ImageIcon(
+                    Class.forName("values.BrickColor").getClassLoader().getResource("images/gray.png"));
+        } catch (ClassNotFoundException e) {
+            System.err.println("Fatal: can't load resources from jar");
+            e.printStackTrace();
+            System.exit(1);
+        } finally {
+            BLACK_IMAGE = blImage;
+            GRAY_IMAGE = grImage;
+        }
+    }
 
     /** Static value. */
     public static final BrickColor BLACK = new BrickColor() {
@@ -87,11 +104,19 @@ public class BrickColor {
      */
     public static void init(Integer index) {
         COLORS.clear();
-        ImageIcon mask = new ImageIcon(ClassLoader.getSystemResource("images/mask" + index + ".png"));
-        ImageIcon upImage = new ImageIcon(ClassLoader.getSystemResource("images/d_up" + index + ".png"));
-        ImageIcon downImage = new ImageIcon(ClassLoader.getSystemResource("images/d_down" + index + ".png"));
-        ImageIcon leftImage = new ImageIcon(ClassLoader.getSystemResource("images/d_left" + index + ".png"));
-        ImageIcon rightImage = new ImageIcon(ClassLoader.getSystemResource("images/d_right" + index + ".png"));
+        ClassLoader cl = null;
+        try {
+            cl = Class.forName("values.BrickColor").getClassLoader();
+        } catch (ClassNotFoundException e) {
+            System.err.println("Fatal: can't load resources from jar");
+            e.printStackTrace();
+            System.exit(1);
+        }
+        ImageIcon mask = new ImageIcon(cl.getResource("images/mask" + index + ".png"));
+        ImageIcon upImage = new ImageIcon(cl.getResource("images/d_up" + index + ".png"));
+        ImageIcon downImage = new ImageIcon(cl.getResource("images/d_down" + index + ".png"));
+        ImageIcon leftImage = new ImageIcon(cl.getResource("images/d_left" + index + ".png"));
+        ImageIcon rightImage = new ImageIcon(cl.getResource("images/d_right" + index + ".png"));
 
         GRAY_IMAGE.setImage(new ImageIcon(createBasicImage(Layout.FIELD, mask)).getImage());
 
@@ -127,7 +152,7 @@ public class BrickColor {
         for (int i = 0; i < SPECIAL_TOTAL; i++) {
             map = new HashMap<Orientation, ImageIcon>();
 
-            icon = new ImageIcon(ClassLoader.getSystemResource("images/" + i + ".png"));
+            icon = new ImageIcon(cl.getResource("images/" + i + ".png"));
             map.put(Orientation.NONE, icon);
 
             image = toBufferedImage(icon.getImage());
