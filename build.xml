@@ -73,6 +73,11 @@
             <formatter type="xml" toFile="build/checkstyle_errors.xml"/>
         </checkstyle>
     </target>
+
+    <target depends="obfuscate" name="sign">
+	<property file="${basedir}/resources/keystore.properties"/>
+	<signjar keystore="${basedir}/resources/keystore.ks" jar="build/${name}.jar" alias="${store.alias}" storepass="${store.pass}"/>
+    </target>
     
     <target depends="build" name="obfuscate">
 	<taskdef resource="proguard/ant/task.properties" classpathref="lib.classpath"/>
@@ -87,14 +92,14 @@
 
     <target depends="zip,deb" name="dist"/>
 
-    <target depends="build,obfuscate" name="zip">
+    <target depends="build,obfuscate,sign" name="zip">
         <zip destfile="JBrickShooter.zip">
             <fileset dir="package" includes="jbrickshooter.*,README,LICENSE" excludes="*.desktop"/>
             <fileset dir="build" includes="*.jar"/>
         </zip>
     </target>
 
-    <target depends="build,obfuscate" name="deb">
+    <target depends="build,obfuscate,sign" name="deb">
         <copy file="build/${name}.jar" todir="package" overwrite="true"/>
         <exec dir="package" executable="fakeroot">
             <arg line="debian/rules binary clean"/>
