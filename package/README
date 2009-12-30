@@ -1,8 +1,17 @@
-		-= JBrickShooter v1.4 =-
+		-= JBrickShooter v1.4.1 =-
 Absolutely free Brick Shooter game Java implementation
 ------------------------------------------------------
 
-1. Installation
+1. Playing Game Without Install
+
+You can play game without installation. It is possible by running it directly
+from home page by using Java Web Start technology. Just click on "Play Now!"
+icon and confirm that you trust game publisher. If you have Java correctly 
+configured with your browser then the game will be automatically downloaded
+and started.
+
+
+2. Installation
 
 First you need to have JRE >= 1.5 installed and JAVA_HOME environment variable
 configured. Then just copy these files from archive to the location you want
@@ -14,16 +23,16 @@ users should use jbrickshooter.png icon, Windows users should use file named
 jbrickshooter.ico.
 
 
-2. Removal
+3. Removal
 
 Just remove all of the files from this folder and delete shortcut if you have
 created it before. You can also remove .jbrickshooter folder in your home
 location if you want to remove all of the game settings and high scores.
 
 
-3. Contact info
+4. Contact info
 
 Author: X-Stranger
 Mail: xstranger at gmail.com
 
-2009/09/14
+2009/12/30
