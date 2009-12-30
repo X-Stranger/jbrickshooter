@@ -7,6 +7,7 @@
     <property name="target" value="1.5"/>
     <property name="source" value="1.5"/>
     <property name="name" value="jbrickshooter"/>
+    <property name="failonviolation" value="true"/>
 
     <path id="lib.classpath">
         <fileset dir="lib" includes="*.jar"/>
@@ -57,7 +58,7 @@
 
     <target name="pmd">
         <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="lib.classpath"/>
-        <pmd failonerror="true" failonruleviolation="true" targetjdk="1.5">
+        <pmd failonerror="true" failonruleviolation="${failonviolation}" targetjdk="1.5">
             <ruleset>doc/pmd_rules.xml</ruleset>
             <fileset dir="src" includes="**/*.java"/>
             <formatter type="text" toConsole="true"/>
@@ -67,7 +68,7 @@
 
     <target name="checkstyle">
         <taskdef resource="checkstyletask.properties" classpathref="lib.classpath"/>
-        <checkstyle config="doc/checkstyle_rules.xml" failonviolation="true">
+        <checkstyle config="doc/checkstyle_rules.xml" failonviolation="${failonviolation}">
             <fileset dir="src" includes="**/*.java"/>
             <formatter type="plain"/>
             <formatter type="xml" toFile="build/checkstyle_errors.xml"/>
