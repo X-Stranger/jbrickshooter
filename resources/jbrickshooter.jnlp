@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0+" 
+      codebase="http://jbrickshooter.googlecode.com/files/"
+      href="jbrickshooter.jnlp">
+  <information>
+    <title>JBrickShooter</title>
+    <vendor>X-Stranger</vendor>
+    <homepage href="http://code.google.com/p/jbrickshooter/"/>
+    <description>Absolutely free Brick Shooter game Java implementation</description>
+    <icon href="http://code.google.com/p/jbrickshooter/logo?logo_id=1252331757"/>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+"/>
+    <jar href="jbrickshooter.jar"/>
+  </resources>
+  <application-desc main-class="Main"/>
+  <security>
+    <all-permissions/>
+  </security>
+</jnlp>
