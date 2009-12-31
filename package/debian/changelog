@@ -2,9 +2,10 @@ jbrickshooter (1.4.1-1~getdeb1) karmic; urgency=low
 
   * Code fix to make game working from Java Web Start
   * Added JNLP profile and game can now be started directly from site
+  * Fixed work under Java 1.5
   * Up to Ubuntu Karmic
 
- -- X-Stranger <xstranger@gmail.com>  Wed, 30 Dec 2009 10:04:00 +0200
+ -- X-Stranger <xstranger@gmail.com>  Wed, 31 Dec 2009 16:25:00 +0200
 
 jbrickshooter (1.4.0-1~getdeb1) jaunty; urgency=high
 
