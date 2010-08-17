@@ -58,7 +58,7 @@ public class Brick extends Oriented {
      * @param level - max color value
      */
     public Brick(int level) {
-        this(BrickColor.generate(level, GameType.ARCADE));
+        this(BrickColor.generate(level, GameType.STRATEGY));
     }
     
     /**
