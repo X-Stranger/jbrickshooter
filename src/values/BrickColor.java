@@ -92,7 +92,11 @@ public class BrickColor {
         public ImageIcon getColor() {
             return GRAY_IMAGE;
         }
-    }; 
+//
+//        public int getIndex() {
+//            return Layout.FIELD;
+//        }
+    };
 
     /** Possible colors array. */
     private static final List<Map<Orientation, ImageIcon>> COLORS = new ArrayList<Map<Orientation, ImageIcon>>();
@@ -267,11 +271,11 @@ public class BrickColor {
      * Static method which creates a new BrickColor instance.
      * 
      * @param level - max color index
-     * @param arcade - boolean game type flag
+     * @param type - game type
      * @return new color instance
      */
-    public static BrickColor generate(int level, boolean arcade) {
-        if (arcade && (generator.nextInt(Layout.FIELD + BrickColor.SPECIAL_TOTAL) == 7)) {
+    public static BrickColor generate(int level, GameType type) {
+        if ((type.isArcade() || type.isPuzzle()) && (generator.nextInt(Layout.FIELD + BrickColor.SPECIAL_TOTAL) == 7)) {
             return new BrickColor(Layout.FIELD + generator.nextInt(BrickColor.SPECIAL_TOTAL));
         }
         return new BrickColor(generator.nextInt(level));

@@ -2,6 +2,7 @@ package elements;
 
 import basic.Oriented;
 import values.BrickColor;
+import values.GameType;
 import values.Orientation;
 
 /**
@@ -57,17 +58,17 @@ public class Brick extends Oriented {
      * @param level - max color value
      */
     public Brick(int level) {
-        this(BrickColor.generate(level, false));
+        this(BrickColor.generate(level, GameType.ARCADE));
     }
     
     /**
      * Parameterized constructor.
      *
      * @param level - max color value
-     * @param arcade - boolean game type flag
+     * @param type - game type
      */
-    public Brick(int level, boolean arcade) {
-        this(BrickColor.generate(level, arcade));
+    public Brick(int level, GameType type) {
+        this(BrickColor.generate(level, type));
     }
 
     /**

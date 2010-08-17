@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import values.BrickColor;
+import values.GameType;
 import values.Orientation;
 
 /**
@@ -25,18 +26,18 @@ public class BrickCollection extends Oriented {
     private int maxX;
     private int maxY;
     private int level;
-    private boolean arcade;
+    private GameType type;
 
     /**
      * Default constructor.
      * 
      * @param level - max color index
      * @param orientation - collection orientation
-     * @param arcade - boolean game type flag
+     * @param type - game type
      */
-    public BrickCollection(int level, boolean arcade, Orientation orientation) {
+    public BrickCollection(int level, GameType type, Orientation orientation) {
         this.level = level;
-        this.arcade = arcade;
+        this.type = type;
 
         if (orientation.isHorizontal()) {
             maxX = Layout.CORNER;
@@ -51,7 +52,7 @@ public class BrickCollection extends Oriented {
         this.bricks = new Brick[maxX][maxY];
         this.bricksBackup = new Brick[maxX][maxY];
 
-        this.fill(level, arcade);
+        this.fill(level, type);
         this.setOrientation(orientation);
     }
     
@@ -126,15 +127,15 @@ public class BrickCollection extends Oriented {
      * Method fills collection with bricks.
      * 
      * @param level - max color index
-     * @param arcade - boolean game type flag
+     * @param type - game type
      */
-    private void fill(int level, boolean arcade) {
+    private void fill(int level, GameType type) {
         Brick brick;
         int cnt = 0, add;
         for (int i = 0; i < maxX; i++) {
             for (int j = 0; j < maxY; j++) {
                 do {
-                    brick = new Brick(level, arcade);
+                    brick = new Brick(level, type);
                     add = brick.getColor().getIndex() >= Layout.FIELD ? 1 : 0;
                 } while (cnt + add > level / 3);
                 cnt += add;
@@ -216,7 +217,7 @@ public class BrickCollection extends Oriented {
             return null;
         }
         
-        Brick brick = new Brick(this.level, this.arcade);
+        Brick brick = new Brick(this.level, this.type);
         brick.setParentCollection(this);
         
         if (this.getOrientation() == Orientation.LEFT) {
@@ -312,11 +313,11 @@ public class BrickCollection extends Oriented {
     }
 
     /**
-     * Setter fot arcade propety.
+     * Setter fot type propety.
      *
-     * @param arcade - the boolean flag to be set
+     * @param type - the game type to be set
      */
-    public void setArcade(Boolean arcade) {
-        this.arcade = arcade;
+    public void setType(GameType type) {
+        this.type = type;
     }
 }
