@@ -4,6 +4,7 @@ import basic.Layout;
 import basic.Oriented;
 import conf.Dialog;
 import values.BrickColor;
+import values.GameType;
 import values.Orientation;
 import values.Settings;
 
@@ -100,10 +101,12 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
      */
     private void createBrickElements() {
         this.settings.setGameOver(false);
-        topBricks = new BrickCollection(this.settings.getDifficulty(), this.settings.isArcade(), Orientation.TOP);
-        leftBricks = new BrickCollection(this.settings.getDifficulty(), this.settings.isArcade(), Orientation.LEFT);
-        rightBricks = new BrickCollection(this.settings.getDifficulty(), this.settings.isArcade(), Orientation.RIGHT);
-        bottomBricks = new BrickCollection(this.settings.getDifficulty(), this.settings.isArcade(), Orientation.BOTTOM);
+        Integer difficulty = this.settings.getDifficulty();
+        GameType gameType = this.settings.getGameType();
+        topBricks = new BrickCollection(difficulty, gameType, Orientation.TOP);
+        leftBricks = new BrickCollection(difficulty, gameType, Orientation.LEFT);
+        rightBricks = new BrickCollection(difficulty, gameType, Orientation.RIGHT);
+        bottomBricks = new BrickCollection(difficulty, gameType, Orientation.BOTTOM);
         field = new Field(this.settings, leftBricks, rightBricks, topBricks, bottomBricks);
     }
     
@@ -546,10 +549,13 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
         ButtonGroup type = new ButtonGroup();
         JRadioButton strategy = new JRadioButton(settings.getString("MESSAGE_GAME_NEW_TYPE_STRATEGY"));
         JRadioButton arcade = new JRadioButton(settings.getString("MESSAGE_GAME_NEW_TYPE_ARCADE"));
+        JRadioButton puzzle = new JRadioButton(settings.getString("MESSAGE_GAME_NEW_TYPE_PUZZLE"));
         type.add(strategy);
-        strategy.setSelected(!settings.isArcade());
+        strategy.setSelected(settings.getGameType().isStrategy());
         type.add(arcade);
-        arcade.setSelected(settings.isArcade());
+        arcade.setSelected(settings.getGameType().isArcade());
+        type.add(puzzle);
+        puzzle.setSelected(settings.getGameType().isPuzzle());
 
         ButtonGroup group = new ButtonGroup();
         JRadioButton colors5 = new JRadioButton("5 " + settings.getString("MESSAGE_GAME_NEW_COLORS"));
@@ -566,7 +572,8 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
         group.add(colors10);
 
         Object[] severities = {settings.getString("MESSAGE_GAME_NEW_INVITATION"), 
-                colors5, colors6, colors7, colors8, colors9, colors10, new JSeparator(), typeLabel, strategy, arcade};
+                colors5, colors6, colors7, colors8, colors9, colors10,
+                new JSeparator(), typeLabel, strategy, arcade, puzzle};
         ((JRadioButton) severities[this.settings.getDifficulty() - 4]).setSelected(true);
 
         int result = JOptionPane.showConfirmDialog(this, 
@@ -582,7 +589,9 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
             if (colors8.isSelected()) { this.settings.setDifficulty(8); } 
             if (colors9.isSelected()) { this.settings.setDifficulty(9); } 
             if (colors10.isSelected()) { this.settings.setDifficulty(9 + 1); }
-            this.settings.setArcade(arcade.isSelected());
+            if (strategy.isSelected()) { this.settings.setGameType(GameType.STRATEGY); }
+            if (arcade.isSelected()) { this.settings.setGameType(GameType.ARCADE); }
+            if (puzzle.isSelected()) { this.settings.setGameType(GameType.PUZZLE); }
             this.updateTitle();
             this.settings.setLevel(1);
             this.settings.setScores(0);
@@ -599,9 +608,13 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
      * Updates game window title depending on game type.
      */
     public void updateTitle() {
-        String type = this.settings.isArcade()
-                ? this.settings.getString("MESSAGE_GAME_NEW_TYPE_ARCADE")
-                : this.settings.getString("MESSAGE_GAME_NEW_TYPE_STRATEGY");
+        String type;
+        switch (this.settings.getGameType()) {
+            default:
+            case STRATEGY: type = this.settings.getString("MESSAGE_GAME_NEW_TYPE_STRATEGY"); break;
+            case ARCADE: type = this.settings.getString("MESSAGE_GAME_NEW_TYPE_ARCADE"); break;
+            case PUZZLE: type = this.settings.getString("MESSAGE_GAME_NEW_TYPE_PUZZLE");
+        }
         ((JFrame) this.getParent().getParent().getParent()).setTitle(settings.getString("TITLE") + " - " + type);
     }
 
@@ -666,13 +679,13 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
                 this.settings.loadFromStream(in);
                 this.field.loadFromStream(in);
                 this.leftBricks.loadFromStream(in);
-                this.leftBricks.setArcade(this.settings.isArcade());
+                this.leftBricks.setType(this.settings.getGameType());
                 this.rightBricks.loadFromStream(in);
-                this.rightBricks.setArcade(this.settings.isArcade());
+                this.rightBricks.setType(this.settings.getGameType());
                 this.topBricks.loadFromStream(in);
-                this.topBricks.setArcade(this.settings.isArcade());
+                this.topBricks.setType(this.settings.getGameType());
                 this.bottomBricks.loadFromStream(in);
-                this.bottomBricks.setArcade(this.settings.isArcade());
+                this.bottomBricks.setType(this.settings.getGameType());
                 in.close();
                 this.updateLayoutFromField();
                 this.updateLayoutFromCollections();

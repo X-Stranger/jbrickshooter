@@ -41,7 +41,7 @@ public final class Settings {
     private Integer scoresBackup;
     private Integer level;
     private Integer difficulty;
-    private Boolean arcade;
+    private GameType gameType;
     private Font font;
     private Font bigFont;
     private Boolean gameOver;
@@ -66,7 +66,7 @@ public final class Settings {
         out.write(level);
         out.write(difficulty);
         out.write(gameOver ? 1 : 0);
-        out.write(arcade ? 1 : 0);
+        out.write(gameType.toInt());
     }
     
     /**
@@ -83,7 +83,7 @@ public final class Settings {
         level = in.read();
         difficulty = in.read();
         gameOver = in.read() == 1;
-        arcade = in.read() == 1;
+        gameType = GameType.fromInt(in.read());
     }
 
     /**
@@ -106,11 +106,12 @@ public final class Settings {
         }
         
         // initialize empty or broken high scores
-        if (highscores.size() < 2 * 6 * Layout.FIELD) {
+        if (highscores.size() < 3 * 6 * Layout.FIELD) {
             highscores.clear();
             for (Integer i = 5 * Layout.FIELD; i < (Layout.FIELD + 1) * Layout.FIELD; i++) {
-                highscores.setProperty(i.toString() + Boolean.FALSE.toString(), "0,Unknown");
-                highscores.setProperty(i.toString() + Boolean.TRUE.toString(), "0,Unknown");
+                highscores.setProperty(i.toString() + GameType.STRATEGY.toString(), "0,Unknown");
+                highscores.setProperty(i.toString() + GameType.ARCADE.toString(), "0,Unknown");
+                highscores.setProperty(i.toString() + GameType.PUZZLE.toString(), "0,Unknown");
             }
         }
     }
@@ -188,7 +189,7 @@ public final class Settings {
         this.setDifficulty(7);
         this.setMenu(new JMenuBar());
         this.setGameOver(false);
-        this.setArcade(false);
+        this.setGameType(GameType.STRATEGY);
 
         this.loadHighScores();
         this.loadConfiguration();
@@ -384,21 +385,21 @@ public final class Settings {
     }
 
     /**
-     * Getter for arcade property.
+     * Getter for gameType property.
      *
-     * @return the arcade boolean flag
+     * @return GameType object.
      */
-    public Boolean isArcade() {
-        return arcade;
+    public GameType getGameType() {
+        return this.gameType;
     }
 
     /**
-     * Setter fot arcade propety.
+     * Setter fot gameType propety.
      *
-     * @param arcade - the boolean flag to be set
+     * @param gameType - the boolean flag to be set
      */
-    public void setArcade(Boolean arcade) {
-        this.arcade = arcade;
+    public void setGameType(GameType gameType) {
+        this.gameType = gameType;
     }
 
     /**
@@ -428,7 +429,7 @@ public final class Settings {
         String result = "";
         for (Integer i = 0; i < Layout.FIELD; i++) {
             Integer pos = i + difficulty * Layout.FIELD; 
-            String[] values = highscores.getProperty(pos.toString() + isArcade().toString()).split(",");
+            String[] values = highscores.getProperty(pos.toString() + getGameType().toString()).split(",");
             result += (i + 1) + ". " + values[1] + "   -   " + values[0] + "\n";
         }
         return result;
@@ -442,7 +443,7 @@ public final class Settings {
     public Integer checkHighScores() {
         for (Integer i = 0; i < Layout.FIELD; i++) {
             Integer pos = i + difficulty * Layout.FIELD; 
-            String[] values = highscores.getProperty(pos.toString() + isArcade().toString()).split(",");
+            String[] values = highscores.getProperty(pos.toString() + getGameType().toString()).split(",");
             int scores = Integer.parseInt(values[0]);
             if (this.scores >= scores) {
                 return i;
@@ -461,11 +462,11 @@ public final class Settings {
         for (Integer i = Layout.FIELD - 1, tmp = Layout.FIELD - 2; i > to; i--, tmp--) {
             Integer pos1 = i + difficulty * Layout.FIELD;
             Integer pos2 = tmp + difficulty * Layout.FIELD;
-            highscores.setProperty(pos1.toString() + isArcade().toString(),
-                    highscores.getProperty(pos2.toString() + isArcade().toString()));
+            highscores.setProperty(pos1.toString() + getGameType().toString(),
+                    highscores.getProperty(pos2.toString() + getGameType().toString()));
         }
         Integer pos = to + difficulty * Layout.FIELD;
-        highscores.setProperty(pos.toString() + isArcade().toString(), scores.toString() + "," + name);
+        highscores.setProperty(pos.toString() + getGameType().toString(), scores.toString() + "," + name);
     }
     
     /**
