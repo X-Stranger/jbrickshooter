@@ -8,16 +8,14 @@ import values.GameType;
 import values.Orientation;
 import values.Settings;
 
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JSeparator;
 import javax.swing.event.MouseInputListener;
 import java.awt.Color;
 import java.awt.FontMetrics;
@@ -545,53 +543,32 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
      * Method implements functionality to select severity and start new game.
      */
     private void newGame() {
-        JLabel typeLabel = new JLabel(settings.getString("MESSAGE_GAME_NEW_TYPE"));
-        ButtonGroup type = new ButtonGroup();
-        JRadioButton strategy = new JRadioButton(settings.getString("MESSAGE_GAME_NEW_TYPE_STRATEGY"));
-        JRadioButton arcade = new JRadioButton(settings.getString("MESSAGE_GAME_NEW_TYPE_ARCADE"));
-        JRadioButton puzzle = new JRadioButton(settings.getString("MESSAGE_GAME_NEW_TYPE_PUZZLE"));
-        type.add(strategy);
-        strategy.setSelected(settings.getGameType().isStrategy());
-        type.add(arcade);
-        arcade.setSelected(settings.getGameType().isArcade());
-        type.add(puzzle);
-        puzzle.setSelected(settings.getGameType().isPuzzle());
+        ArrayList<Object> objects = new ArrayList<Object>();
+        objects.add(settings.getString("MESSAGE_GAME_NEW_INVITATION"));
 
-        ButtonGroup group = new ButtonGroup();
-        JRadioButton colors5 = new JRadioButton("5 " + settings.getString("MESSAGE_GAME_NEW_COLORS"));
-        JRadioButton colors6 = new JRadioButton("6 " + settings.getString("MESSAGE_GAME_NEW_COLORS"));
-        JRadioButton colors7 = new JRadioButton("7 " + settings.getString("MESSAGE_GAME_NEW_COLORS"));
-        JRadioButton colors8 = new JRadioButton("8 " + settings.getString("MESSAGE_GAME_NEW_COLORS"));
-        JRadioButton colors9 = new JRadioButton("9 " + settings.getString("MESSAGE_GAME_NEW_COLORS"));
-        JRadioButton colors10 = new JRadioButton("10 " + settings.getString("MESSAGE_GAME_NEW_COLORS"));
-        group.add(colors5);
-        group.add(colors6);
-        group.add(colors7);
-        group.add(colors8);
-        group.add(colors9);
-        group.add(colors10);
+        JComboBox group = new JComboBox();
+        String title = settings.getString("MESSAGE_GAME_NEW_COLORS");
+        for (int i = 5; i <= Layout.FIELD; i++) {
+            group.addItem(i + " " + title);
+        }
+        group.setSelectedIndex(this.settings.getDifficulty() - 5);
+        objects.add(group);
 
-        Object[] severities = {settings.getString("MESSAGE_GAME_NEW_INVITATION"), 
-                colors5, colors6, colors7, colors8, colors9, colors10,
-                new JSeparator(), typeLabel, strategy, arcade, puzzle};
-        ((JRadioButton) severities[this.settings.getDifficulty() - 4]).setSelected(true);
+        objects.add(new JLabel(settings.getString("MESSAGE_GAME_NEW_TYPE")));
+        JComboBox type = new JComboBox();
+        for (int i = 0; i < GameType.values().length; i++) {
+            type.addItem(settings.getString(GameType.values()[i].getTitleId()));
+        }
+        type.setSelectedIndex(settings.getGameType().toInt());
+        objects.add(type);
 
-        int result = JOptionPane.showConfirmDialog(this, 
-                severities, 
-                settings.getString("TITLE_GAME_NEW"), 
-                JOptionPane.OK_CANCEL_OPTION, 
-                JOptionPane.QUESTION_MESSAGE);
+        int result = JOptionPane.showConfirmDialog(this,
+                objects.toArray(), settings.getString("TITLE_GAME_NEW"), 
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
         
         if (result == JOptionPane.OK_OPTION) {
-            if (colors5.isSelected()) { this.settings.setDifficulty(5); } 
-            if (colors6.isSelected()) { this.settings.setDifficulty(6); } 
-            if (colors7.isSelected()) { this.settings.setDifficulty(7); } 
-            if (colors8.isSelected()) { this.settings.setDifficulty(8); } 
-            if (colors9.isSelected()) { this.settings.setDifficulty(9); } 
-            if (colors10.isSelected()) { this.settings.setDifficulty(9 + 1); }
-            if (strategy.isSelected()) { this.settings.setGameType(GameType.STRATEGY); }
-            if (arcade.isSelected()) { this.settings.setGameType(GameType.ARCADE); }
-            if (puzzle.isSelected()) { this.settings.setGameType(GameType.PUZZLE); }
+            this.settings.setDifficulty(group.getSelectedIndex() + 5);
+            this.settings.setGameType(GameType.fromInt(type.getSelectedIndex()));
             this.updateTitle();
             this.settings.setLevel(1);
             this.settings.setScores(0);
@@ -608,13 +585,7 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
      * Updates game window title depending on game type.
      */
     public void updateTitle() {
-        String type;
-        switch (this.settings.getGameType()) {
-            default:
-            case STRATEGY: type = this.settings.getString("MESSAGE_GAME_NEW_TYPE_STRATEGY"); break;
-            case ARCADE: type = this.settings.getString("MESSAGE_GAME_NEW_TYPE_ARCADE"); break;
-            case PUZZLE: type = this.settings.getString("MESSAGE_GAME_NEW_TYPE_PUZZLE");
-        }
+        String type = this.settings.getString(this.settings.getGameType().getTitleId());
         ((JFrame) this.getParent().getParent().getParent()).setTitle(settings.getString("TITLE") + " - " + type);
     }
 
