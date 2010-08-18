@@ -7,22 +7,25 @@ package values;
  */
 public enum GameType {
     /** Strategy alike game type. */
-    STRATEGY(0),
+    STRATEGY(0, "MESSAGE_GAME_NEW_TYPE_STRATEGY"),
     /** Arcade alike game type. */
-    ARCADE(1),
+    ARCADE(1, "MESSAGE_GAME_NEW_TYPE_ARCADE"),
     /** Puzzle alike game type. */
-    PUZZLE(2);
+    PUZZLE(2, "MESSAGE_GAME_NEW_TYPE_PUZZLE");
 
     /** Private value storing game type index. */
     private int gameType;
+    /** Private value storing game type title id. */
+    private String titleId;
 
     /**
      * Private constructor for creating GameType object from int.
      *
      * @param type - int value to select game type
      */
-    private GameType(int type) {
+    private GameType(int type, String id) {
         gameType = type;
+        titleId = id;
     }
 
     /**
@@ -47,6 +50,15 @@ public enum GameType {
      */
     public int toInt() {
         return gameType;
+    }
+
+    /**
+     * Returns game type title id.
+     *
+     * @return String value
+     */
+    public String getTitleId() {
+        return titleId;
     }
 
     /**
