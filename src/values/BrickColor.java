@@ -35,7 +35,7 @@ public class BrickColor {
     /** Brick colors. */
     private static final int GRAY_COLOR = 0x828282;
     private static final int[] RGB_COLORS = {0x0000ff, 0xee0000, 0xffba00, 0xfff326, 0x00bb00,
-                                             0x00eeee, 0xe400ff, 0xff9ed0, 0xececec, 0xb07b00, GRAY_COLOR}; 
+                                             0x00eeee, 0xe400ff, 0xff9ed0, 0xececec, 0xb07b00, GRAY_COLOR};
 
     /** Special bricks total count. */
     public static final int SPECIAL_TOTAL = 5;
@@ -101,6 +101,7 @@ public class BrickColor {
         ImageIcon leftImage = new ImageIcon(cl.getResource("images/d_left" + index + ".png"));
         ImageIcon rightImage = new ImageIcon(cl.getResource("images/d_right" + index + ".png"));
 
+        // this image MUST be loaded, because it initializes brick image widht and height to be used by createBasicImage
         BLACK_IMAGE.setImage(new ImageIcon(cl.getResource("images/black.png")).getImage());
         GRAY_IMAGE.setImage(new ImageIcon(createBasicImage(Layout.FIELD, mask)).getImage());
 
