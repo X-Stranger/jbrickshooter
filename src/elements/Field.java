@@ -121,12 +121,30 @@ public class Field {
     
     /**
      * Method fills field with bricks.
+     *
+     * @param add - additional number of bricks
+     */
+    private void fillPuzzle(int add) {
+        int cnt = 0;
+        for (int x = 0; x < Layout.FIELD; x++) {
+            for (int y = x; y >= 0; y--) {
+                bricks[y][x - y] = new Brick(settings.getDifficulty());
+                list.add(bricks[y][x - y]);
+                if (cnt++ == settings.getDifficulty() + add - 1) {
+                    return;
+                }
+            }
+        }
+    }
+
+    /**
+     * Method fills field with bricks.
      * 
      * @param add - additional number of bricks
      */
-    private void fill(int add) {
+    private void fillNormal(int add) {
         int x, y;
-        
+
         bricks[6][4] = new Brick(settings.getDifficulty()); list.add(bricks[6][4]);
         bricks[6][5] = new Brick(settings.getDifficulty()); list.add(bricks[6][5]);
         bricks[5][6] = new Brick(settings.getDifficulty()); list.add(bricks[5][6]);
@@ -161,6 +179,19 @@ public class Field {
 
             bricks[x][y] = new Brick(settings.getDifficulty());
             list.add(bricks[x][y]);
+        }
+    }
+
+    /**
+     * Method fills field with bricks.
+     *
+     * @param add - additional number of bricks
+     */
+    private void fill(int add) {
+        if (settings.getGameType().isPuzzle()) {
+            this.fillPuzzle(add);
+        } else {
+            this.fillNormal(add);
         }
 
         for (int i = 0; i < Layout.FIELD; i++) {
