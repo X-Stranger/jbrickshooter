@@ -81,11 +81,7 @@ public class Field {
 
                 color = in.read(); 
                 if (color < 0 || color > Layout.FIELD - 1) {
-//                    if (color == Layout.FIELD) {
-//                        bricks[i][j] = new Brick(BrickColor.GRAY);
-//                    } else {
                         bricks[i][j] = new Brick();
-//                    }
                 } else {
                     bricks[i][j] = new Brick(new BrickColor(color));
                 }
@@ -167,18 +163,6 @@ public class Field {
             list.add(bricks[x][y]);
         }
 
-//        if (this.settings.getGameType().isPuzzle()) {
-//            for (int i = 0; i < Layout.FIELD; i++) {
-//                for (int j = 0; j < Layout.FIELD; j++) {
-//                    if (bricks[i][j] != null) {
-//                        list.remove(bricks[i][j]);
-//                        bricks[i][j] = new Brick(BrickColor.GRAY);
-//                        list.add(bricks[i][j]);
-//                    }
-//                }
-//            }
-//        }
-//
         for (int i = 0; i < Layout.FIELD; i++) {
             for (int j = 0; j < Layout.FIELD; j++) {
                 if (bricks[i][j] == null) {
