@@ -1,3 +1,9 @@
+jbrickshooter (1.5.1-1~getdeb1) lucid; urgency=high
+
+  * Fix field filling in puzzle mode when bricks count >55
+
+ -- X-Stranger <xstranger@gmail.com>  Wed, 18 Aug 2010 16:10:00 +0300
+
 jbrickshooter (1.5.0-1~getdeb1) lucid; urgency=low
 
   * Added third game type: puzzle
