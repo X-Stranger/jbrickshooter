@@ -126,12 +126,14 @@ public class Field {
      */
     private void fillPuzzle(int add) {
         int cnt = 0;
-        for (int x = 0; x < Layout.FIELD; x++) {
+        for (int x = 0; x < Layout.FIELD * 2; x++) {
             for (int y = x; y >= 0; y--) {
-                bricks[y][x - y] = new Brick(settings.getDifficulty());
-                list.add(bricks[y][x - y]);
-                if (cnt++ == settings.getDifficulty() + add - 1) {
-                    return;
+                if ((y < Layout.FIELD) && (x - y < Layout.FIELD)) {
+                    bricks[y][x - y] = new Brick(settings.getDifficulty());
+                    list.add(bricks[y][x - y]);
+                    if (cnt++ == settings.getDifficulty() + add - 1) {
+                        return;
+                    }
                 }
             }
         }
