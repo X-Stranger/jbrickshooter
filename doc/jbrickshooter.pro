@@ -5,7 +5,7 @@
 
 -target 1.5
 -ignorewarnings
-
+-dontoptimize
 
 # Keep - Applications. Keep all application classes, along with their 'main'
 # methods.

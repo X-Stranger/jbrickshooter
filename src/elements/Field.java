@@ -297,6 +297,172 @@ public class Field {
     }
 
     /**
+     * Method analizes field and processes "special colors" brick.
+     */
+    private void analizeSpecialColors(int i, int j) {
+        if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
+            setBrick(i - 1, j - 1, new Brick(
+                    new BrickColor(bricks[i - 1][j - 1].getColor(), settings.getDifficulty()),
+                    bricks[i - 1][j - 1].getOrientation()
+            ));
+        }
+        if ((i != 0) && (matrix1[i - 1][j] >= 0)) {
+            setBrick(i - 1, j, new Brick(
+                    new BrickColor(bricks[i - 1][j].getColor(), settings.getDifficulty()),
+                    bricks[i - 1][j].getOrientation()
+            ));
+        }
+        if ((i != 0) && (j != Layout.FIELD - 1) && (matrix1[i - 1][j + 1] >= 0)) {
+            setBrick(i - 1, j + 1, new Brick(
+                    new BrickColor(bricks[i - 1][j + 1].getColor(), settings.getDifficulty()),
+                    bricks[i - 1][j + 1].getOrientation()
+            ));
+        }
+        if ((j != 0) && (matrix1[i][j - 1] >= 0)) {
+            setBrick(i, j - 1, new Brick(
+                    new BrickColor(bricks[i][j - 1].getColor(), settings.getDifficulty()),
+                    bricks[i][j - 1].getOrientation()
+            ));
+        }
+        addBlack(i, j);
+        if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) {
+            setBrick(i, j + 1, new Brick(
+                    new BrickColor(bricks[i][j + 1].getColor(), settings.getDifficulty()),
+                    bricks[i][j + 1].getOrientation()
+            ));
+        }
+        if ((i != Layout.FIELD - 1) && (j != 0) && (matrix1[i + 1][j - 1] >= 0)) {
+            setBrick(i + 1, j - 1, new Brick(
+                    new BrickColor(bricks[i + 1][j - 1].getColor(), settings.getDifficulty()),
+                    bricks[i + 1][j - 1].getOrientation()
+            ));
+        }
+        if ((i != Layout.FIELD - 1) && (matrix1[i + 1][j] >= 0)) {
+            setBrick(i + 1, j, new Brick(
+                    new BrickColor(bricks[i + 1][j].getColor(), settings.getDifficulty()),
+                    bricks[i + 1][j].getOrientation()
+            ));
+        }
+        if ((i != Layout.FIELD - 1) && (j != Layout.FIELD - 1) && (matrix1[i + 1][j + 1] >= 0)) {
+            setBrick(i + 1, j + 1, new Brick(
+                    new BrickColor(bricks[i + 1][j + 1].getColor(), settings.getDifficulty()),
+                    bricks[i + 1][j + 1].getOrientation()
+            ));
+        }
+    }
+
+    /**
+     * Method analizes field and processes "special arrows" brick.
+     */
+    private void analizeSpecialArrows(int i, int j) {
+        if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
+            bricks[i - 1][j - 1].rotate();
+        }
+        if ((i != 0) && (matrix1[i - 1][j] >= 0)) {
+            bricks[i - 1][j].rotate();
+        }
+        if ((i != 0) && (j != Layout.FIELD - 1) && (matrix1[i - 1][j + 1] >= 0)) {
+            bricks[i - 1][j + 1].rotate();
+        }
+        if ((j != 0) && (matrix1[i][j - 1] >= 0)) {
+            bricks[i][j - 1].rotate();
+        }
+        addBlack(i, j);
+        if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) {
+            bricks[i][j + 1].rotate();
+        }
+        if ((i != Layout.FIELD - 1) && (j != 0) && (matrix1[i + 1][j - 1] >= 0)) {
+            bricks[i + 1][j - 1].rotate();
+        }
+        if ((i != Layout.FIELD - 1) && (matrix1[i + 1][j] >= 0)) {
+            bricks[i + 1][j].rotate();
+        }
+        if ((i != Layout.FIELD - 1) && (j != Layout.FIELD - 1) && (matrix1[i + 1][j + 1] >= 0)) {
+            bricks[i + 1][j + 1].rotate();
+        }
+    }
+
+    /**
+     * Method analizes field and processes "special lightning" brick.
+     */
+    private void analizeSpecialLightning(int i, int j) {
+        switch (bricks[i][j].getOrientation()) {
+            case TOP:
+                for (int k = j; k >= 0; k--) {
+                    this.addBlack(i, k);
+                }
+                break;
+            case BOTTOM:
+                for (int k = j; k < Layout.FIELD; k++) {
+                    this.addBlack(i, k);
+                }
+                break;
+            case LEFT:
+                for (int k = i; k >= 0; k--) {
+                    this.addBlack(k, j);
+                }
+                break;
+            case RIGHT:
+                for (int k = i; k < Layout.FIELD; k++) {
+                    this.addBlack(k, j);
+                }
+                break;
+            default:
+        }
+    }
+
+    /**
+     * Method analizes field and processes "special universal" brick.
+     */
+    private void analizeSpecialUniversal(int i, int j) {
+        Brick brick = new Brick();
+        brick.setOrientation(bricks[i][j].getOrientation());
+        switch (brick.getOrientation()) {
+            case TOP:
+                brick.setColor(bricks[i][j - 1].getColor()); break;
+            case BOTTOM:
+                brick.setColor(bricks[i][j + 1].getColor()); break;
+            case LEFT:
+                brick.setColor(bricks[i - 1][j].getColor()); break;
+            case RIGHT:
+                brick.setColor(bricks[i + 1][j].getColor()); break;
+            default:
+        }
+        this.setBrick(i, j, brick);
+    }
+
+    /**
+     * Method analizes field and processes "special bomb" brick.
+     */
+    private void analizeSpecialBomb(int i, int j) {
+        if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
+            matrix1[i - 1][j - 1] = -1; addBlack(i - 1, j - 1);
+        }
+        if ((i != 0) && (matrix1[i - 1][j] >= 0)) {
+            matrix1[i - 1][j] = -1; addBlack(i - 1, j);
+        }
+        if ((i != 0) && (j != Layout.FIELD - 1) && (matrix1[i - 1][j + 1] >= 0)) {
+            matrix1[i - 1][j + 1] = -1; addBlack(i - 1, j + 1);
+        }
+        if ((j != 0) && (matrix1[i][j - 1] >= 0)) {
+            matrix1[i][j - 1] = -1; addBlack(i, j - 1);
+        }
+        matrix1[i][j] = -1; addBlack(i, j);
+        if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) {
+            matrix1[i][j + 1] = -1; addBlack(i, j + 1);
+        }
+        if ((i != Layout.FIELD - 1) && (j != 0) && (matrix1[i + 1][j - 1] >= 0)) {
+            matrix1[i + 1][j - 1] = -1; addBlack(i + 1, j - 1);
+        }
+        if ((i != Layout.FIELD - 1) && (matrix1[i + 1][j] >= 0)) {
+            matrix1[i + 1][j] = -1; addBlack(i + 1, j);
+        }
+        if ((i != Layout.FIELD - 1) && (j != Layout.FIELD - 1) && (matrix1[i + 1][j + 1] >= 0)) {
+            matrix1[i + 1][j + 1] = -1; addBlack(i + 1, j + 1);
+        }
+    }
+
+    /**
      * Method analizes field and processes "special" bricks.
      *
      * @return true if "special" brick was processed 
@@ -305,163 +471,19 @@ public class Field {
         for (int i = 0; i < Layout.FIELD; i++) {
             for (int j = 0; j < Layout.FIELD; j++) {
                 if (matrix1[i][j] == BrickColor.SPECIAL_COLORS) {
-                    if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
-                        setBrick(i - 1, j - 1, new Brick(
-                                new BrickColor(bricks[i - 1][j - 1].getColor(), settings.getDifficulty()),
-                                bricks[i - 1][j - 1].getOrientation()
-                        ));
-                    }
-                    if ((i != 0) && (matrix1[i - 1][j] >= 0)) {
-                        setBrick(i - 1, j, new Brick(
-                                new BrickColor(bricks[i - 1][j].getColor(), settings.getDifficulty()),
-                                bricks[i - 1][j].getOrientation()
-                        ));
-                    }
-                    if ((i != 0) && (j != Layout.FIELD - 1) && (matrix1[i - 1][j + 1] >= 0)) {
-                        setBrick(i - 1, j + 1, new Brick(
-                                new BrickColor(bricks[i - 1][j + 1].getColor(), settings.getDifficulty()),
-                                bricks[i - 1][j + 1].getOrientation()
-                        ));
-                    }
-
-                    if ((j != 0) && (matrix1[i][j - 1] >= 0)) {
-                        setBrick(i, j - 1, new Brick(
-                                new BrickColor(bricks[i][j - 1].getColor(), settings.getDifficulty()),
-                                bricks[i][j - 1].getOrientation()
-                        ));
-                    }
-                    addBlack(i, j);
-                    if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) {
-                        setBrick(i, j + 1, new Brick(
-                                new BrickColor(bricks[i][j + 1].getColor(), settings.getDifficulty()),
-                                bricks[i][j + 1].getOrientation()
-                        ));
-                    }
-
-                    if ((i != Layout.FIELD - 1) && (j != 0) && (matrix1[i + 1][j - 1] >= 0)) {
-                        setBrick(i + 1, j - 1, new Brick(
-                                new BrickColor(bricks[i + 1][j - 1].getColor(), settings.getDifficulty()),
-                                bricks[i + 1][j - 1].getOrientation()
-                        ));
-                    }
-                    if ((i != Layout.FIELD - 1) && (matrix1[i + 1][j] >= 0)) {
-                        setBrick(i + 1, j, new Brick(
-                                new BrickColor(bricks[i + 1][j].getColor(), settings.getDifficulty()),
-                                bricks[i + 1][j].getOrientation()
-                        ));
-                    }
-                    if ((i != Layout.FIELD - 1) && (j != Layout.FIELD - 1) && (matrix1[i + 1][j + 1] >= 0)) {
-                        setBrick(i + 1, j + 1, new Brick(
-                                new BrickColor(bricks[i + 1][j + 1].getColor(), settings.getDifficulty()),
-                                bricks[i + 1][j + 1].getOrientation()
-                        ));
-                    }
-
+                    analizeSpecialColors(i, j);
                     return true;
-
                 } else if (matrix1[i][j] == BrickColor.SPECIAL_ARROWS) {
-                    if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
-                        bricks[i - 1][j - 1].rotate();
-                    }
-                    if ((i != 0) && (matrix1[i - 1][j] >= 0)) {
-                        bricks[i - 1][j].rotate();
-                    }
-                    if ((i != 0) && (j != Layout.FIELD - 1) && (matrix1[i - 1][j + 1] >= 0)) {
-                        bricks[i - 1][j + 1].rotate();
-                    }
-
-                    if ((j != 0) && (matrix1[i][j - 1] >= 0)) {
-                        bricks[i][j - 1].rotate();
-                    }
-                    addBlack(i, j);
-                    if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) {
-                        bricks[i][j + 1].rotate();
-                    }
-
-                    if ((i != Layout.FIELD - 1) && (j != 0) && (matrix1[i + 1][j - 1] >= 0)) {
-                        bricks[i + 1][j - 1].rotate();
-                    }
-                    if ((i != Layout.FIELD - 1) && (matrix1[i + 1][j] >= 0)) {
-                        bricks[i + 1][j].rotate();
-                    }
-                    if ((i != Layout.FIELD - 1) && (j != Layout.FIELD - 1) && (matrix1[i + 1][j + 1] >= 0)) {
-                        bricks[i + 1][j + 1].rotate();
-                    }
-
+                    analizeSpecialArrows(i, j);
                     return true;
-
                 } else if (matrix1[i][j] == BrickColor.SPECIAL_LIGHTNING) {
-                    switch (bricks[i][j].getOrientation()) {
-                        case TOP:
-                            for (int k = j; k >= 0; k--) {
-                                this.addBlack(i, k);
-                            }
-                            break;
-                        case BOTTOM:
-                            for (int k = j; k < Layout.FIELD; k++) {
-                                this.addBlack(i, k);
-                            }
-                            break;
-                        case LEFT:
-                            for (int k = i; k >= 0; k--) {
-                                this.addBlack(k, j);
-                            }
-                            break;
-                        case RIGHT:
-                            for (int k = i; k < Layout.FIELD; k++) {
-                                this.addBlack(k, j);
-                            }
-                            break;
-                        default:
-                    }
+                    analizeSpecialLightning(i, j);
                     return true;
-
                 } else if (matrix1[i][j] == BrickColor.SPECIAL_UNIVERSAL) {
-                    Brick brick = new Brick();
-                    brick.setOrientation(bricks[i][j].getOrientation());
-                    switch (brick.getOrientation()) {
-                        case TOP:
-                            brick.setColor(bricks[i][j - 1].getColor()); break;
-                        case BOTTOM:
-                            brick.setColor(bricks[i][j + 1].getColor()); break;
-                        case LEFT:
-                            brick.setColor(bricks[i - 1][j].getColor()); break;
-                        case RIGHT:
-                            brick.setColor(bricks[i + 1][j].getColor()); break;
-                        default:
-                    }
-                    this.setBrick(i, j, brick);
+                    analizeSpecialUniversal(i, j);
                     return true;
-
                 } else if (matrix1[i][j] == BrickColor.SPECIAL_BOMB) {
-                    if ((i != 0) && (j != 0) && (matrix1[i - 1][j - 1] >= 0)) {
-                        matrix1[i - 1][j - 1] = -1; addBlack(i - 1, j - 1);
-                    }
-                    if ((i != 0) && (matrix1[i - 1][j] >= 0)) {
-                        matrix1[i - 1][j] = -1; addBlack(i - 1, j);
-                    }
-                    if ((i != 0) && (j != Layout.FIELD - 1) && (matrix1[i - 1][j + 1] >= 0)) {
-                        matrix1[i - 1][j + 1] = -1; addBlack(i - 1, j + 1);
-                    }
-
-                    if ((j != 0) && (matrix1[i][j - 1] >= 0)) {
-                        matrix1[i][j - 1] = -1; addBlack(i, j - 1);
-                    }
-                    matrix1[i][j] = -1; addBlack(i, j);
-                    if ((j != Layout.FIELD - 1) && (matrix1[i][j + 1] >= 0)) {
-                        matrix1[i][j + 1] = -1; addBlack(i, j + 1);
-                    }
-
-                    if ((i != Layout.FIELD - 1) && (j != 0) && (matrix1[i + 1][j - 1] >= 0)) {
-                        matrix1[i + 1][j - 1] = -1; addBlack(i + 1, j - 1);
-                    }
-                    if ((i != Layout.FIELD - 1) && (matrix1[i + 1][j] >= 0)) {
-                        matrix1[i + 1][j] = -1; addBlack(i + 1, j);
-                    }
-                    if ((i != Layout.FIELD - 1) && (j != Layout.FIELD - 1) && (matrix1[i + 1][j + 1] >= 0)) {
-                        matrix1[i + 1][j + 1] = -1; addBlack(i + 1, j + 1);
-                    }
-
+                    analizeSpecialBomb(i, j);
                     return true;
                 }
             }
