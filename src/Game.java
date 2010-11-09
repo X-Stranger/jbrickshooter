@@ -68,8 +68,8 @@ public class Game extends JFrame {
         
         // fix game window size (workaround for OpenJDK)
         Insets insets = this.getInsets();
-        int w = BrickColor.BLACK.getColor().getIconWidth() * (Layout.FIELD + 3 * 2);
-        int h = BrickColor.BLACK.getColor().getIconHeight() * (Layout.FIELD + 3 * 2);
+        int w = BrickColor.BLACK.getColor().getIconWidth() * Layout.MAX;
+        int h = BrickColor.BLACK.getColor().getIconHeight() * Layout.MAX;
         this.setSize(w + insets.left + insets.right, 
                 h + getJMenuBar().getHeight() + insets.top + insets.bottom);
 
