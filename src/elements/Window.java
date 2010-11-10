@@ -371,7 +371,7 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
 
                 // checking left collection
                 oldBrick = layout.getBrick(i, j + Layout.CORNER);
-                newBrick = leftBricks.getBrick(i, j);
+                newBrick = leftBricks.getBrick(i + 1, j);
                 if (oldBrick != newBrick) {
                     if (oldBrick != null) { this.remove(oldBrick); }
                     this.add(i + "," + (j + Layout.CORNER), newBrick);
@@ -387,7 +387,7 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
 
                 // checking top collection
                 oldBrick = layout.getBrick(j + Layout.CORNER, i);
-                newBrick = topBricks.getBrick(j, i);
+                newBrick = topBricks.getBrick(j, i + 1);
                 if (oldBrick != newBrick) {
                     if (oldBrick != null) { this.remove(oldBrick); }
                     this.add((j + Layout.CORNER) + "," + i, newBrick);

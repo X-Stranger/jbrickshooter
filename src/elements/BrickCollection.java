@@ -40,13 +40,13 @@ public class BrickCollection extends Oriented {
         this.type = type;
 
         if (orientation.isHorizontal()) {
-            maxX = Layout.CORNER;
+            maxX = Layout.CORNER + 1;
             maxY = Layout.FIELD;
         }
         
         if (orientation.isVertical()) {
             maxX = Layout.FIELD;
-            maxY = Layout.CORNER;
+            maxY = Layout.CORNER + 1;
         }
         
         this.bricks = new Brick[maxX][maxY];
