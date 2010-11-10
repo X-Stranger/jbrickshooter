@@ -1,5 +1,6 @@
 package elements;
 
+import basic.Layout;
 import values.Settings;
 
 import javax.swing.ImageIcon;
@@ -72,17 +73,13 @@ public class Corner extends JComponent {
             Image black = blackIcon.getImage();
             int width = blackIcon.getIconWidth();
             int height = blackIcon.getIconHeight();
-            this.backgr = createImage(width * 3, height * 3);
+            this.backgr = createImage(width * Layout.CORNER, height * Layout.CORNER);
             Graphics g = this.backgr.getGraphics();
-            g.drawImage(black, 0, 0, this);
-            g.drawImage(black, 0, height, this);
-            g.drawImage(black, 0, height * 2, this);
-            g.drawImage(black, width, 0, this);
-            g.drawImage(black, width * 2, 0, this);
-            g.drawImage(black, width, height, this);
-            g.drawImage(black, width * 2, height * 2, this);
-            g.drawImage(black, width, height * 2, this);
-            g.drawImage(black, width * 2, height, this);
+            for (int i = 0; i < Layout.CORNER; i++) {
+                for (int j = 0; j < Layout.CORNER; j++) {
+                    g.drawImage(black, i * width, j * height, this);
+                }
+            }
         }
 
         // preparing black rectangle
