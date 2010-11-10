@@ -116,8 +116,8 @@ public class Layout implements LayoutManager {
                     corners[x][y].setBounds(
                             (Layout.CORNER + Layout.FIELD) * w * x,
                             (Layout.CORNER + Layout.FIELD) * h * y,
-                            w * 3,
-                            h * 3);
+                            w * Layout.CORNER,
+                            h * Layout.CORNER);
                 }
             }
         }
