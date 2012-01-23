@@ -2,13 +2,14 @@ package basic;
 
 import elements.Brick;
 import elements.Corner;
+import values.Settings;
+
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.Point;
-import values.BrickColor;
 
 /**
  * Implements custom layout functionality for this game.
@@ -72,8 +73,8 @@ public class Layout implements LayoutManager {
      * @see java.awt.LayoutManager#minimumLayoutSize(Container)
      */
     public Dimension minimumLayoutSize(Container target) {
-        int w = Layout.MAX * BrickColor.BLACK.getColor().getIconWidth();
-        int h = Layout.MAX * BrickColor.BLACK.getColor().getIconHeight();
+        int w = Layout.MAX * Settings.getBrickSize();
+        int h = Layout.MAX * Settings.getBrickSize();
         return new Dimension(w, h);
     }
     
@@ -92,8 +93,12 @@ public class Layout implements LayoutManager {
     public void layoutContainer(Container parent) {
         synchronized (parent.getTreeLock()) {
             
-            int w = BrickColor.BLACK.getColor().getIconWidth();
-            int h = BrickColor.BLACK.getColor().getIconHeight();
+            int w = Settings.getBrickSize();
+            int h = Settings.getBrickSize();
+
+            int gapX = (parent.getWidth() - w * Layout.MAX) / 2;
+            int gapY = (parent.getHeight() - h * Layout.MAX) / 2;
+
             Insets insets = parent.getInsets();
             
             int ncomponents = parent.getComponentCount();
@@ -101,8 +106,8 @@ public class Layout implements LayoutManager {
                 return;
             }
             
-            for (int c = 0, x = insets.left; c < Layout.MAX; c++) {
-                for (int r = 0, y = insets.top; r < Layout.MAX; r++) {
+            for (int c = 0, x = insets.left + gapX; c < Layout.MAX; c++) {
+                for (int r = 0, y = insets.top + gapY; r < Layout.MAX; r++) {
                     if (bricks[c][r] != null) {
                         bricks[c][r].setBounds(x, y, w, h);
                     }
@@ -114,8 +119,8 @@ public class Layout implements LayoutManager {
             for (int x = 0; x < 2; x++) {
                 for (int y = 0; y < 2; y++) {
                     corners[x][y].setBounds(
-                            (Layout.CORNER + Layout.FIELD) * w * x,
-                            (Layout.CORNER + Layout.FIELD) * h * y,
+                            (Layout.CORNER + Layout.FIELD) * w * x + gapX,
+                            (Layout.CORNER + Layout.FIELD) * h * y + gapY,
                             w * Layout.CORNER,
                             h * Layout.CORNER);
                 }

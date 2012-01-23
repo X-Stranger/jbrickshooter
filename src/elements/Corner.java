@@ -21,6 +21,8 @@ public class Corner extends JComponent {
     /** Double buffer image. */
     private Image buf = null;
     private Image backgr = null;
+    private int width = 0;
+    private int height = 0;
 
     /**
      * Default constructor.
@@ -65,19 +67,27 @@ public class Corner extends JComponent {
      * @return double buffer Graphics instance to use for draw
      */
     protected Graphics prepareForPaint() {
+        if ((getWidth() != this.width) || (getHeight() != this.height)) {
+            this.setBuf(null);
+            this.backgr = null;
+            this.width = getWidth();
+            this.height = getHeight();
+        }
+
         if (this.getBuf() == null) {
             this.setBuf(createImage(getWidth(), getHeight()));
         }
         if (this.backgr == null) {
-            ImageIcon blackIcon = new ImageIcon(this.getClass().getClassLoader().getResource("images/black.png"));
-            Image black = blackIcon.getImage();
-            int width = blackIcon.getIconWidth();
-            int height = blackIcon.getIconHeight();
+            int width = Settings.getBrickSize();
+            int height = Settings.getBrickSize();
+
+            Image black = new ImageIcon(this.getClass().getClassLoader().getResource("images/black.png")).getImage();
             this.backgr = createImage(width * Layout.CORNER, height * Layout.CORNER);
+
             Graphics g = this.backgr.getGraphics();
             for (int i = 0; i < Layout.CORNER; i++) {
                 for (int j = 0; j < Layout.CORNER; j++) {
-                    g.drawImage(black, i * width, j * height, this);
+                    g.drawImage(black, i * width, j * height, width, height, this);
                 }
             }
         }
@@ -96,7 +106,7 @@ public class Corner extends JComponent {
     public void paintComponent(Graphics g) {
         // draw background
         prepareForPaint();
-        // draw it at right upper corner
+        // draw it at an appropriate corner
         g.drawImage(this.getBuf(), 0, 0, this);
     }
 }

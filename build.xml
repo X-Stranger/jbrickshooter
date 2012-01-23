@@ -36,7 +36,7 @@
 
     <target depends="init" name="compile">
         <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="${debug}" debuglevel="${debuglevel}" destdir="build/classes" source="${source}" target="${target}">
+        <javac debug="${debug}" debuglevel="${debuglevel}" destdir="build/classes" source="${source}" target="${target}" includeantruntime="false">
             <src path="src"/>
             <classpath refid="jbrickshooter.classpath"/>
         </javac>
@@ -106,6 +106,10 @@
             <arg line="debian/rules binary clean"/>
         </exec>
         <delete file="package/${name}.jar"/>
+    </target>
+
+    <target depends="build" name="run">
+        <java jar="build/${name}.jar" fork="true"/>
     </target>
 
 </project>

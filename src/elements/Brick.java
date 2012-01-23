@@ -4,6 +4,11 @@ import basic.Oriented;
 import values.BrickColor;
 import values.GameType;
 import values.Orientation;
+import values.Settings;
+
+import javax.swing.ImageIcon;
+import java.awt.Graphics;
+import java.awt.Image;
 
 /**
  * Class implements brick functionality.
@@ -144,5 +149,16 @@ public class Brick extends Oriented {
      */
     public boolean hasSameColor(BrickColor color) {
         return (this.color.compareTo(color));
+    }
+
+    /**
+     * Method paints brick.
+     *
+     * @param g - Graphics instance to use for draw
+     */
+    public void paintComponent(Graphics g) {
+        Image image = Settings.getScaledImage(
+                ((ImageIcon) this.getIcon()).getImage(), this.getWidth(), this.getHeight());
+        g.drawImage(image, 0, 0, null);
     }
 }

@@ -27,8 +27,8 @@ public class Buttons extends Corner implements MouseListener {
     private ImageIcon button = buttonNormal;
     private Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
     private Cursor buttonCursor = new Cursor(Cursor.HAND_CURSOR);
-    private int w, h, bw, bh;
-    
+    private double w = 0, h = 0, bw = button.getIconWidth(), bh = button.getIconHeight();
+
     /**
      * Default constructor.
      * 
@@ -45,12 +45,9 @@ public class Buttons extends Corner implements MouseListener {
      * @param g - Graphics instance to use for draw.
      */
     public void paintComponent(Graphics g) {
-        if (this.getBuf() == null) { 
-            this.setBuf(createImage(getWidth(), getHeight())); 
+        if ((w != getWidth()) || (h != getHeight())) {
             w = getWidth();
             h = getHeight();
-            bw = button.getIconWidth();
-            bh = button.getIconHeight();
         }
         
         // prepare double buffer
@@ -58,6 +55,8 @@ public class Buttons extends Corner implements MouseListener {
 
         // draw buttons 
         Graphics2D g2 = (Graphics2D) bufg;
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         bufg.setFont(this.getSettings().getFont());
@@ -66,8 +65,11 @@ public class Buttons extends Corner implements MouseListener {
 
         bufg.setColor(this.color);
         Rectangle r = layout.getBounds().getBounds();
-        bufg.drawImage(button.getImage(), (w - bw) / 2, (h - bh) / 2, this);
-        bufg.drawString(getSettings().getString("UNDO"), (w - r.width) / 2, (h + r.height) / 2);
+        double ratio = Settings.getBrickSizeRatio();
+        bufg.drawImage(button.getImage(),
+                (int) ((w - bw * ratio) / 2.0d), (int) ((h - bh * ratio) / 2.0d) - 1,
+                (int) (bw * ratio), (int) (bh * ratio) + 1, this);
+        bufg.drawString(getSettings().getString("UNDO"), ((int) w - r.width) / 2, ((int) h + r.height) / 2);
 
         // draw it at right upper corner
         g.drawImage(this.getBuf(), 0, 0, this);

@@ -101,13 +101,14 @@ public class BrickColor {
         ImageIcon leftImage = new ImageIcon(cl.getResource("images/d_left" + index + ".png"));
         ImageIcon rightImage = new ImageIcon(cl.getResource("images/d_right" + index + ".png"));
 
-        // this image MUST be loaded, because it initializes brick image widht and height to be used by createBasicImage
+        // this image MUST be loaded, because it initializes brick image width and height to be used by createBasicImage
         BLACK_IMAGE.setImage(new ImageIcon(cl.getResource("images/black.png")).getImage());
         GRAY_IMAGE.setImage(new ImageIcon(createBasicImage(Layout.FIELD, mask)).getImage());
 
         ImageIcon icon;
         BufferedImage image;
         Map<Orientation, ImageIcon> map;
+        int size = Settings.getBrickSize();
 
         for (int i = 0; i < Layout.FIELD; i++) {
             map = new HashMap<Orientation, ImageIcon>();
@@ -116,19 +117,19 @@ public class BrickColor {
             map.put(Orientation.NONE, icon);
 
             image = createBasicImage(i, mask);
-            image.getGraphics().drawImage(upImage.getImage(), 0, 0, null);
+            image.getGraphics().drawImage(Settings.getScaledImage(upImage.getImage(), size, size), 0, 0, null);
             map.put(Orientation.TOP, new ImageIcon(image));
 
             image = createBasicImage(i, mask);
-            image.getGraphics().drawImage(rightImage.getImage(), 0, 0, null);
+            image.getGraphics().drawImage(Settings.getScaledImage(rightImage.getImage(), size, size), 0, 0, null);
             map.put(Orientation.RIGHT, new ImageIcon(image));
 
             image = createBasicImage(i, mask);
-            image.getGraphics().drawImage(downImage.getImage(), 0, 0, null);
+            image.getGraphics().drawImage(Settings.getScaledImage(downImage.getImage(), size, size), 0, 0, null);
             map.put(Orientation.BOTTOM, new ImageIcon(image));
 
             image = createBasicImage(i, mask);
-            image.getGraphics().drawImage(leftImage.getImage(), 0, 0, null);
+            image.getGraphics().drawImage(Settings.getScaledImage(leftImage.getImage(), size, size), 0, 0, null);
             map.put(Orientation.LEFT, new ImageIcon(image));
 
             COLORS.add(map);
@@ -141,19 +142,19 @@ public class BrickColor {
             map.put(Orientation.NONE, icon);
 
             image = toBufferedImage(icon.getImage());
-            image.getGraphics().drawImage(upImage.getImage(), 0, 0, null);
+            image.getGraphics().drawImage(Settings.getScaledImage(upImage.getImage(), size, size), 0, 0, null);
             map.put(Orientation.TOP, new ImageIcon(image));
 
             image = toBufferedImage(icon.getImage());
-            image.getGraphics().drawImage(rightImage.getImage(), 0, 0, null);
+            image.getGraphics().drawImage(Settings.getScaledImage(rightImage.getImage(), size, size), 0, 0, null);
             map.put(Orientation.RIGHT, new ImageIcon(image));
 
             image = toBufferedImage(icon.getImage());
-            image.getGraphics().drawImage(downImage.getImage(), 0, 0, null);
+            image.getGraphics().drawImage(Settings.getScaledImage(downImage.getImage(), size, size), 0, 0, null);
             map.put(Orientation.BOTTOM, new ImageIcon(image));
 
             image = toBufferedImage(icon.getImage());
-            image.getGraphics().drawImage(leftImage.getImage(), 0, 0, null);
+            image.getGraphics().drawImage(Settings.getScaledImage(leftImage.getImage(), size, size), 0, 0, null);
             map.put(Orientation.LEFT, new ImageIcon(image));
 
             COLORS.add(map);
@@ -168,13 +169,13 @@ public class BrickColor {
      * @return BufferedImage object
      */
     private static BufferedImage createBasicImage(int i, ImageIcon mask) {
-        int w = BLACK_IMAGE.getIconWidth();
-        int h = BLACK_IMAGE.getIconHeight();
-        BufferedImage image = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+        int w = Settings.getBrickSize();
+        int h = Settings.getBrickSize();
+        BufferedImage image = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         Graphics gr = image.getGraphics();
         gr.setColor(new Color(RGB_COLORS[i]));
         gr.fillRect(0, 0, w, h);
-        gr.drawImage(mask.getImage(), 0, 0, null);
+        gr.drawImage(Settings.getScaledImage(mask.getImage(), w, h), 0, 0, null);
         return image;
     }
 

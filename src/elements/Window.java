@@ -10,6 +10,7 @@ import values.Settings;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -72,8 +73,9 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
         this.loadSlots = new ArrayList<JMenuItem>();
 
         this.settings = settings;
-        this.createBrickElements();        
-        
+        this.createBrickElements();
+
+        this.setBackground(Settings.BACKGROUND);
         this.layout = new Layout();
         this.setLayout(this.layout);
         
@@ -180,6 +182,7 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
      */
     public void mouseClicked(MouseEvent e) {
         if (this.settings.isGameOver()) { return; }
+        if (this.activeBrick == null) { return; }
 
         if (field.contains(this.activeBrick) && e.isAltDown() && e.isControlDown() && (e.getClickCount() == 3)) {
             int ind = this.activeBrick.getColor().getIndex() + 1;
@@ -276,6 +279,15 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
                 this.repaint();
             }
         }
+    }
+
+    /**
+     * Method to resize the game window elements appropriately to the new brick size.
+     */
+    public void doResize() {
+        this.updateLayoutFromField();
+        this.updateLayoutFromCollections();
+        this.repaint();
     }
 
     /**
@@ -586,7 +598,10 @@ public class Window extends JPanel implements MouseInputListener, ActionListener
      */
     public void updateTitle() {
         String type = this.settings.getString(this.settings.getGameType().getTitleId());
-        ((JFrame) this.getParent().getParent().getParent()).setTitle(settings.getString("TITLE") + " - " + type);
+        ((JDialog) this.getParent().getParent().getParent()).setTitle(
+                settings.getString("TITLE") + " - " + type);
+        ((JFrame) this.getParent().getParent().getParent().getParent()).setTitle(
+                settings.getString("TITLE") + " - " + type);
     }
 
     /**

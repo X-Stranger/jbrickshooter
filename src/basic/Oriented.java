@@ -4,6 +4,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import values.Orientation;
 
+import java.awt.Graphics;
+
 /**
  * Class describes work with Orietation.
  * 
@@ -64,5 +66,14 @@ public class Oriented extends JLabel {
                 this.setOrientation(Orientation.BOTTOM); break;
             default:
         }
+    }
+
+    /**
+     * Method draws component`s content.
+     *
+     * @param g - Graphics instance to use for draw
+     */
+    public void paintComponent(Graphics g) {
+        g.drawImage(((ImageIcon) this.getIcon()).getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
     }
 }

@@ -1,3 +1,13 @@
+jbrickshooter (1.6.0-1) oneiric; urgency=high
+
+  * Add new locale: IT (thanks to Andrea Lazzarotto)
+  * Implement resize-ability (thanks Andrea Lazzarotto for idea)
+  * Up to Ubuntu Oneiric
+  * Fix several bugs including NPE in some rare cases
+  * Fix several UI glitches
+
+ -- X-Stranger <xstranger@gmail.com>  Mon, 12 Dec 2011 15:00:00 -0500
+
 jbrickshooter (1.5.3-1) maverick; urgency=high
 
   * Clear method complexity to make game working under 64-bit JVM
