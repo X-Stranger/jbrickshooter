@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedHashMap;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.BorderFactory;
@@ -51,6 +52,7 @@ public class Dialog extends JDialog implements ActionListener {
      * 
      * @param settings - game Settings instance
      */
+    @SuppressWarnings("SuspiciousMethodCalls")
     public Dialog(Settings settings) {
         super();
         this.settings = settings;
@@ -58,7 +60,7 @@ public class Dialog extends JDialog implements ActionListener {
         // displaying window at the screen
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(settings.getString("TITLE_CONF"));
-        ((java.awt.Frame) this.getOwner()).setIconImage(
+        this.getOwner().setIconImage(
             new ImageIcon(this.getClass().getClassLoader().getResource("images/icon.png")).getImage());
         
         // move delay spinner label
@@ -132,7 +134,7 @@ public class Dialog extends JDialog implements ActionListener {
         JLabel themeLabel = new JLabel(settings.getString("CONF_THEME"));
 
         // Theme text field
-        themeList = new HashMap<String, Integer>();
+        themeList = new LinkedHashMap<String, Integer>();
         themeList.put(settings.getString("THEME_MODERN"), 1);
         themeList.put(settings.getString("THEME_CLASSIC"), 2);
         themeList.put(settings.getString("THEME_CIRCLES"), 3);
@@ -208,6 +210,7 @@ public class Dialog extends JDialog implements ActionListener {
      * 
      * @param e - ActionEvent object
      */
+    @SuppressWarnings("SuspiciousMethodCalls")
     public void actionPerformed(ActionEvent e) {
 
         Integer value = (Integer) move.getValue();

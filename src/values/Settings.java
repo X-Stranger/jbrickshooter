@@ -5,7 +5,12 @@ import basic.Layout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.UIManager;
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -29,6 +34,10 @@ public final class Settings {
     public static final String HOME = System.getProperty("user.home") + "/.jbrickshooter/";
     /** Level up scores delta. */
     public static final int LEVEL_UP_SCORES = 100;
+
+    private static final int GRADE = 34;
+    /** Background color gaps and menu. */
+    public static final Color BACKGROUND = new Color(GRADE, GRADE, GRADE);
     
     /** Brick move delay value. */
     private static final String DELAY_MOVE = "5";
@@ -36,6 +45,11 @@ public final class Settings {
     private static final String DELAY_FIRE = "100";
     /** Brick theme index value. */
     private static final String THEME_INDEX = "1";
+
+    /** Default "brick size" value to be used when constructing the UI. */
+    public static final int DEFAULT_BRICK_SIZE = 30;
+    /** "Brick size" value to be used when constructing the UI. */
+    private static int brickSize = DEFAULT_BRICK_SIZE;
 
     private Integer scores;
     private Integer scoresBackup;
@@ -119,6 +133,7 @@ public final class Settings {
     /**
      * Method to save high scores to the file.
      */
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void saveHighScores() {
         try {
             File home = new File(Settings.HOME);
@@ -161,8 +176,13 @@ public final class Settings {
     /**
      * Method to save configuration to the file.
      */
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void saveConfiguration() {
         try {
+            // put some variables to configuration properties
+            configuration.setProperty("BRICK_SIZE", "" + brickSize);
+
+            // perform saving itself
             File home = new File(Settings.HOME);
             home.mkdir();
             File file = new File(Settings.HOME + "configuration");
@@ -332,11 +352,22 @@ public final class Settings {
      * @return Font object
      */
     public Font getFont(boolean big) {
+        Font font;
+        float size;
         if (big) {
-            return this.bigFont;
+            font = this.bigFont;
+            size = bigFontSize;
         } else {
-            return this.font;
+            font = this.font;
+            size = fontSize;
         }
+
+        float newSize = size * (float) Settings.getBrickSizeRatio();
+        if (font.getSize() < newSize) {
+            font = font.deriveFont(newSize);
+        }
+
+        return font;
     }
 
     /**
@@ -345,7 +376,7 @@ public final class Settings {
      * @return Font object
      */
     public Font getFont() {
-        return this.font;
+        return this.getFont(false);
     }
 
     /**
@@ -497,6 +528,42 @@ public final class Settings {
     }
 
     /**
+     * Setter for "brick size" - the value to be used while constructing the UI.
+     *
+     * @param value - new int "brick size" value
+     */
+    public static void setBrickSize(int value) {
+        Settings.brickSize = value;
+    }
+
+    /**
+     * Getter for "brick size" - the value to be used while constructing the UI.
+     *
+     * @return int "brick size" value
+     */
+    public static int getBrickSize() {
+        return Settings.brickSize;
+    }
+
+    /**
+     * Getter for saved "brick size" - the value to be used while constructing the UI.
+     *
+     * @return int saved "brick size" value
+     */
+    public int getSavedBrickSize() {
+        return Integer.valueOf(configuration.getProperty("BRICK_SIZE", "" + brickSize));
+    }
+
+    /**
+     * Getter for "brick size" ratio - the value to be used while constructing the UI.
+     *
+     * @return double "brick size" ratio value
+     */
+    public static double getBrickSizeRatio() {
+        return (double) Settings.brickSize / (double) Settings.DEFAULT_BRICK_SIZE;
+    }
+
+    /**
      * Getter for locale name.
      * 
      * @return String value
@@ -590,5 +657,27 @@ public final class Settings {
      */
     public void cleanLaF() {
         configuration.remove("LAF");
+    }
+
+    /**
+     * Method scales image using interpolation, rendering and antialiasing for better quality.
+     *
+     * @param srcImg - source image to slace
+     * @param w - scale width
+     * @param h - scale height
+     * @return scaled image
+     */
+    public static Image getScaledImage(Image srcImg, int w, int h) {
+
+        BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = resizedImg.createGraphics();
+
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.drawImage(srcImg, 0, 0, w, h, null);
+
+        g2.dispose();
+        return resizedImg;
     }
 }
